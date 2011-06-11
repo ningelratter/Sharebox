@@ -17,29 +17,52 @@ import javax.swing.JToolBar;
 
 import de.sharebox.controller.Controller;
 
+/**
+ * 
+ * This GUI is the ... Extends from
+ * ShareBoxPanel.
+ * 
+ * @author Eilin
+ * @version 11.06.11
+ * 
+ * 
+ */
+
+//TODO Martin have to documented this class
+
 public abstract class ChangeablePanel extends ShareboxPanel {
 
+	/**
+	 * EVERY Panel needs a serialVersionUID
+	 */
 	private static final long serialVersionUID = 3629679597896223833L;
 
 	public ChangeablePanel(Controller controller) {
 		super(controller);
+		
+		//design of the view
 		setSize(new Dimension(640, 680));
 		setPreferredSize(new Dimension(640, 680));
 
+		//button exit
 		JButton exitButton = new JButton("ShareBox-Ultimate beenden");
 		exitButton.setBounds(0, 657, 640, 23);
+		//create new ActionListener
 		ActionListener exitButtonClickedActionListener = new ActionListener() {
 
 			@Override
-			// Anonyme Untermethode
+			// anonymous method 
 			public void actionPerformed(ActionEvent e) {
 				System.exit(0);
 			}
 		};
+		
+		//handling the event click exit
 		exitButton.addActionListener(exitButtonClickedActionListener);
 		setLayout(null);
 		add(exitButton);
 
+	
 		JToolBar toolBar = new JToolBar();
 		toolBar.setBounds(0, 0, 640, 37);
 		add(toolBar);

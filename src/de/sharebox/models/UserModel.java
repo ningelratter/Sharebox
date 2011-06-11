@@ -1,14 +1,13 @@
-/**
- * 
- */
 package de.sharebox.models;
 
 import de.sharebox.gui.User;
 
 /**
- * @author MW
  * 
+ * @author MW, Eilin
+ * @version 11.06.11
  */
+
 public class UserModel {
 
 	private User user;
@@ -17,7 +16,6 @@ public class UserModel {
 		setUser(user);
 	}
 
-	// gibt den Besitzer (Owner) einer Datei (file) zurück
 	public User getUser() {
 		return user;
 	}

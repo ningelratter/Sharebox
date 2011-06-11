@@ -14,81 +14,122 @@ import javax.swing.SwingConstants;
 import de.sharebox.controller.Controller;
 import de.sharebox.models.UserModel;
 
+/**
+ * 
+ * This GUI is the first view if a user want to register himself. Extends from
+ * ChangeablePanel.
+ * 
+ * @author Eilin
+ * @version 11.06.11
+ * 
+ * 
+ */
+
 public class RegisterPanel extends ChangeablePanel {
 
+	/**
+	 * EVERY Panel needs a serialVersionUID
+	 */
 	private static final long serialVersionUID = 2135442992970725951L;
 
 	private JTextField userName;
 	private JTextField password;
 	private JTextField mail;
 
+	/**
+	 * creates the view for registration
+	 * 
+	 * @param c
+	 */
 	public RegisterPanel(Controller c) {
 		super(c);
 
+		// design of the view
 		setForeground(Color.WHITE);
 		setFont(new Font("Tahoma", Font.PLAIN, 18));
 		setPreferredSize(new Dimension(640, 680));
 		setSize(new Dimension(640, 680));
 
+		// button registered
 		JButton Registrieren = new JButton("Registrieren");
 		Registrieren.addMouseListener(new MouseAdapter() {
+
 			@Override
+			// logic - create a user with the input from fields
 			public void mouseClicked(MouseEvent arg0) {
 				String userName = RegisterPanel.this.userName.getText();
 				System.out.println(userName);
 				String password = RegisterPanel.this.password.getText();
 				String mail = RegisterPanel.this.mail.getText();
 
+				// transferred the params to the controller and save it as a user
 				User user = controller.createUser(userName, password, mail);
 
+				// create a new UserModel
 				UserModel userModel = new UserModel(user);
+				// change into the HomePanel with the userModel
 				changePanel(new HomePanel(controller, userModel));
 			}
 		});
-		Registrieren.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		Registrieren.setBounds(267, 499, 159, 48);
-		add(Registrieren);
 
+		
+		
+		// TextField name
 		userName = new JTextField();
 		userName.setBounds(213, 186, 248, 36);
 		add(userName);
 		userName.setColumns(10);
 
+		// TextField password
 		password = new JTextField();
 		password.setBounds(219, 271, 242, 36);
 		add(password);
 		password.setColumns(10);
 
+		// TextField mail
+		mail = new JTextField();
+		mail.setBounds(219, 364, 242, 36);
+		add(mail);
+		mail.setColumns(10);
+
+		
+		// label name
 		JLabel lblNewLabel = new JLabel("Benutzername:");
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		lblNewLabel.setBounds(37, 184, 109, 36);
 		add(lblNewLabel);
 
+		// label password
 		JLabel lblPasswort = new JLabel("Passwort:");
 		lblPasswort.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		lblPasswort.setBounds(37, 273, 109, 29);
 		add(lblPasswort);
 
+		// label email
+		JLabel lblNewLabel_1 = new JLabel("Email:");
+		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		lblNewLabel_1.setBounds(37, 386, 46, 14);
+		add(lblNewLabel_1);
+
+		// label registration
+		JLabel lblRegistration = new JLabel("Registration:");
+		lblRegistration.setHorizontalAlignment(SwingConstants.CENTER);
+		lblRegistration.setFont(new Font("Tahoma", Font.BOLD, 20));
+		lblRegistration.setBounds(37, 41, 504, 53);
+		add(lblRegistration);
+
+		// label statement - what the user have to do
 		JLabel lblBitteGebenSie = new JLabel(
 				"Bitte geben Sie nun folgende f\u00FCr die Registierung notwendigen Daten ein:");
 		lblBitteGebenSie.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		lblBitteGebenSie.setBounds(20, 91, 521, 64);
 		add(lblBitteGebenSie);
 
-		JLabel lblNewLabel_1 = new JLabel("Email:");
-		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblNewLabel_1.setBounds(37, 386, 46, 14);
-		add(lblNewLabel_1);
+		
+		// registered - button
+		Registrieren.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		Registrieren.setBounds(267, 499, 159, 48);
+		add(Registrieren);
 
-		mail = new JTextField();
-		mail.setBounds(219, 364, 242, 36);
-		add(mail);
-		mail.setColumns(10);
-
-		JLabel lblRegistration = new JLabel("Registration:");
-		lblRegistration.setHorizontalAlignment(SwingConstants.CENTER);
-		lblRegistration.setFont(new Font("Tahoma", Font.BOLD, 20));
-		lblRegistration.setBounds(37, 41, 504, 53);
-		add(lblRegistration);
 	}
 }

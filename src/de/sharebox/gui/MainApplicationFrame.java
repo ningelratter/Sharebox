@@ -6,26 +6,42 @@ import javax.swing.JFrame;
 
 import de.sharebox.controller.Controller;
 
+/**
+ * 
+ * This class is the start application. Produce the first view of the
+ * application - LoginPanel.
+ * 
+ * @author Eilin
+ * @version 11.06.11
+ * 
+ */
+
 public class MainApplicationFrame extends JFrame {
 
+	/**
+	 * EVERY Panel needs a serialVersionUID
+	 */
 	private static final long serialVersionUID = -8617748510406583242L;
 
 	/**
-	 * @param args
-	 *          Die Login.java-Datei erzeugt das Fenster der Applikation. Dazu
-	 *          wird LoginPanel aufgerufen.
+	 * 
+	 * Creates the design of the view when the application started. The controller
+	 * will be created and it take the call for LoginPanel.
+	 * 
+	 * @author Eilin
 	 */
-
 	public MainApplicationFrame() {
-		setDefaultCloseOperation(EXIT_ON_CLOSE);
 
+		// design of the view
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setTitle("ShareBox-Ultimate");
 		setSize(640, 680);
 		setPreferredSize(new Dimension(640, 680));
 
-		// einzige Stelle, wo Controller erzeugt wird
+		// create the controller, its the only one
 		Controller controller = new Controller();
 
+		// create and call the LoginPanel
 		LoginPanel loginPanel = new LoginPanel(controller);
 		add(loginPanel);
 
@@ -34,6 +50,7 @@ public class MainApplicationFrame extends JFrame {
 	}
 
 	public static void main(String[] args) {
+		// text in the head of the window
 		System.out.println("Sharebox-Ultimate");
 		new MainApplicationFrame();
 

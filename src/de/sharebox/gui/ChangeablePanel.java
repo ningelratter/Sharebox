@@ -16,6 +16,10 @@ import javax.swing.JPopupMenu;
 import javax.swing.JToolBar;
 
 import de.sharebox.controller.Controller;
+import de.sharebox.models.UserModel;
+import de.sharebox.services.UserService;
+
+import javax.swing.UIManager;
 
 /**
  * 
@@ -46,7 +50,7 @@ public abstract class ChangeablePanel extends ShareboxPanel {
 
 		//button exit
 		JButton exitButton = new JButton("ShareBox-Ultimate beenden");
-		exitButton.setBounds(0, 657, 640, 23);
+		exitButton.setBounds(0, 618, 640, 23);
 		//create new ActionListener
 		ActionListener exitButtonClickedActionListener = new ActionListener() {
 
@@ -68,6 +72,7 @@ public abstract class ChangeablePanel extends ShareboxPanel {
 		add(toolBar);
 
 		JMenuBar menuBar = new JMenuBar();
+		menuBar.setBorder(UIManager.getBorder("MenuBar.border"));
 		toolBar.add(menuBar);
 
 		JMenu mnDatei = new JMenu("Datei");
@@ -93,10 +98,22 @@ public abstract class ChangeablePanel extends ShareboxPanel {
 		mnEinladungenVerschicken.add(mntmEinladungenAnnehmen);
 
 		JMenu mnVerzeichnisliste = new JMenu("Verzeichnisliste");
-		toolBar.add(mnVerzeichnisliste);
+		menuBar.add(mnVerzeichnisliste);
+		
 
-		JMenuItem mntmVerzeichnisreiterAnzeigen = new JMenuItem("Verzeichnisreiter anzeigen");
-		mnVerzeichnisliste.add(mntmVerzeichnisreiterAnzeigen);
+		JMenuItem mntmVerzeichnisliste = new JMenuItem("Verzeichnisliste anzeigen");
+		mntmVerzeichnisliste.addMouseListener(new MouseAdapter() {
+			@Override 
+			// Change into DirPanel
+			public void mouseReleased(MouseEvent e) {
+			
+				Controller c = new Controller();
+				DirPanel dirPanel = new DirPanel(c);
+				changePanel(dirPanel);
+
+			}
+		});
+		mnVerzeichnisliste.add(mntmVerzeichnisliste);
 	}
 
 	public void changePanel(HomePanel homePanel) {
@@ -114,6 +131,15 @@ public abstract class ChangeablePanel extends ShareboxPanel {
 		parent.add(registerPanel);
 		parent.validate();
 		parent.repaint();
+	}
+	public void changePanel(DirPanel dirPanel){
+		
+		Container parent = getParent();
+		parent.removeAll();
+		parent.add(dirPanel);
+		parent.validate();
+		parent.repaint();
+		
 	}
 
 	private static void addPopup(Component component, final JPopupMenu popup) {

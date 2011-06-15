@@ -6,6 +6,7 @@ import java.awt.Font;
 import javax.swing.JTree;
 
 import de.sharebox.controller.Controller;
+import javax.swing.JTabbedPane;
 
 /**
  * ? TODO describe the function of this class 
@@ -20,12 +21,7 @@ public class DirPanel extends ChangeablePanel {
 		super(c);
 		
 		JTree tree = new JTree();
-	
-		tree.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		tree.setShowsRootHandles(true);
-		tree.setEditable(true);
-		add(tree, BorderLayout.CENTER);
+		tree.setBounds(119, 144, 179, 155);
+		add(tree);
 	}
-
-	
 	}

@@ -65,10 +65,12 @@ public class LoginPanel extends ChangeablePanel {
 
 		// text field username
 		final JTextField loginNameField = new JTextField("username");
+		loginNameField.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		loginPanel.add(loginNameField);
 
 		// text field password
 		final JPasswordField loginPasswordField = new JPasswordField("password");
+		loginPasswordField.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		loginPanel.add(loginPasswordField);
 
 		
@@ -78,6 +80,7 @@ public class LoginPanel extends ChangeablePanel {
 
 		// button login and actionhandling
 		JButton loginButton = new JButton("Login");
+		loginButton.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		ActionListener loginButtonClickedActionListener = new ActionListener() {
 
 			@Override

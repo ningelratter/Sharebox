@@ -1,6 +1,3 @@
-/**
- * 
- */
 package de.sharebox.services;
 
 import java.util.List;

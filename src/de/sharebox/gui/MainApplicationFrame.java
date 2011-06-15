@@ -5,7 +5,7 @@ import java.awt.Dimension;
 import javax.swing.JFrame;
 
 import de.sharebox.controller.Controller;
-
+//testcomment
 /**
  * 
  * This class is the start application. Produce the first view of the

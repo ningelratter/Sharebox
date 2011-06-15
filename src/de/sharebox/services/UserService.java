@@ -1,11 +1,6 @@
-/**
- * 
- */
 package de.sharebox.services;
 
-import java.util.List;
-import java.util.Random;
-
+import java.util.*; 
 import de.sharebox.gui.User;
 
 /**
@@ -14,6 +9,9 @@ import de.sharebox.gui.User;
  * @version 11.06.11
  */
 public class UserService {
+	
+	
+
 
 	/**
 	 * standart adjustment for new users

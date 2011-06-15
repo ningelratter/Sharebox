@@ -10,7 +10,7 @@ import de.sharebox.gui.User;
 
 /**
  * 
- * @author MW
+ * @author MW jetzt in Potsdam
  * @version 11.06.11
  */
 public class UserService {

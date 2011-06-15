@@ -4,7 +4,7 @@
 package de.sharebox.models;
 
 /**
- * @author MW
+ * @author MW aus Berlin
  *
  */
 public class FileModel {

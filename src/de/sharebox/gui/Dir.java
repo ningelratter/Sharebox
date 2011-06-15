@@ -5,7 +5,7 @@ import java.util.List;
 
 /**
  * Objectclass directory
- * @author MW
+ * @author MW aus Berlin
  * @version 11.06.11
  * 
  */

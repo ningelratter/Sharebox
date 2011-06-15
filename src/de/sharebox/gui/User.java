@@ -7,7 +7,7 @@ import java.util.List;
  * 
  * Objectclass user
  * 
- * @author MW
+ * @author MW aus Berlin
  * @version 11.06.11
  * 
  * 

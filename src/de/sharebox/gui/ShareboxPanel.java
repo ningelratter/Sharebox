@@ -5,7 +5,7 @@ import javax.swing.JPanel;
 import de.sharebox.controller.Controller;
 
 /**
- * At the moment I don't know why we need this class. :(
+ * At the moment I don't know why we need this class. :( :)
  * @author Eilin
  * @version 11.06.11
  *  

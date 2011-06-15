@@ -17,7 +17,7 @@ import de.sharebox.models.UserModel;
  * 
  * This GUI is view for the Login. It extends from ChangeablePanel.
  * 
- * @author Eilin
+ * @author Eilin aus Potsdam
  * @version 11.06.11
  * 
  * 

@@ -4,7 +4,7 @@ import de.sharebox.gui.User;
 
 /**
  * 
- * @author MW, Eilin
+ * @author MW, Eilin, und keiner weiter
  * @version 11.06.11
  */
 

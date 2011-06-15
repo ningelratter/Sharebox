@@ -20,7 +20,7 @@ import de.sharebox.models.UserModel;
 /**
  * 
  * This GUI is the first view if a user want to register himself. Extends from
- * ChangeablePanel.
+ * ChangeablePanel. :)
  * 
  * @author Eilin
  * @version 11.06.11

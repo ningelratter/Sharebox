@@ -3,7 +3,7 @@ package de.sharebox.gui;
 import java.util.Date;
 
 /**
- * Objectclass File
+ * Objectclass File :)
  * 
  * @author MW
  * @version 11.06.11

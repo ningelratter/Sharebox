@@ -11,7 +11,7 @@ import de.sharebox.controller.Controller;
  * This class is the start application. Produce the first view of the
  * application - LoginPanel.
  * 
- * @author Eilin
+ * @author Eilin Schroder
  * @version 11.06.11
  * 
  */

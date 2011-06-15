@@ -15,7 +15,7 @@ import de.sharebox.models.UserModel;
  * This GUI is the view when login was successfully. Extends from
  * ChangeablePanel.
  * 
- * @author MW
+ * @author MW aus Berlin
  * @version 11.06.11
  * 
  * 

@@ -20,15 +20,13 @@ import de.sharebox.controller.Controller;
 
 /**
  * 
- * This GUI is the ... Extends from
- * ShareBoxPanel.
+ * This GUI is the ... Extends from ShareBoxPanel.
  * 
  * @author Eilin
  * @version 11.06.11
  * 
  * 
  */
-
 
 public abstract class ChangeablePanel extends ShareboxPanel {
 
@@ -39,70 +37,79 @@ public abstract class ChangeablePanel extends ShareboxPanel {
 
 	public ChangeablePanel(Controller controller) {
 		super(controller);
-		
-		//design of the view
+
+		// design of the view
 		setSize(new Dimension(640, 680));
 		setPreferredSize(new Dimension(640, 680));
 
-		//button exit
+		// button exit
 		JButton exitButton = new JButton("ShareBox-Ultimate beenden");
 		exitButton.setBounds(0, 618, 640, 23);
-		//create new ActionListener
+		// create new ActionListener
 		ActionListener exitButtonClickedActionListener = new ActionListener() {
 
 			@Override
-			// anonymous method 
+			// closing the programm
 			public void actionPerformed(ActionEvent e) {
 				System.exit(0);
 			}
 		};
-		
-		//handling the event click exit
+
+		// handling the event click exit
 		exitButton.addActionListener(exitButtonClickedActionListener);
 		setLayout(null);
 		add(exitButton);
-
-	
+		//creates a toolbar
 		JToolBar toolBar = new JToolBar();
 		toolBar.setBounds(0, 0, 640, 37);
 		add(toolBar);
-
+		//cretes a menubar on the toolbar
 		JMenuBar menuBar = new JMenuBar();
 		menuBar.setBorder(UIManager.getBorder("MenuBar.border"));
 		toolBar.add(menuBar);
-
+		//creates a submenu on the menubar
 		JMenu mnDatei = new JMenu("Datei");
 		mnDatei.setAutoscrolls(true);
 		menuBar.add(mnDatei);
-
+		//creates a submenu on the menubar
 		JMenu mnBenutzereinstellungen = new JMenu("Benutzereinstellungen");
 		menuBar.add(mnBenutzereinstellungen);
-
-		JMenuItem mntmBenutzereinstellungenAnsehen = new JMenuItem("Benutzereinstellungen ansehen");
+		//creates a submenu on the menubar
+		
+		JMenuItem mntmBenutzereinstellungenAnsehen = new JMenuItem(
+				"Benutzereinstellungen ansehen");
 		mnBenutzereinstellungen.add(mntmBenutzereinstellungenAnsehen);
-
+		//creates a menu on the menubar
+		
 		JMenuItem mntmLogAufrufen = new JMenuItem("Log aufrufen");
 		mnBenutzereinstellungen.add(mntmLogAufrufen);
-
-		JMenu mnEinladungenVerschicken = new JMenu("Einladungen verschicken");
+		//creates a menu on the menubar
+		
+		JMenu mnEinladungenVerschicken = new JMenu("Einladungen");
 		menuBar.add(mnEinladungenVerschicken);
-
-		JMenuItem mntmEinladungenVerschicken = new JMenuItem("Einladungen verschicken");
+		//creates a submenu "Einladungen verschicken"
+		
+		JMenuItem mntmEinladungenVerschicken = new JMenuItem(
+				"Einladungen verschicken");
+		
 		mnEinladungenVerschicken.add(mntmEinladungenVerschicken);
+		//creates a submenu "Einladungen annehmen"
 
-		JMenuItem mntmEinladungenAnnehmen = new JMenuItem("Einladungen annehmen");
+		JMenuItem mntmEinladungenAnnehmen = new JMenuItem(
+				"Einladungen annehmen");
 		mnEinladungenVerschicken.add(mntmEinladungenAnnehmen);
-
+		//creates a menu "Verzeichnisliste"
 		JMenu mnVerzeichnisliste = new JMenu("Verzeichnisliste");
 		menuBar.add(mnVerzeichnisliste);
-		
-
-		JMenuItem mntmVerzeichnisliste = new JMenuItem("Verzeichnisliste anzeigen");
+		//creates a submenu "Verzeichnisliste anzeigen"
+		JMenuItem mntmVerzeichnisliste = new JMenuItem(
+				"Verzeichnisliste anzeigen");
+		//mouseclick on the submenu "Verzeichnisliste anzeigen" opens DirPanel-View
 		mntmVerzeichnisliste.addMouseListener(new MouseAdapter() {
-			@Override 
+			@Override
 			// Change into DirPanel
 			public void mouseReleased(MouseEvent e) {
-			
+
 				Controller c = new Controller();
 				DirPanel dirPanel = new DirPanel(c);
 				changePanel(dirPanel);
@@ -111,7 +118,8 @@ public abstract class ChangeablePanel extends ShareboxPanel {
 		});
 		mnVerzeichnisliste.add(mntmVerzeichnisliste);
 	}
-//TODO
+
+	//opens HomePanel-View
 	public void changePanel(HomePanel homePanel) {
 		Container parent = getParent();
 		parent.removeAll();
@@ -119,7 +127,7 @@ public abstract class ChangeablePanel extends ShareboxPanel {
 		parent.validate();
 		parent.repaint();
 	}
-
+	//opens RegisterPanel-View
 	public void changePanel(RegisterPanel registerPanel) {
 
 		Container parent = getParent();
@@ -128,33 +136,15 @@ public abstract class ChangeablePanel extends ShareboxPanel {
 		parent.validate();
 		parent.repaint();
 	}
-	public void changePanel(DirPanel dirPanel){
-		
+	//opens DirPanel-View
+	public void changePanel(DirPanel dirPanel) {
+
 		Container parent = getParent();
 		parent.removeAll();
 		parent.add(dirPanel);
 		parent.validate();
 		parent.repaint();
-		
+
 	}
 
-	private static void addPopup(Component component, final JPopupMenu popup) {
-		component.addMouseListener(new MouseAdapter() {
-			public void mousePressed(MouseEvent e) {
-				if (e.isPopupTrigger()) {
-					showMenu(e);
-				}
-			}
-
-			public void mouseReleased(MouseEvent e) {
-				if (e.isPopupTrigger()) {
-					showMenu(e);
-				}
-			}
-
-			private void showMenu(MouseEvent e) {
-				popup.show(e.getComponent(), e.getX(), e.getY());
-			}
-		});
-	}
 }

@@ -51,7 +51,7 @@ public class MainApplicationFrame extends JFrame {
 
 	public static void main(String[] args) {
 		// text in the head of the window
-		System.out.println("Sharebox-Ultimate");
+	//	System.out.println("Sharebox-Ultimate");
 		new MainApplicationFrame();
 
 	}

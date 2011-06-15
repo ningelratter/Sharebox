@@ -14,12 +14,9 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
 import javax.swing.JToolBar;
+import javax.swing.UIManager;
 
 import de.sharebox.controller.Controller;
-import de.sharebox.models.UserModel;
-import de.sharebox.services.UserService;
-
-import javax.swing.UIManager;
 
 /**
  * 
@@ -32,7 +29,6 @@ import javax.swing.UIManager;
  * 
  */
 
-//TODO Martin have to documented this class
 
 public abstract class ChangeablePanel extends ShareboxPanel {
 

@@ -52,12 +52,12 @@ public class LoginPanel extends ChangeablePanel {
 		lblNochKeinLogin.setBounds(94, 312, 376, 34);
 		add(lblNochKeinLogin);
 		
-		//???
+		//TODO for MW - für was sind diese Label?
 		JLabel label = new JLabel("");
 		label.setBounds(231, 63, 0, 0);
 		add(label);
 
-		//???
+		//TODO for MW - für was sind diese Label?
 		JLabel label_1 = new JLabel("");
 		label_1.setBounds(236, 63, 0, 0);
 		add(label_1);

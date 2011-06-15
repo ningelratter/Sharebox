@@ -7,18 +7,15 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.Popup;
 import javax.swing.PopupFactory;
 import javax.swing.SwingConstants;
-import javax.swing.text.StringContent;
 
 import de.sharebox.controller.Controller;
 import de.sharebox.models.UserModel;
-import javax.swing.*;
-import java.awt.Component;
-import java.awt.Point;
 
 /**
  * 
@@ -71,13 +68,11 @@ public class RegisterPanel extends ChangeablePanel {
 
 				// checks if mail is valid
 
-				boolean b = mail.contains("@") && mail.contains(".de")
-						|| mail.contains("@") && mail.contains(".com")
+				boolean b = mail.contains("@") && mail.contains(".de") || mail.contains("@") && mail.contains(".com")
 						|| mail.contains("@") && mail.contains(".fr");
 
 				if (b) {
-					// transferred the params to the controller and save it as a
-					// user
+					// transferred the params to the controller and save it as a user
 					User user = controller.createUser(userName, password, mail);
 
 					// create a new UserModel
@@ -85,8 +80,7 @@ public class RegisterPanel extends ChangeablePanel {
 					// change into HomePanel with the userModel
 					changePanel(new HomePanel(controller, userModel));
 
-					// if mail is not valid - Popup is leading back to
-					// RegisterPanel
+					// if mail is not valid - Popup is leading back to RegisterPanel
 				} else {
 
 					frame = new JFrame("Eingabe der Nutzerdaten nicht korrekt");
@@ -94,16 +88,14 @@ public class RegisterPanel extends ChangeablePanel {
 					frame.setLocation(200, 200);
 					PopupFactory factory = PopupFactory.getSharedInstance();
 					JButton button;
-					popup = factory.getPopup(frame, button = new JButton(
-							"Eingabedaten inkorrekt!"), 200, 240);
+					popup = factory.getPopup(frame, button = new JButton("Eingabedaten inkorrekt!"), 200, 240);
 					popup.show();
 					frame.setVisible(true);
 					button.addMouseListener(new MouseAdapter() {
 
 						public void mouseClicked(MouseEvent arg0) {
 
-							RegisterPanel registerPanel = new RegisterPanel(
-									controller);
+							RegisterPanel registerPanel = new RegisterPanel(controller);
 							changePanel(registerPanel);
 
 							frame.setVisible(false);

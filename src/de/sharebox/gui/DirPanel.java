@@ -1,12 +1,8 @@
 package de.sharebox.gui;
 
-import java.awt.BorderLayout;
-import java.awt.Font;
-
 import javax.swing.JTree;
 
 import de.sharebox.controller.Controller;
-import javax.swing.JTabbedPane;
 
 /**
  * ? TODO describe the function of this class 

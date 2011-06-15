@@ -7,5 +7,8 @@ package de.sharebox.models;
  * @verson 11.06.11
  */
 public class DirModel {
+	
+	
+	
 
 }

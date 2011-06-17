@@ -4,7 +4,8 @@ import de.sharebox.gui.User;
 import de.sharebox.services.UserService;
 
 /**
- * This class controll the services (UserService, FileService, DirectoryService).
+ * This class controll the services (UserService, FileService,
+ * DirectoryService).
  * 
  * @author Eilin
  * @version 11.06.11
@@ -14,13 +15,13 @@ import de.sharebox.services.UserService;
 public class Controller {
 
 	private UserService userService;
-//constructor
+
+	// constructor
 	// constructor
 	public Controller() {
 		userService = new UserService();
 	}
-	
-	
+
 	/**
 	 * call to create a user in the userService From type User.
 	 * 
@@ -48,6 +49,10 @@ public class Controller {
 	 */
 	public static void main(String[] args) {
 
+	}
+
+	public void saveData() {
+		userService.saveUsers();
 	}
 
 }

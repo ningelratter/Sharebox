@@ -21,7 +21,7 @@ import de.sharebox.models.UserModel;
  * 
  */
 
-public class HomePanel extends ChangeablePanel {
+public class HomePanel extends MenuPanel {
 
 	/**
 	 * EVERY Panel needs a serialVersionUID

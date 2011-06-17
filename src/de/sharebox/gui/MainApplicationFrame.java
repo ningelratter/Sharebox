@@ -31,6 +31,7 @@ public class MainApplicationFrame extends JFrame {
 	 * 
 	 * @author Eilin
 	 */
+	
 	public MainApplicationFrame() {
 
 		// design of the view

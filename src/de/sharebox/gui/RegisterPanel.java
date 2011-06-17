@@ -28,7 +28,7 @@ import de.sharebox.models.UserModel;
  * 
  */
 
-public class RegisterPanel extends ChangeableRegisterLogin {
+public class RegisterPanel extends ChangeablePanel {
 
 	/**
 	 * EVERY Panel needs a serialVersionUID

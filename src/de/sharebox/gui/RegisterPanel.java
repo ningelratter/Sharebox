@@ -22,13 +22,13 @@ import de.sharebox.models.UserModel;
  * This GUI is the first view if a user want to register himself. Extends from
  * ChangeablePanel. :)
  * 
- * @author Eilin
+ * @author Eilin,MW
  * @version 11.06.11
  * 
  * 
  */
 
-public class RegisterPanel extends ChangeablePanel {
+public class RegisterPanel extends ChangeableRegisterLogin {
 
 	/**
 	 * EVERY Panel needs a serialVersionUID
@@ -68,11 +68,13 @@ public class RegisterPanel extends ChangeablePanel {
 
 				// checks if mail is valid
 
-				boolean b = mail.contains("@") && mail.contains(".de") || mail.contains("@") && mail.contains(".com")
+				boolean b = mail.contains("@") && mail.contains(".de")
+						|| mail.contains("@") && mail.contains(".com")
 						|| mail.contains("@") && mail.contains(".fr");
 
 				if (b) {
-					// transferred the params to the controller and save it as a user
+					// transferred the params to the controller and save it as a
+					// user
 					User user = controller.createUser(userName, password, mail);
 
 					// create a new UserModel
@@ -80,7 +82,8 @@ public class RegisterPanel extends ChangeablePanel {
 					// change into HomePanel with the userModel
 					changePanel(new HomePanel(controller, userModel));
 
-					// if mail is not valid - Popup is leading back to RegisterPanel
+					// if mail is not valid - Popup is leading back to
+					// RegisterPanel
 				} else {
 
 					frame = new JFrame("Eingabe der Nutzerdaten nicht korrekt");
@@ -88,14 +91,16 @@ public class RegisterPanel extends ChangeablePanel {
 					frame.setLocation(200, 200);
 					PopupFactory factory = PopupFactory.getSharedInstance();
 					JButton button;
-					popup = factory.getPopup(frame, button = new JButton("Eingabedaten inkorrekt!"), 200, 240);
+					popup = factory.getPopup(frame, button = new JButton(
+							"Eingabedaten inkorrekt!"), 200, 240);
 					popup.show();
 					frame.setVisible(true);
 					button.addMouseListener(new MouseAdapter() {
 
 						public void mouseClicked(MouseEvent arg0) {
 
-							RegisterPanel registerPanel = new RegisterPanel(controller);
+							RegisterPanel registerPanel = new RegisterPanel(
+									controller);
 							changePanel(registerPanel);
 
 							frame.setVisible(false);
@@ -108,60 +113,61 @@ public class RegisterPanel extends ChangeablePanel {
 			}
 
 		});
+		setLayout(null);
 
 		// TextField name
 		userName = new JTextField();
-		userName.setBounds(213, 186, 248, 36);
+		userName.setBounds(272, 291, 166, 20);
 		add(userName);
 		userName.setColumns(10);
 
 		// TextField password
 		password = new JTextField();
-		password.setBounds(213, 271, 242, 36);
+		password.setBounds(272, 339, 166, 20);
 		add(password);
 		password.setColumns(10);
 
 		// TextField mail
 		mail = new JTextField();
-		mail.setBounds(213, 363, 242, 36);
+		mail.setBounds(272, 394, 166, 20);
 		add(mail);
 		mail.setColumns(10);
 
 		// label name
 		JLabel lblNewLabel = new JLabel("Benutzername:");
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblNewLabel.setBounds(37, 184, 109, 36);
+		lblNewLabel.setBounds(94, 291, 106, 20);
 		add(lblNewLabel);
 
 		// label password
 		JLabel lblPasswort = new JLabel("Passwort:");
 		lblPasswort.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblPasswort.setBounds(37, 273, 109, 29);
+		lblPasswort.setBounds(94, 337, 69, 20);
 		add(lblPasswort);
 
 		// label email
 		JLabel lblNewLabel_1 = new JLabel("Email:");
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblNewLabel_1.setBounds(37, 386, 46, 14);
+		lblNewLabel_1.setBounds(94, 392, 45, 20);
 		add(lblNewLabel_1);
 
 		// label registration
 		JLabel lblRegistration = new JLabel("Registration:");
 		lblRegistration.setHorizontalAlignment(SwingConstants.CENTER);
 		lblRegistration.setFont(new Font("Tahoma", Font.BOLD, 20));
-		lblRegistration.setBounds(37, 41, 504, 53);
+		lblRegistration.setBounds(210, 84, 218, 65);
 		add(lblRegistration);
 
 		// label statement - what the user have to do
 		JLabel lblBitteGebenSie = new JLabel(
 				"Bitte geben Sie nun folgende f\u00FCr die Registierung notwendigen Daten ein:");
 		lblBitteGebenSie.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblBitteGebenSie.setBounds(20, 91, 521, 64);
+		lblBitteGebenSie.setBounds(52, 191, 521, 20);
 		add(lblBitteGebenSie);
 
 		// registered - button
 		Registrieren.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		Registrieren.setBounds(267, 499, 159, 48);
+		Registrieren.setBounds(272, 445, 147, 58);
 		add(Registrieren);
 
 	}

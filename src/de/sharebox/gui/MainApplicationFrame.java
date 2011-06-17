@@ -5,6 +5,7 @@ import java.awt.Dimension;
 import javax.swing.JFrame;
 
 import de.sharebox.controller.Controller;
+import java.awt.BorderLayout;
 //testcomment
 /**
  * 
@@ -43,7 +44,7 @@ public class MainApplicationFrame extends JFrame {
 
 		// create and call the LoginPanel
 		LoginPanel loginPanel = new LoginPanel(controller);
-		add(loginPanel);
+		getContentPane().add(loginPanel, BorderLayout.NORTH);
 
 		pack();
 		setVisible(true);

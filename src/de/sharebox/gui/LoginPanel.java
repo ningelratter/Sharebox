@@ -1,12 +1,12 @@
 package de.sharebox.gui;
 
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
@@ -17,13 +17,13 @@ import de.sharebox.models.UserModel;
  * 
  * This GUI is view for the Login. It extends from ChangeablePanel.
  * 
- * @author Eilin aus Potsdam
- * @version 11.06.11
+ * @author Eilin,MW
+ *  * @version 11.06.11
  * 
  * 
  */
 
-public class LoginPanel extends ChangeablePanel {
+public class LoginPanel extends ChangeableRegisterLogin {
 
 	/**
 	 * EVERY Panel needs a serialVersionUID
@@ -32,63 +32,47 @@ public class LoginPanel extends ChangeablePanel {
 
 	public LoginPanel(Controller c) {
 		super(c);
-
 		setLayout(null);
-
-		// create the loginPanel
-		JPanel loginPanel = new JPanel();
-		loginPanel.setBounds(78, 104, 376, 69);
-		add(loginPanel);
 
 		// label statement - what the user have to do
 		JLabel loginLabel = new JLabel("Bitte loggen Sie sich ein:");
+		loginLabel.setBounds(212, 108, 298, 67);
 		loginLabel.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		loginLabel.setBounds(156, 63, 237, 37);
 		add(loginLabel);
-		
-		// label statement for registration
-		JLabel lblNochKeinLogin = new JLabel("noch kein Login? Dann melden Sie sich jetzt an:");
-		lblNochKeinLogin.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblNochKeinLogin.setBounds(94, 312, 376, 34);
-		add(lblNochKeinLogin);
-		
-		//TODO for MW - für was sind diese Label?
-		JLabel label = new JLabel("");
-		label.setBounds(231, 63, 0, 0);
-		add(label);
 
-		//TODO for MW - für was sind diese Label?
-		JLabel label_1 = new JLabel("");
-		label_1.setBounds(236, 63, 0, 0);
-		add(label_1);
+		// label statement for registration
+		JLabel lblNochKeinLogin = new JLabel(
+				"noch kein Login? Dann melden Sie sich jetzt an:");
+		lblNochKeinLogin.setBounds(134, 446, 376, 34);
+		lblNochKeinLogin.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		add(lblNochKeinLogin);
 
 
 		// text field username
 		final JTextField loginNameField = new JTextField("username");
+		loginNameField.setBounds(190, 204, 110, 50);
+		add(loginNameField);
 		loginNameField.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		loginPanel.add(loginNameField);
 
 		// text field password
 		final JPasswordField loginPasswordField = new JPasswordField("password");
+		loginPasswordField.setPreferredSize(new Dimension(53, 20));
+		loginPasswordField.setBounds(316, 206, 128, 50);
+		add(loginPasswordField);
 		loginPasswordField.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		loginPanel.add(loginPasswordField);
 
-		
+
 		// button register
 		JButton registerButton = new JButton("Registrieren");
-		registerButton.setBounds(110, 357, 322, 50);
-
-		// button login and actionhandling
-		JButton loginButton = new JButton("Login");
-		loginButton.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		registerButton.setBounds(156, 508, 322, 50);
 		ActionListener loginButtonClickedActionListener = new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				String name = loginNameField.getText();
 				// string konstruktor - macht aus dem chararray einen string
-				String password = new String(loginPasswordField.getPassword());
 
+				String password = new String(loginPasswordField.getPassword());
 				User user = controller.getUser(name, password);
 
 				if (user != null) {
@@ -100,21 +84,35 @@ public class LoginPanel extends ChangeablePanel {
 			}
 		};
 
-		loginButton.addActionListener(loginButtonClickedActionListener);
-		loginPanel.add(loginButton);
-
-	
 		// actionhandling register button
 		ActionListener registerButtonClickedActionListener = new ActionListener() {
 			@Override
 			// change the view when user push the register button
 			public void actionPerformed(ActionEvent f) {
+
 				changePanel(new RegisterPanel(controller));
 			}
 		};
 
 		registerButton.addActionListener(registerButtonClickedActionListener);
 		add(registerButton);
+		
+		
+		
+		// button login and actionhandling
+		JButton loginButton = new JButton("Login");
+		loginButton.setBounds(236, 282, 130, 72);
+		add(loginButton);
+		loginButton.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		//Welcome Label
+		JLabel lblHerzlichWillkommenBei = new JLabel("Herzlich Willkommen bei ShareBoxUltimate");
+		lblHerzlichWillkommenBei.setFont(new Font("Tahoma", Font.PLAIN, 28));
+		lblHerzlichWillkommenBei.setBounds(42, 11, 620, 91);
+		add(lblHerzlichWillkommenBei);
+
+		loginButton.addActionListener(loginButtonClickedActionListener);
+		
+		
 
 	}
 }

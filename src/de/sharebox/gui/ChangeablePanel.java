@@ -65,22 +65,54 @@ public class ChangeablePanel extends ShareboxPanel {
 		JMenuBar menuBar = new JMenuBar();
 		menuBar.setBorder(UIManager.getBorder("MenuBar.border"));
 		toolBar.add(menuBar);
+
+		JMenu Home = new JMenu("Home");
+		/*
+		 * Home.addMouseListener(new MouseAdapter() {
+		 * 
+		 * @Override //Opens HomePanel-View public void mouseReleased(MouseEvent
+		 * e) { Controller c = new Controller();
+		 * //TODO hier muss der aktuelle User aufgerufen werden, erst möglich durch Datenbank
+		 * 
+		 * HomePanel homePanel = new HomePanel(c,userModel);
+		 * changePanel(homePanel); } });
+		 */
+		menuBar.add(Home);
 		// creates a submenu on the menubar
 		JMenu mnDatei = new JMenu("Datei");
 		mnDatei.setAutoscrolls(true);
 		menuBar.add(mnDatei);
+
+		JMenuItem mntmNewMenuItem_1 = new JMenuItem("\u00D6ffnen");
+		mnDatei.add(mntmNewMenuItem_1);
+
+		JMenuItem mntmNewMenuItem_2 = new JMenuItem("umbennen");
+		mnDatei.add(mntmNewMenuItem_2);
+
+		JMenuItem mntmNewMenuItem_3 = new JMenuItem("l\u00F6schen");
+		mnDatei.add(mntmNewMenuItem_3);
 		// creates a submenu on the menubar
-		JMenu mnBenutzereinstellungen = new JMenu("Benutzereinstellungen");
-		menuBar.add(mnBenutzereinstellungen);
+		JMenu mnBenutzerServiceeinstellungen = new JMenu("BenutzerService");
+		menuBar.add(mnBenutzerServiceeinstellungen);
 		// creates a submenu on the menubar
 
 		JMenuItem mntmBenutzereinstellungenAnsehen = new JMenuItem(
-				"Benutzereinstellungen ansehen");
-		mnBenutzereinstellungen.add(mntmBenutzereinstellungenAnsehen);
+				"Benutzereinstellungen ansehen/\u00E4ndern");
+		mntmBenutzereinstellungenAnsehen.addMouseListener(new MouseAdapter() {
+			@Override
+			// opens UserProperties-View when clicked
+			public void mouseReleased(MouseEvent arg0) {
+
+				Controller c = new Controller();
+				UserProperties userProperties = new UserProperties(c);
+				changePanel(userProperties);
+			}
+		});
+		mnBenutzerServiceeinstellungen.add(mntmBenutzereinstellungenAnsehen);
 		// creates a menu on the menubar
 
 		JMenuItem mntmLogAufrufen = new JMenuItem("Log aufrufen");
-		mnBenutzereinstellungen.add(mntmLogAufrufen);
+		mnBenutzerServiceeinstellungen.add(mntmLogAufrufen);
 		// creates a menu on the menubar
 
 		JMenu mnEinladungenVerschicken = new JMenu("Einladungen");
@@ -145,7 +177,14 @@ public class ChangeablePanel extends ShareboxPanel {
 		parent.add(dirPanel);
 		parent.validate();
 		parent.repaint();
-
 	}
 
+	public void changePanel(UserProperties userProperties) {
+
+		Container parent = getParent();
+		parent.removeAll();
+		parent.add(userProperties);
+		parent.validate();
+		parent.repaint();
+	}
 }

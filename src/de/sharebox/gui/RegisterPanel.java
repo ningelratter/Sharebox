@@ -66,13 +66,23 @@ public class RegisterPanel extends ChangeableRegisterLogin {
 				String password = RegisterPanel.this.password.getText();
 				String mail = RegisterPanel.this.mail.getText();
 
-				// checks if mail is valid
+				// checks if userName,password and mail is entered as requested
+				int userNameLength = userName.length();
+				boolean buserName = false;
+				if (userNameLength >= 5) {
+					buserName = true;
+				}
+				boolean bpassword = false;
+				int passwordLength = password.length();
+				if (passwordLength >= 5) {
+					bpassword = true;
+				}
 
-				boolean b = mail.contains("@") && mail.contains(".de")
+				boolean bmail = mail.contains("@") && mail.contains(".de")
 						|| mail.contains("@") && mail.contains(".com")
 						|| mail.contains("@") && mail.contains(".fr");
 
-				if (b) {
+				if (bmail && buserName && bpassword) {
 					// transferred the params to the controller and save it as a
 					// user
 					User user = controller.createUser(userName, password, mail);

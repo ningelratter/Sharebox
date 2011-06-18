@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<java version="1.6.0_24" class="java.beans.XMLDecoder"> 
+ <object class="java.util.HashMap"> 
+  <void method="put"> 
+   <int>75</int> 
+   <object class="de.sharebox.gui.User"> 
+    <void property="id"> 
+     <int>75</int> 
+    </void> 
+    <void property="limit"> 
+     <double>2.0</double> 
+    </void> 
+    <void property="mail"> 
+     <string>@.de</string> 
+    </void> 
+    <void property="name"> 
+     <string>eilin</string> 
+    </void> 
+    <void property="password"> 
+     <string>123</string> 
+    </void> 
+   </object> 
+  </void> 
+ </object> 
+</java> 

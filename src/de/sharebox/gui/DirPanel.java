@@ -12,7 +12,12 @@ import de.sharebox.controller.Controller;
  *
  */
 
-public class DirPanel extends ChangeablePanel {
+public class DirPanel extends MenuPanel {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -4789182974023884485L;
+
 	public DirPanel(Controller c) {
 		super(c);
 		

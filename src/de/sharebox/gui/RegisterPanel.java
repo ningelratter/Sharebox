@@ -161,9 +161,9 @@ public class RegisterPanel extends ChangeablePanel {
 
 		// label statement - what the user have to do
 		JLabel lblBitteGebenSie = new JLabel(
-				"Bitte geben Sie nun folgende f\u00FCr die Registierung notwendigen Daten ein:");
+				"Bitte geben Sie nun folgende f\u00FCr die Registrierung notwendigen Daten ein:");
 		lblBitteGebenSie.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblBitteGebenSie.setBounds(52, 191, 521, 20);
+		lblBitteGebenSie.setBounds(52, 191, 541, 20);
 		add(lblBitteGebenSie);
 
 		// registered - button

@@ -1,6 +1,6 @@
 package de.sharebox.models;
 
-import de.sharebox.gui.User;
+import de.sharebox.entities.User;
 
 /**
  * 

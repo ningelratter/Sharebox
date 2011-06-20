@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
-import de.sharebox.gui.User;
+import de.sharebox.entities.User;
 
 /**
  * 

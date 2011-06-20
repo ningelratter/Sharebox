@@ -3,12 +3,15 @@ package de.sharebox.gui;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.Popup;
 import javax.swing.PopupFactory;
@@ -37,10 +40,10 @@ public class RegisterPanel extends ChangeablePanel {
 	private static final long serialVersionUID = 2135442992970725951L;
 
 	private JTextField userName;
-	private JTextField password;
 	private JTextField mail;
 	JFrame frame;
 	Popup popup;
+	private JPasswordField password;
 
 	/**
 	 * creates the view for registration
@@ -58,62 +61,27 @@ public class RegisterPanel extends ChangeablePanel {
 
 		// button registered
 		JButton Registrieren = new JButton("Registrieren");
+		Registrieren.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent e) {
+
+				if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+
+					userRegistration();
+				}
+
+			}
+		});
 		Registrieren.addMouseListener(new MouseAdapter() {
 
 			@Override
 			// logic - create a user with the input from fields
 			public void mouseClicked(MouseEvent arg0) {
-				String userName = RegisterPanel.this.userName.getText();
-				String password = RegisterPanel.this.password.getText();
-				String mail = RegisterPanel.this.mail.getText();
 
-				// checks if mail is valid
-
-				boolean b = mail.contains("@") && mail.contains(".de")
-						|| mail.contains("@") && mail.contains(".com")
-						|| mail.contains("@") && mail.contains(".fr");
-
-				if (b) {
-					// transferred the params to the controller and save it as a
-					// user
-					User user = controller.createUser(userName, password, mail);
-
-					// create a new UserModel
-					UserModel userModel = new UserModel(user);
-					// change into HomePanel with the userModel
-					changePanel(new HomePanel(controller, userModel));
-
-					// if mail is not valid - Popup is leading back to
-					// RegisterPanel
-				} else {
-
-					frame = new JFrame("Eingabe der Nutzerdaten nicht korrekt");
-					frame.setSize(200, 150);
-					frame.setLocation(200, 200);
-					PopupFactory factory = PopupFactory.getSharedInstance();
-					JButton button;
-					popup = factory.getPopup(frame, button = new JButton(
-							"Eingabedaten inkorrekt!"), 200, 240);
-					popup.show();
-					frame.setVisible(true);
-					button.addMouseListener(new MouseAdapter() {
-
-						public void mouseClicked(MouseEvent arg0) {
-
-							RegisterPanel registerPanel = new RegisterPanel(
-									controller);
-							changePanel(registerPanel);
-
-							frame.setVisible(false);
-
-						}
-
-					});
-				}
-
+				userRegistration();
 			}
-
 		});
+
 		setLayout(null);
 
 		// TextField name
@@ -121,12 +89,10 @@ public class RegisterPanel extends ChangeablePanel {
 		userName.setBounds(272, 291, 166, 20);
 		add(userName);
 		userName.setColumns(10);
-
-		// TextField password
-		password = new JTextField();
+		// TExtField password
+		password = new JPasswordField();
 		password.setBounds(272, 339, 166, 20);
 		add(password);
-		password.setColumns(10);
 
 		// TextField mail
 		mail = new JTextField();
@@ -172,4 +138,61 @@ public class RegisterPanel extends ChangeablePanel {
 		add(Registrieren);
 
 	}
-}
+
+	public void userRegistration() {
+
+		String userName = RegisterPanel.this.userName.getText();
+		String password = RegisterPanel.this.password.getText();
+		String mail = RegisterPanel.this.mail.getText();
+
+		// checks if mail is valid
+
+		boolean b = mail.contains("@") && mail.contains(".de")
+				|| mail.contains("@") && mail.contains(".com")
+				|| mail.contains("@") && mail.contains(".fr")
+				|| mail.contains("@") && mail.contains(".net");
+
+		if (b) {
+			// transferred the params to the controller and save it as a
+			// user
+			User user = controller.createUser(userName, password, mail);
+
+			// create a new UserModel
+			UserModel userModel = new UserModel(user);
+			// change into HomePanel with the userModel
+			changePanel(new HomePanel(controller, userModel));
+
+			// if mail is not valid - Popup is leading back to
+			// RegisterPanel
+		} else {
+			badInput();
+		}
+		;
+
+	}
+
+	public void badInput(){
+			frame = new JFrame("Eingabe der Nutzerdaten nicht korrekt");
+			frame.setSize(200, 150);
+			frame.setLocation(200, 200);
+			PopupFactory factory = PopupFactory.getSharedInstance();
+			JButton button;
+			popup = factory.getPopup(frame, button = new JButton(
+					"Eingabedaten inkorrekt!"), 200, 240);
+			popup.show();
+			frame.setVisible(true);
+			
+			button.addMouseListener(new MouseAdapter() {
+
+				public void mouseClicked(MouseEvent arg0) {
+
+					RegisterPanel registerPanel = new RegisterPanel(
+							controller);
+					changePanel(registerPanel);
+
+					frame.setVisible(false);}
+
+			;}
+			);}
+		}
+

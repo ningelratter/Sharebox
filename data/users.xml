@@ -1,25 +1,69 @@
 <?xml version="1.0" encoding="UTF-8"?> 
-<java version="1.6.0_24" class="java.beans.XMLDecoder"> 
+<java version="1.6.0_22" class="java.beans.XMLDecoder"> 
  <object class="java.util.HashMap"> 
   <void method="put"> 
-   <int>75</int> 
-   <object class="de.sharebox.gui.User"> 
+   <int>69</int> 
+   <object class="de.sharebox.entities.User"> 
     <void property="id"> 
-     <int>75</int> 
+     <int>69</int> 
     </void> 
     <void property="limit"> 
      <double>2.0</double> 
     </void> 
     <void property="mail"> 
-     <string>@.de</string> 
+     <string>martin@web.de</string> 
     </void> 
     <void property="name"> 
-     <string>eilin</string> 
+     <string>Martin</string> 
     </void> 
     <void property="password"> 
-     <string>123</string> 
+     <string>martin</string> 
     </void> 
    </object> 
+  </void> 
+  <void method="put"> 
+   <int>92</int> 
+   <object class="de.sharebox.entities.User"> 
+    <void property="id"> 
+     <int>92</int> 
+    </void> 
+    <void property="limit"> 
+     <double>2.0</double> 
+    </void> 
+    <void property="mail"> 
+     <string>hallo@web.de</string> 
+    </void> 
+    <void property="name"> 
+     <string>hallo</string> 
+    </void> 
+    <void property="password"> 
+     <string>hallo</string> 
+    </void> 
+   </object> 
+  </void> 
+  <void method="put"> 
+   <int>44</int> 
+   <object class="de.sharebox.entities.User"> 
+    <void property="id"> 
+     <int>44</int> 
+    </void> 
+    <void property="limit"> 
+     <double>2.0</double> 
+    </void> 
+    <void property="mail"> 
+     <string>hallo@web.de</string> 
+    </void> 
+    <void property="name"> 
+     <string>martin2</string> 
+    </void> 
+    <void property="password"> 
+     <string>martin2</string> 
+    </void> 
+   </object> 
+  </void> 
+  <void method="put"> 
+   <int>75</int> 
+   <null/> 
   </void> 
  </object> 
 </java> 

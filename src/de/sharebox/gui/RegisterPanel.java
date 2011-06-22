@@ -156,6 +156,7 @@ public class RegisterPanel extends ChangeablePanel {
 			// transferred the params to the controller and save it as a
 			// user
 			User user = controller.createUser(userName, password, mail);
+			//check if input in gui is null
 			if (user != null) {
 				// create a new UserModel
 				UserModel userModel = new UserModel(user);
@@ -169,8 +170,6 @@ public class RegisterPanel extends ChangeablePanel {
 		} else {
 			badInput();
 		}
-		;
-
 	}
 
 	// if input was incorrect a popup will show a errormessage

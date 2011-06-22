@@ -46,7 +46,7 @@ public class UserService {
 
 	public User createUser(String name, String password, String mail) {
 
-		if (name != null && password != null) {
+		if (name != null && !name.isEmpty() && password != null && !password.isEmpty()) {
 			int id = createUniqueId();
 			User user = new User(name, id, limit, password, mail, language);
 			userByIdMap.put(id, user);

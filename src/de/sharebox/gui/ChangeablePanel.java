@@ -89,5 +89,13 @@ public class ChangeablePanel extends ShareboxPanel {
 		parent.repaint();
 
 	}
+	public void changePanel(LoginPanel loginPanel){
+		
+		Container parent = getParent();
+		parent.removeAll();
+		parent.add(loginPanel);
+		parent.validate();
+		parent.repaint();
+	}
 
 }

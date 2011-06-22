@@ -10,12 +10,13 @@ import javax.swing.JToolBar;
 import javax.swing.UIManager;
 
 import de.sharebox.controller.Controller;
+import de.sharebox.models.UserModel;
 
 public class MenuPanel extends ChangeablePanel {
 
 	public MenuPanel(Controller controller) {
 		super(controller);
-		
+
 		// creates a toolbar
 		JToolBar toolBar = new JToolBar();
 		toolBar.setBounds(0, 0, 640, 37);
@@ -24,6 +25,22 @@ public class MenuPanel extends ChangeablePanel {
 		JMenuBar menuBar = new JMenuBar();
 		menuBar.setBorder(UIManager.getBorder("MenuBar.border"));
 		toolBar.add(menuBar);
+		
+		JMenu mnHome = new JMenu("Home");
+		menuBar.add(mnHome);
+		
+		JMenuItem mntmHome = new JMenuItem("Home");
+	/*mntmHome.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseReleased(MouseEvent arg0) {
+			Controller c = new Controller();
+			User user = new User();
+			user.getUser();
+			HomePanel homePanel = new HomePanel(c,user);
+			changePanel(homePanel);
+			}
+		});*/
+		mnHome.add(mntmHome);
 		// creates a submenu on the menubar
 		JMenu mnDatei = new JMenu("Datei");
 		mnDatei.setAutoscrolls(true);
@@ -33,7 +50,8 @@ public class MenuPanel extends ChangeablePanel {
 		menuBar.add(mnBenutzereinstellungen);
 		// creates a submenu on the menubar
 
-		JMenuItem mntmBenutzereinstellungenAnsehen = new JMenuItem("Benutzereinstellungen ansehen");
+		JMenuItem mntmBenutzereinstellungenAnsehen = new JMenuItem(
+				"Benutzereinstellungen ansehen");
 		mnBenutzereinstellungen.add(mntmBenutzereinstellungenAnsehen);
 		// creates a menu on the menubar
 
@@ -45,18 +63,21 @@ public class MenuPanel extends ChangeablePanel {
 		menuBar.add(mnEinladungenVerschicken);
 		// creates a submenu "Einladungen verschicken"
 
-		JMenuItem mntmEinladungenVerschicken = new JMenuItem("Einladungen verschicken");
+		JMenuItem mntmEinladungenVerschicken = new JMenuItem(
+				"Einladungen verschicken");
 
 		mnEinladungenVerschicken.add(mntmEinladungenVerschicken);
 		// creates a submenu "Einladungen annehmen"
 
-		JMenuItem mntmEinladungenAnnehmen = new JMenuItem("Einladungen annehmen");
+		JMenuItem mntmEinladungenAnnehmen = new JMenuItem(
+				"Einladungen annehmen");
 		mnEinladungenVerschicken.add(mntmEinladungenAnnehmen);
 		// creates a menu "Verzeichnisliste"
 		JMenu mnVerzeichnisliste = new JMenu("Verzeichnisliste");
 		menuBar.add(mnVerzeichnisliste);
 		// creates a submenu "Verzeichnisliste anzeigen"
-		JMenuItem mntmVerzeichnisliste = new JMenuItem("Verzeichnisliste anzeigen");
+		JMenuItem mntmVerzeichnisliste = new JMenuItem(
+				"Verzeichnisliste anzeigen");
 		// mouseclick on the submenu "Verzeichnisliste anzeigen" opens
 		// DirPanel-View
 		mntmVerzeichnisliste.addMouseListener(new MouseAdapter() {
@@ -70,7 +91,23 @@ public class MenuPanel extends ChangeablePanel {
 
 			}
 		});
-		mnVerzeichnisliste.add(mntmVerzeichnisliste);
-	}
 
+		// Logout menu
+		mnVerzeichnisliste.add(mntmVerzeichnisliste);
+
+		JMenu mnLogout = new JMenu("Logout");
+		menuBar.add(mnLogout);
+		
+		JMenuItem mntmLogout = new JMenuItem("Logout");
+		//logs a user out - leads back in loginPanel
+		mntmLogout.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseReleased(MouseEvent arg0) {
+				Controller c = new Controller();
+				LoginPanel loginPanel = new LoginPanel(c);
+				changePanel(loginPanel);
+			}
+		});
+		mnLogout.add(mntmLogout);
+	}
 }

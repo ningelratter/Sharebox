@@ -14,6 +14,8 @@ import javax.swing.JTextField;
 import de.sharebox.controller.Controller;
 import de.sharebox.entities.User;
 import de.sharebox.models.UserModel;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 /**
  * 
@@ -61,6 +63,26 @@ public class LoginPanel extends ChangeablePanel {
 
 		// text field password
 		final JPasswordField loginPasswordField = new JPasswordField("password");
+		loginPasswordField.addKeyListener(new KeyAdapter() {
+			@Override
+			//login with pressing enter key after password
+			public void keyReleased(KeyEvent e) {
+			
+					if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+
+						String name = loginNameField.getText();
+						// string konstruktor - macht aus dem chararray einen string
+
+						String password = new String(loginPasswordField.getPassword());
+						User user = controller.getUser(name, password);
+
+						if (user != null) {
+							UserModel userModel = new UserModel(user);
+							changePanel(new HomePanel(controller, userModel));
+						} 
+					}
+			}
+		});
 		loginPasswordField.setPreferredSize(new Dimension(53, 20));
 		loginPasswordField.setBounds(316, 206, 128, 50);
 		add(loginPasswordField);

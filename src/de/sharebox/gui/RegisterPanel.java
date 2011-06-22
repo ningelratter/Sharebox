@@ -61,17 +61,6 @@ public class RegisterPanel extends ChangeablePanel {
 
 		// button registered
 		JButton Registrieren = new JButton("Registrieren");
-		Registrieren.addKeyListener(new KeyAdapter() {
-			@Override
-			public void keyReleased(KeyEvent e) {
-
-				if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-
-					userRegistration();
-				}
-
-			}
-		});
 		Registrieren.addMouseListener(new MouseAdapter() {
 
 			@Override
@@ -96,6 +85,19 @@ public class RegisterPanel extends ChangeablePanel {
 
 		// TextField mail
 		mail = new JTextField();
+		//finish registration with Enter
+		mail.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent e) {
+
+				if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+
+					userRegistration();
+				}
+			}
+		});
+		
+		
 		mail.setBounds(272, 394, 166, 20);
 		add(mail);
 		mail.setColumns(10);
@@ -139,6 +141,7 @@ public class RegisterPanel extends ChangeablePanel {
 
 	}
 
+	// gets the input from Fields and tries to register a user with input
 	public void userRegistration() {
 
 		String userName = RegisterPanel.this.userName.getText();
@@ -171,28 +174,30 @@ public class RegisterPanel extends ChangeablePanel {
 
 	}
 
-	public void badInput(){
-			frame = new JFrame("Eingabe der Nutzerdaten nicht korrekt");
-			frame.setSize(200, 150);
-			frame.setLocation(200, 200);
-			PopupFactory factory = PopupFactory.getSharedInstance();
-			JButton button;
-			popup = factory.getPopup(frame, button = new JButton(
-					"Eingabedaten inkorrekt!"), 200, 240);
-			popup.show();
-			frame.setVisible(true);
-			
-			button.addMouseListener(new MouseAdapter() {
+	// if input was incorrect a popup will show a errormessage
+	public void badInput() {
 
-				public void mouseClicked(MouseEvent arg0) {
+		frame = new JFrame("Eingabe der Nutzerdaten nicht korrekt");
+		frame.setSize(200, 150);
+		frame.setLocation(200, 200);
+		PopupFactory factory = PopupFactory.getSharedInstance();
+		JButton button;
+		popup = factory.getPopup(frame, button = new JButton(
+				"Eingabedaten inkorrekt!"), 200, 240);
+		popup.show();
+		frame.setVisible(true);
 
-					RegisterPanel registerPanel = new RegisterPanel(
-							controller);
-					changePanel(registerPanel);
+		button.addMouseListener(new MouseAdapter() {
 
-					frame.setVisible(false);}
+			public void mouseClicked(MouseEvent arg0) {
 
-			;}
-			);}
-		}
+				RegisterPanel registerPanel = new RegisterPanel(controller);
+				changePanel(registerPanel);
 
+				frame.setVisible(false);
+			}
+
+			;
+		});
+	}
+}

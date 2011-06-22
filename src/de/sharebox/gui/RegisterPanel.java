@@ -85,7 +85,7 @@ public class RegisterPanel extends ChangeablePanel {
 
 		// TextField mail
 		mail = new JTextField();
-		//finish registration with Enter
+		// finish registration with Enter
 		mail.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyReleased(KeyEvent e) {
@@ -96,8 +96,7 @@ public class RegisterPanel extends ChangeablePanel {
 				}
 			}
 		});
-		
-		
+
 		mail.setBounds(272, 394, 166, 20);
 		add(mail);
 		mail.setColumns(10);
@@ -150,20 +149,20 @@ public class RegisterPanel extends ChangeablePanel {
 
 		// checks if mail is valid
 
-		boolean b = mail.contains("@") && mail.contains(".de")
-				|| mail.contains("@") && mail.contains(".com")
-				|| mail.contains("@") && mail.contains(".fr")
-				|| mail.contains("@") && mail.contains(".net");
+		boolean validEmail = mail.contains("@") && mail.contains(".de") || mail.contains("@") && mail.contains(".com")
+				|| mail.contains("@") && mail.contains(".fr") || mail.contains("@") && mail.contains(".net");
 
-		if (b) {
+		if (validEmail) {
 			// transferred the params to the controller and save it as a
 			// user
 			User user = controller.createUser(userName, password, mail);
+			if (user != null) {
+				// create a new UserModel
+				UserModel userModel = new UserModel(user);
+				// change into HomePanel with the userModel
+				changePanel(new HomePanel(controller, userModel));
 
-			// create a new UserModel
-			UserModel userModel = new UserModel(user);
-			// change into HomePanel with the userModel
-			changePanel(new HomePanel(controller, userModel));
+			}
 
 			// if mail is not valid - Popup is leading back to
 			// RegisterPanel
@@ -182,8 +181,7 @@ public class RegisterPanel extends ChangeablePanel {
 		frame.setLocation(200, 200);
 		PopupFactory factory = PopupFactory.getSharedInstance();
 		JButton button;
-		popup = factory.getPopup(frame, button = new JButton(
-				"Eingabedaten inkorrekt!"), 200, 240);
+		popup = factory.getPopup(frame, button = new JButton("Eingabedaten inkorrekt!"), 200, 240);
 		popup.show();
 		frame.setVisible(true);
 

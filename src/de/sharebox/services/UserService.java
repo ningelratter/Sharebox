@@ -46,15 +46,19 @@ public class UserService {
 
 	public User createUser(String name, String password, String mail) {
 
-		int id = createUniqueId();
-		User user = new User(name, id, limit, password, mail, language);
-		userByIdMap.put(id, user);
+		if (name != null && !name.isEmpty() && password != null && !password.isEmpty()) {
+			int id = createUniqueId();
+			User user = new User(name, id, limit, password, mail, language);
+			userByIdMap.put(id, user);
 
-		// TODO insert....
+			// TODO insert....
 
-		// System.out.println(user.getMail());
+			// System.out.println(user.getMail());
 
-		return user;
+			return user;
+		} else {
+			return null;
+		}
 	}
 
 	/**

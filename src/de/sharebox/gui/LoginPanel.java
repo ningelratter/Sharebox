@@ -16,12 +16,13 @@ import de.sharebox.entities.User;
 import de.sharebox.models.UserModel;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import javax.swing.DropMode;
 
 /**
  * 
  * This GUI is view for the Login. It extends from ChangeablePanel.
  * 
- * @author Eilin,MW * @version 11.06.11
+ * @author Eilin, MW * @version 11.06.11
  * 
  * 
  */
@@ -55,7 +56,7 @@ public class LoginPanel extends ChangeablePanel {
 		lblNochKeinLogin.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		add(lblNochKeinLogin);
 
-		// text field username
+		// text field userName
 		final JTextField loginNameField = new JTextField("username");
 		loginNameField.setBounds(190, 204, 110, 50);
 		add(loginNameField);
@@ -71,7 +72,7 @@ public class LoginPanel extends ChangeablePanel {
 					if (e.getKeyCode() == KeyEvent.VK_ENTER) {
 
 						String name = loginNameField.getText();
-						// string konstruktor - macht aus dem chararray einen string
+						// string constructor - creates string from charArray 
 
 						String password = new String(loginPasswordField.getPassword());
 						User user = controller.getUser(name, password);
@@ -88,7 +89,7 @@ public class LoginPanel extends ChangeablePanel {
 		add(loginPasswordField);
 		loginPasswordField.setFont(new Font("Tahoma", Font.PLAIN, 16));
 
-		// labe text is only shown if login data is invalid
+		// label text is only shown if login data is invalid
 		final JLabel loginFailedLabel = new JLabel("");
 		loginFailedLabel.setBounds(200, 160, 300, 50);
 		loginFailedLabel.setFont(new Font("Tahoma", Font.PLAIN, 16));
@@ -112,7 +113,7 @@ public class LoginPanel extends ChangeablePanel {
 		registerButton.addActionListener(registerButtonClickedActionListener);
 		add(registerButton);
 
-		// button login and actionhandling
+		// button login and actionHandling
 		JButton loginButton = new JButton("Login");
 		loginButton.setBounds(236, 282, 130, 72);
 		add(loginButton);
@@ -122,7 +123,7 @@ public class LoginPanel extends ChangeablePanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				String name = loginNameField.getText();
-				// string konstruktor - macht aus dem chararray einen string
+				// string constructor - creates a string out of an a charArray 
 
 				String password = new String(loginPasswordField.getPassword());
 				User user = controller.getUser(name, password);

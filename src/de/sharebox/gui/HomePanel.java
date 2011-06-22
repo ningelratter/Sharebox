@@ -16,7 +16,7 @@ import de.sharebox.models.UserModel;
  * This GUI is the view when login was successfully. Extends from
  * ChangeablePanel.
  * 
- * @author MW aus Berlin
+ * @author MW 
  * @version 11.06.11
  * 
  * 
@@ -35,7 +35,7 @@ public class HomePanel extends MenuPanel {
 	 * @param userModel
 	 */
 	public HomePanel(Controller c, UserModel userModel) {
-		super(c);
+		super(c, userModel);
 
 		setLayout(null);
 

@@ -4,7 +4,7 @@ import de.sharebox.entities.User;
 
 /**
  * 
- * @author MW, Eilin, und keiner weiter
+ * @author MW, Eilin
  * @version 11.06.11
  */
 

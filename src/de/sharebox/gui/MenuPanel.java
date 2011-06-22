@@ -10,13 +10,16 @@ import javax.swing.JToolBar;
 import javax.swing.UIManager;
 
 import de.sharebox.controller.Controller;
+import de.sharebox.entities.User;
 import de.sharebox.models.UserModel;
 
 public class MenuPanel extends ChangeablePanel {
-
-	public MenuPanel(Controller controller) {
+	UserModel userModel;
+	public MenuPanel(Controller controller, final UserModel userModel) {
 		super(controller);
-
+		this.userModel = userModel;
+		
+		
 		// creates a toolbar
 		JToolBar toolBar = new JToolBar();
 		toolBar.setBounds(0, 0, 640, 37);
@@ -25,21 +28,22 @@ public class MenuPanel extends ChangeablePanel {
 		JMenuBar menuBar = new JMenuBar();
 		menuBar.setBorder(UIManager.getBorder("MenuBar.border"));
 		toolBar.add(menuBar);
-		
+
 		JMenu mnHome = new JMenu("Home");
 		menuBar.add(mnHome);
-		
+
 		JMenuItem mntmHome = new JMenuItem("Home");
-	/*mntmHome.addMouseListener(new MouseAdapter() {
+		mntmHome.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseReleased(MouseEvent arg0) {
-			Controller c = new Controller();
-			User user = new User();
-			user.getUser();
-			HomePanel homePanel = new HomePanel(c,user);
-			changePanel(homePanel);
+
+				Controller c = new Controller();
+										
+				HomePanel homePanel = new HomePanel(c, userModel);
+				changePanel	(homePanel);
+
 			}
-		});*/
+		});
 		mnHome.add(mntmHome);
 		// creates a submenu on the menubar
 		JMenu mnDatei = new JMenu("Datei");
@@ -86,7 +90,7 @@ public class MenuPanel extends ChangeablePanel {
 			public void mouseReleased(MouseEvent e) {
 
 				Controller c = new Controller();
-				DirPanel dirPanel = new DirPanel(c);
+				DirPanel dirPanel = new DirPanel(c, userModel);
 				changePanel(dirPanel);
 
 			}
@@ -97,9 +101,9 @@ public class MenuPanel extends ChangeablePanel {
 
 		JMenu mnLogout = new JMenu("Logout");
 		menuBar.add(mnLogout);
-		
+
 		JMenuItem mntmLogout = new JMenuItem("Logout");
-		//logs a user out - leads back in loginPanel
+		// logs a user out - leads back in loginPanel
 		mntmLogout.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseReleased(MouseEvent arg0) {
@@ -110,4 +114,5 @@ public class MenuPanel extends ChangeablePanel {
 		});
 		mnLogout.add(mntmLogout);
 	}
+
 }

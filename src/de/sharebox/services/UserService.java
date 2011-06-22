@@ -16,7 +16,7 @@ import de.sharebox.entities.User;
 
 /**
  * 
- * @author MW jetzt in Potsdam
+ * @author MW 
  * @version 11.06.11
  */
 public class UserService {
@@ -31,12 +31,12 @@ public class UserService {
 	}
 
 	/**
-	 * standart adjustment for new users
+	 * standard adjustment for new users
 	 */
 	private double limit = 2.0;
 
 	/**
-	 * standart adjustment, change language at class UserObject
+	 * standard adjustment, change language at class UserObject
 	 * 
 	 * @link{setLanguage()
 	 */
@@ -106,7 +106,7 @@ public class UserService {
 	public void saveUsers() {
 		try {
 			FileOutputStream fos = new FileOutputStream(file);
-			// encoder macht aus java xml
+			// encoder from java to xml
 			XMLEncoder encoder = new XMLEncoder(fos);
 			encoder.writeObject(userByIdMap);
 			encoder.close();

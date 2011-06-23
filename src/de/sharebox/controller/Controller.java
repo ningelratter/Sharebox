@@ -44,6 +44,10 @@ public class Controller {
 		return userService.getUserByName(name, password);
 	}
 
+	public User getUser(String mail) {
+		return userService.getUserByMail(mail);
+	}
+
 	public void saveData() {
 		userService.saveUsers();
 	}

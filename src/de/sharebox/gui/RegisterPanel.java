@@ -9,11 +9,9 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
-import javax.swing.Popup;
 import javax.swing.SwingConstants;
 
 import de.sharebox.controller.Controller;
@@ -40,8 +38,6 @@ public class RegisterPanel extends ChangeablePanel {
 
 	private JTextField userName;
 	private JTextField mail;
-	JFrame frame;
-	Popup popup;
 	private JPasswordField password;
 
 	/**
@@ -136,8 +132,7 @@ public class RegisterPanel extends ChangeablePanel {
 		Registrieren.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		Registrieren.setBounds(272, 445, 147, 58);
 		add(Registrieren);
-		
-		
+
 	}
 
 	// gets the input from Fields and tries to register a user with input
@@ -162,7 +157,6 @@ public class RegisterPanel extends ChangeablePanel {
 		int lengthPwd = password.length();
 		validPassword = (5 <= lengthPwd && 12 >= lengthPwd);
 
-	
 		if (validEmail && validUserName && validPassword) {
 			// transferred the params to the controller and save it as a
 			// user
@@ -210,37 +204,15 @@ public class RegisterPanel extends ChangeablePanel {
 				wrongPassword.setText("ungültiges Passwort");
 
 			}
+			//shows a helpMessage with the right input format
 			JLabel helpMessage = new JLabel("");
 			helpMessage.setForeground(Color.RED);
 			helpMessage.setFont(new Font("Tahoma", Font.PLAIN, 16));
 			helpMessage.setBounds(177, 519, 400, 50);
 			add(helpMessage);
-			helpMessage.setText("Hinweis:"+"Benutzername/Passwort: 5-12 Zeichen");
+			helpMessage.setText("Hinweis:"
+					+ "Benutzername/Passwort: 5-12 Zeichen");
 		}
 
 	}
 }
-// wird vorerst nicht gebraucht, aber code vllt für andere Dinge nützlich...
-// if input was incorrect a popup will show a errormessage
-/*
- * public void badInput() {
- * 
- * 
- * frame = new JFrame("Eingabe der Nutzerdaten nicht korrekt");
- * frame.setSize(200, 150); frame.setLocation(200, 200); PopupFactory factory =
- * PopupFactory.getSharedInstance(); JButton button; popup =
- * factory.getPopup(frame, button = new JButton( "Eingabedaten inkorrekt!"),
- * 200, 240); popup.show(); frame.setVisible(true);
- * 
- * button.addMouseListener(new MouseAdapter() {
- * 
- * public void mouseClicked(MouseEvent arg0) {
- * 
- * RegisterPanel registerPanel = new RegisterPanel(controller);
- * changePanel(registerPanel);
- * 
- * frame.setVisible(false); }
- * 
- * ; });
- */
-

@@ -42,6 +42,7 @@ public class ChangeablePanel extends ShareboxPanel {
 
 		// button exit
 		JButton exitButton = new JButton("ShareBox-Ultimate beenden");
+		exitButton.setToolTipText("Hier klicken, um sich von ShareBoxUltimate abzumelden");
 		exitButton.setBounds(0, 618, 640, 23);
 		// create new ActionListener
 		ActionListener exitButtonClickedActionListener = new ActionListener() {
@@ -89,11 +90,20 @@ public class ChangeablePanel extends ShareboxPanel {
 		parent.repaint();
 
 	}
+	//opens LoignPanel-View
 	public void changePanel(LoginPanel loginPanel){
 		
 		Container parent = getParent();
 		parent.removeAll();
 		parent.add(loginPanel);
+		parent.validate();
+		parent.repaint();
+	}
+	//opens ForgottenLoginPanel-View
+	public void changePanel(ForgottenLoginPanel forgottenLoginPanel){
+		Container parent = getParent();
+		parent.removeAll();
+		parent.add(forgottenLoginPanel);
 		parent.validate();
 		parent.repaint();
 	}

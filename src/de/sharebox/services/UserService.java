@@ -16,7 +16,7 @@ import de.sharebox.entities.User;
 
 /**
  * 
- * @author Eilin,MW 
+ * @author Eilin,MW
  * @version 11.06.11
  */
 public class UserService {
@@ -46,7 +46,8 @@ public class UserService {
 
 	public User createUser(String name, String password, String mail) {
 
-		if (name != null && !name.isEmpty() && password != null && !password.isEmpty()) {
+		if (name != null && !name.isEmpty() && password != null
+				&& !password.isEmpty()) {
 			int id = createUniqueId();
 			User user = new User(name, id, limit, password, mail, language);
 			userByIdMap.put(id, user);
@@ -70,7 +71,20 @@ public class UserService {
 	 */
 	public User getUserByName(String name, String password) {
 		for (User user : userByIdMap.values()) {
-			if (name.equals(user.getName()) && password.equals(user.getPassword())) {
+			if (name.equals(user.getName())
+					&& password.equals(user.getPassword())) {
+				return user;
+			}
+		}
+		return null;
+	}
+	//gets User over his Emailadress
+	
+	public User getUserByMail(String mail) {
+		for (User user : userByIdMap.values()) {
+
+			if (mail.equals(user.getMail())) {
+
 				return user;
 			}
 		}

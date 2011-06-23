@@ -16,6 +16,12 @@ import javax.swing.JTextField;
 import de.sharebox.controller.Controller;
 import de.sharebox.entities.User;
 import de.sharebox.models.UserModel;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.InputMethodListener;
+import java.awt.event.InputMethodEvent;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
 
 /**
  * 
@@ -59,19 +65,41 @@ public class LoginPanel extends ChangeablePanel {
 
 		// text field userName
 		final JTextField loginNameField = new JTextField("username");
+		loginNameField.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				loginNameField.setText("");
+			}
+		});
+		loginNameField
+				.setToolTipText("Bitte geben Sie hier ihren Benutzernamen ein");
 		loginNameField.setBounds(190, 204, 110, 50);
 		add(loginNameField);
 		loginNameField.setFont(new Font("Tahoma", Font.PLAIN, 16));
 
 		// label text is only shown if login data is invalid
 		final JLabel loginFailedLabel = new JLabel("");
-		loginFailedLabel.setBounds(200, 160, 300, 50);
+		loginFailedLabel.setBounds(239, 157, 300, 50);
 		loginFailedLabel.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		loginFailedLabel.setForeground(Color.red);
 		add(loginFailedLabel);
 
 		// text field password
 		final JPasswordField loginPasswordField = new JPasswordField("password");
+		loginPasswordField.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusGained(FocusEvent arg0) {
+				loginPasswordField.setText("");
+			}
+		});
+		loginPasswordField.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				loginPasswordField.setText("");
+			}
+		});
+		loginPasswordField
+				.setToolTipText("Bitte geben Sie hier ihr Passwort ein");
 		loginPasswordField.addKeyListener(new KeyAdapter() {
 			@Override
 			// login with pressing enter key after password
@@ -82,8 +110,7 @@ public class LoginPanel extends ChangeablePanel {
 					String name = loginNameField.getText();
 					// string constructor - creates string from charArray
 
-					String password = new String(loginPasswordField
-							.getPassword());
+					String password = new String(loginPasswordField.getPassword());
 					User user = controller.getUser(name, password);
 
 					if (user != null) {
@@ -103,6 +130,7 @@ public class LoginPanel extends ChangeablePanel {
 
 		// button register
 		JButton registerButton = new JButton("Registrieren");
+		registerButton.setToolTipText("Hier klicken, um sich zu registrieren");
 		registerButton.setBounds(156, 508, 322, 50);
 
 		// actionhandling register button
@@ -120,9 +148,19 @@ public class LoginPanel extends ChangeablePanel {
 
 		// button login and actionHandling
 		JButton loginButton = new JButton("Login");
+		loginButton.setToolTipText("Hier klicken zum Einloggen");
 		loginButton.setBounds(236, 282, 130, 72);
 		add(loginButton);
 		loginButton.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		// button is shown after bad login
+		final JButton forgottenLogin = new JButton("");
+		forgottenLogin.setForeground(Color.RED);
+		forgottenLogin.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		forgottenLogin.setContentAreaFilled(false);
+		forgottenLogin.setBounds(190, 375, 220, 51);
+		forgottenLogin
+				.setToolTipText("Bitte klicken Sie hier, um ihren Benutzernamen und Passwort zu erfahren");
+
 		ActionListener loginButtonClickedActionListener = new ActionListener() {
 
 			@Override
@@ -140,8 +178,25 @@ public class LoginPanel extends ChangeablePanel {
 				} else {
 					// show error message
 					loginFailedLabel.setText("Falsche Login-Daten");
+					add(forgottenLogin);
+					forgottenLogin.setVisible(true);
+					forgottenLogin.setText("Benutzerdaten vergessen?");
+
+					final ActionListener forgottenLoginClickedActionListener = new ActionListener() {
+						@Override
+						// change the view when user push the register button
+						public void actionPerformed(final ActionEvent g) {
+							ForgottenLoginPanel forgottenLoginPanel = new ForgottenLoginPanel(
+									controller);
+							changePanel(forgottenLoginPanel);
+						}
+					};
+					forgottenLogin
+							.addActionListener(forgottenLoginClickedActionListener);
+					add(forgottenLogin);
 				}
 			}
+
 		};
 
 		loginButton.addActionListener(loginButtonClickedActionListener);

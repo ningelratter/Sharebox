@@ -2,6 +2,26 @@
 <java version="1.6.0_22" class="java.beans.XMLDecoder"> 
  <object class="java.util.HashMap"> 
   <void method="put"> 
+   <int>34</int> 
+   <object class="de.sharebox.entities.User"> 
+    <void property="id"> 
+     <int>34</int> 
+    </void> 
+    <void property="limit"> 
+     <double>2.0</double> 
+    </void> 
+    <void property="mail"> 
+     <string>hallo@web.de</string> 
+    </void> 
+    <void property="name"> 
+     <string>hallo</string> 
+    </void> 
+    <void property="password"> 
+     <string>hallo</string> 
+    </void> 
+   </object> 
+  </void> 
+  <void method="put"> 
    <int>69</int> 
    <object class="de.sharebox.entities.User"> 
     <void property="id"> 
@@ -11,113 +31,53 @@
      <double>2.0</double> 
     </void> 
     <void property="mail"> 
-     <string>martin@web.de</string> 
+     <string>tester@web.de</string> 
     </void> 
     <void property="name"> 
-     <string>Martin</string> 
+     <string>tester</string> 
     </void> 
     <void property="password"> 
-     <string>martin</string> 
+     <string>tester</string> 
     </void> 
    </object> 
   </void> 
   <void method="put"> 
-   <int>39</int> 
+   <int>31</int> 
    <object class="de.sharebox.entities.User"> 
     <void property="id"> 
-     <int>39</int> 
+     <int>31</int> 
     </void> 
     <void property="limit"> 
      <double>2.0</double> 
     </void> 
     <void property="mail"> 
-     <string>@.fr</string> 
+     <string>heinz@web.de</string> 
     </void> 
     <void property="name"> 
-     <string>thomas</string> 
+     <string>heinz</string> 
     </void> 
     <void property="password"> 
-     <string>4444444</string> 
+     <string>heinz</string> 
     </void> 
    </object> 
   </void> 
   <void method="put"> 
-   <int>6</int> 
+   <int>74</int> 
    <object class="de.sharebox.entities.User"> 
     <void property="id"> 
-     <int>6</int> 
+     <int>74</int> 
     </void> 
     <void property="limit"> 
      <double>2.0</double> 
     </void> 
     <void property="mail"> 
-     <string>@web.de</string> 
+     <string>dirk@web.de</string> 
     </void> 
     <void property="name"> 
-     <string>jjjjj</string> 
+     <string>dirk1</string> 
     </void> 
     <void property="password"> 
-     <string>jjjjj</string> 
-    </void> 
-   </object> 
-  </void> 
-  <void method="put"> 
-   <int>92</int> 
-   <object class="de.sharebox.entities.User"> 
-    <void property="id"> 
-     <int>92</int> 
-    </void> 
-    <void property="limit"> 
-     <double>2.0</double> 
-    </void> 
-    <void property="mail"> 
-     <string>hallo@web.de</string> 
-    </void> 
-    <void property="name"> 
-     <string>hallo</string> 
-    </void> 
-    <void property="password"> 
-     <string>hallo</string> 
-    </void> 
-   </object> 
-  </void> 
-  <void method="put"> 
-   <int>46</int> 
-   <object class="de.sharebox.entities.User"> 
-    <void property="id"> 
-     <int>46</int> 
-    </void> 
-    <void property="limit"> 
-     <double>2.0</double> 
-    </void> 
-    <void property="mail"> 
-     <string>@web.de</string> 
-    </void> 
-    <void property="name"> 
-     <string>jjjjj</string> 
-    </void> 
-    <void property="password"> 
-     <string>jjjjj</string> 
-    </void> 
-   </object> 
-  </void> 
-  <void method="put"> 
-   <int>44</int> 
-   <object class="de.sharebox.entities.User"> 
-    <void property="id"> 
-     <int>44</int> 
-    </void> 
-    <void property="limit"> 
-     <double>2.0</double> 
-    </void> 
-    <void property="mail"> 
-     <string>hallo@web.de</string> 
-    </void> 
-    <void property="name"> 
-     <string>martin2</string> 
-    </void> 
-    <void property="password"> 
-     <string>martin2</string> 
+     <string>dirk1</string> 
     </void> 
    </object> 
   </void> 

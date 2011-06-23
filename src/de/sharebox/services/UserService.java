@@ -16,7 +16,7 @@ import de.sharebox.entities.User;
 
 /**
  * 
- * @author MW 
+ * @author Eilin,MW 
  * @version 11.06.11
  */
 public class UserService {

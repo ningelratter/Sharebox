@@ -14,7 +14,6 @@ import javax.swing.JLabel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.Popup;
-import javax.swing.PopupFactory;
 import javax.swing.SwingConstants;
 
 import de.sharebox.controller.Controller;
@@ -137,64 +136,111 @@ public class RegisterPanel extends ChangeablePanel {
 		Registrieren.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		Registrieren.setBounds(272, 445, 147, 58);
 		add(Registrieren);
-
+		
+		
 	}
 
 	// gets the input from Fields and tries to register a user with input
 	public void userRegistration() {
 
 		String userName = RegisterPanel.this.userName.getText();
+		@SuppressWarnings("deprecation")
 		String password = RegisterPanel.this.password.getText();
 		String mail = RegisterPanel.this.mail.getText();
 
 		// checks if mail is valid
 
-		boolean validEmail = mail.contains("@") && mail.contains(".de") || mail.contains("@") && mail.contains(".com")
-				|| mail.contains("@") && mail.contains(".fr") || mail.contains("@") && mail.contains(".net");
+		boolean validEmail = mail.contains("@") && mail.contains(".de")
+				|| mail.contains("@") && mail.contains(".com")
+				|| mail.contains("@") && mail.contains(".fr")
+				|| mail.contains("@") && mail.contains(".net");
+		boolean validUserName = false;
+		int lengthUser = userName.length();
+		validUserName = (5 <= lengthUser && 12 >= lengthUser);
 
-		if (validEmail) {
+		boolean validPassword = false;
+		int lengthPwd = password.length();
+		validPassword = (5 <= lengthPwd && 12 >= lengthPwd);
+
+	
+		if (validEmail && validUserName && validPassword) {
 			// transferred the params to the controller and save it as a
 			// user
 			User user = controller.createUser(userName, password, mail);
-			//check if input in gui is null
-			if (user != null) {
-				// create a new UserModel
-				UserModel userModel = new UserModel(user);
-				// change into HomePanel with the userModel
-				changePanel(new HomePanel(controller, userModel));
+			// check if UserName is between 5-12 characters
 
-			}
+			// create a new UserModel
+			UserModel userModel = new UserModel(user);
+			// change into HomePanel with the userModel
+			changePanel(new HomePanel(controller, userModel));
 
-			// if mail is not valid - Popup is leading back to
-			// RegisterPanel
-		} else {
-			badInput();
 		}
-	}
 
-	// if input was incorrect a popup will show a errormessage
-	public void badInput() {
+		// if mail is not valid - Popup is leading back to
+		// RegisterPanel
+		else {
 
-		frame = new JFrame("Eingabe der Nutzerdaten nicht korrekt");
-		frame.setSize(200, 150);
-		frame.setLocation(200, 200);
-		PopupFactory factory = PopupFactory.getSharedInstance();
-		JButton button;
-		popup = factory.getPopup(frame, button = new JButton("Eingabedaten inkorrekt!"), 200, 240);
-		popup.show();
-		frame.setVisible(true);
+			if (validEmail == false) {
+				// is shown when password is to short
+				// error label email
+				JLabel wrongEmail = new JLabel("");
+				wrongEmail.setForeground(Color.RED);
+				wrongEmail.setFont(new Font("Tahoma", Font.PLAIN, 16));
+				wrongEmail.setBounds(446, 394, 147, 20);
+				add(wrongEmail);
+				wrongEmail.setText("ungültige Email");
 
-		button.addMouseListener(new MouseAdapter() {
-
-			public void mouseClicked(MouseEvent arg0) {
-
-				RegisterPanel registerPanel = new RegisterPanel(controller);
-				changePanel(registerPanel);
-
-				frame.setVisible(false);
 			}
+			if (validUserName == false) {
+				// error label user
+				JLabel wrongUser = new JLabel("");
+				wrongUser.setForeground(Color.RED);
+				wrongUser.setFont(new Font("Tahoma", Font.PLAIN, 16));
+				wrongUser.setBounds(446, 291, 147, 20);
+				add(wrongUser);
+				wrongUser.setText("ungültiger Benutzername");
+			}
+			if (validPassword == false) {
+				// error label password
+				JLabel wrongPassword = new JLabel("");
+				wrongPassword.setForeground(Color.RED);
+				wrongPassword.setFont(new Font("Tahoma", Font.PLAIN, 16));
+				wrongPassword.setBounds(448, 339, 147, 20);
+				add(wrongPassword);
+				wrongPassword.setText("ungültiges Passwort");
 
-			;
-		});
+			}
+			JLabel helpMessage = new JLabel("");
+			helpMessage.setForeground(Color.RED);
+			helpMessage.setFont(new Font("Tahoma", Font.PLAIN, 16));
+			helpMessage.setBounds(177, 519, 400, 50);
+			add(helpMessage);
+			helpMessage.setText("Hinweis:"+"Benutzername/Passwort: 5-12 Zeichen");
+		}
+
 	}
 }
+// wird vorerst nicht gebraucht, aber code vllt für andere Dinge nützlich...
+// if input was incorrect a popup will show a errormessage
+/*
+ * public void badInput() {
+ * 
+ * 
+ * frame = new JFrame("Eingabe der Nutzerdaten nicht korrekt");
+ * frame.setSize(200, 150); frame.setLocation(200, 200); PopupFactory factory =
+ * PopupFactory.getSharedInstance(); JButton button; popup =
+ * factory.getPopup(frame, button = new JButton( "Eingabedaten inkorrekt!"),
+ * 200, 240); popup.show(); frame.setVisible(true);
+ * 
+ * button.addMouseListener(new MouseAdapter() {
+ * 
+ * public void mouseClicked(MouseEvent arg0) {
+ * 
+ * RegisterPanel registerPanel = new RegisterPanel(controller);
+ * changePanel(registerPanel);
+ * 
+ * frame.setVisible(false); }
+ * 
+ * ; });
+ */
+

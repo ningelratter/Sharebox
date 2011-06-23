@@ -10,16 +10,15 @@ import javax.swing.JToolBar;
 import javax.swing.UIManager;
 
 import de.sharebox.controller.Controller;
-import de.sharebox.entities.User;
 import de.sharebox.models.UserModel;
 
 public class MenuPanel extends ChangeablePanel {
 	UserModel userModel;
-	public MenuPanel(Controller controller, final UserModel userModel) {
+
+	public MenuPanel(final Controller controller, final UserModel userModel) {
 		super(controller);
 		this.userModel = userModel;
-		
-		
+
 		// creates a toolbar
 		JToolBar toolBar = new JToolBar();
 		toolBar.setBounds(0, 0, 640, 37);
@@ -38,9 +37,8 @@ public class MenuPanel extends ChangeablePanel {
 			public void mouseReleased(MouseEvent arg0) {
 
 				Controller c = new Controller();
-										
 				HomePanel homePanel = new HomePanel(c, userModel);
-				changePanel	(homePanel);
+				changePanel(homePanel);
 
 			}
 		});
@@ -107,8 +105,10 @@ public class MenuPanel extends ChangeablePanel {
 		mntmLogout.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseReleased(MouseEvent arg0) {
-				Controller c = new Controller();
-				LoginPanel loginPanel = new LoginPanel(c);
+				// saves the user before logout
+				
+				controller.saveData();
+				LoginPanel loginPanel = new LoginPanel(controller);
 				changePanel(loginPanel);
 			}
 		});

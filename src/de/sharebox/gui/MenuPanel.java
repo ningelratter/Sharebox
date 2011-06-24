@@ -36,8 +36,7 @@ public class MenuPanel extends ChangeablePanel {
 			@Override
 			public void mouseReleased(MouseEvent arg0) {
 
-				Controller c = new Controller();
-				HomePanel homePanel = new HomePanel(c, userModel);
+				HomePanel homePanel = new HomePanel(controller, userModel);
 				changePanel(homePanel);
 
 			}
@@ -54,6 +53,14 @@ public class MenuPanel extends ChangeablePanel {
 
 		JMenuItem mntmBenutzereinstellungenAnsehen = new JMenuItem(
 				"Benutzereinstellungen ansehen");
+		mntmBenutzereinstellungenAnsehen.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseReleased(MouseEvent arg0) {
+				UserProperties userProperties = new UserProperties(controller,
+						userModel);
+				changePanel(userProperties);
+			}
+		});
 		mnBenutzereinstellungen.add(mntmBenutzereinstellungenAnsehen);
 		// creates a menu on the menubar
 
@@ -87,8 +94,7 @@ public class MenuPanel extends ChangeablePanel {
 			// Change into DirPanel
 			public void mouseReleased(MouseEvent e) {
 
-				Controller c = new Controller();
-				DirPanel dirPanel = new DirPanel(c, userModel);
+				DirPanel dirPanel = new DirPanel(controller, userModel);
 				changePanel(dirPanel);
 
 			}
@@ -106,7 +112,7 @@ public class MenuPanel extends ChangeablePanel {
 			@Override
 			public void mouseReleased(MouseEvent arg0) {
 				// saves the user before logout
-				
+
 				controller.saveData();
 				LoginPanel loginPanel = new LoginPanel(controller);
 				changePanel(loginPanel);

@@ -48,8 +48,28 @@ public class Controller {
 		return userService.getUserByMail(mail);
 	}
 
+	// calls the userService to save all Userprofiles
 	public void saveData() {
 		userService.saveUsers();
+	}
+
+	// calls the userService to change the UserName
+	public void setUserName(User user, String name) {
+
+		userService.setUserName(user, name);
+
+	}
+
+	// calls the userService to change Users Password
+	public void setUserPassword(User user, String password) {
+
+		userService.setUserPassword(user, password);
+	}
+
+	// calls the userService to change the mailadress of the user
+	public void setUserEmail(User user, String email) {
+
+		userService.setUserEmail(user, email);
 	}
 
 }

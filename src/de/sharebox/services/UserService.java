@@ -62,6 +62,23 @@ public class UserService {
 		}
 	}
 
+	// changes the UserName
+	public void setUserName(User user, String name) {
+
+		user.setName(name);
+	}
+
+	// changes the UserPassword
+	public void setUserPassword(User user, String password) {
+
+		user.setPassword(password);
+	}
+
+	// changes the Mailadress of the user
+	public void setUserEmail(User user, String email) {
+		user.setMail(email);
+	}
+
 	/**
 	 * get the user
 	 * 
@@ -78,8 +95,9 @@ public class UserService {
 		}
 		return null;
 	}
-	//gets User over his Emailadress
-	
+
+	// gets User over his Emailadress
+
 	public User getUserByMail(String mail) {
 		for (User user : userByIdMap.values()) {
 

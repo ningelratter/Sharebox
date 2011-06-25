@@ -62,6 +62,26 @@
    </object> 
   </void> 
   <void method="put"> 
+   <int>96</int> 
+   <object class="de.sharebox.entities.User"> 
+    <void property="id"> 
+     <int>96</int> 
+    </void> 
+    <void property="limit"> 
+     <double>2.0</double> 
+    </void> 
+    <void property="mail"> 
+     <string></string> 
+    </void> 
+    <void property="name"> 
+     <string>hannah</string> 
+    </void> 
+    <void property="password"> 
+     <string>hannahstinkt</string> 
+    </void> 
+   </object> 
+  </void> 
+  <void method="put"> 
    <int>67</int> 
    <object class="de.sharebox.entities.User"> 
     <void property="id"> 
@@ -91,13 +111,13 @@
      <double>2.0</double> 
     </void> 
     <void property="mail"> 
-     <string>dirk@web.de</string> 
+     <string></string> 
     </void> 
     <void property="name"> 
-     <string>dirk1</string> 
+     <string>dirk2</string> 
     </void> 
     <void property="password"> 
-     <string>dirk1</string> 
+     <string></string> 
     </void> 
    </object> 
   </void> 
@@ -111,13 +131,13 @@
      <double>2.0</double> 
     </void> 
     <void property="mail"> 
-     <string>heinz@web.de</string> 
+     <string></string> 
     </void> 
     <void property="name"> 
-     <string>heinz</string> 
+     <string>heinzi</string> 
     </void> 
     <void property="password"> 
-     <string>heinz</string> 
+     <string></string> 
     </void> 
    </object> 
   </void> 

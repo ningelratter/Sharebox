@@ -2,86 +2,6 @@
 <java version="1.6.0_22" class="java.beans.XMLDecoder"> 
  <object class="java.util.HashMap"> 
   <void method="put"> 
-   <int>34</int> 
-   <object class="de.sharebox.entities.User"> 
-    <void property="id"> 
-     <int>34</int> 
-    </void> 
-    <void property="limit"> 
-     <double>2.0</double> 
-    </void> 
-    <void property="mail"> 
-     <string>hallo@web.de</string> 
-    </void> 
-    <void property="name"> 
-     <string>hallo</string> 
-    </void> 
-    <void property="password"> 
-     <string>hallo</string> 
-    </void> 
-   </object> 
-  </void> 
-  <void method="put"> 
-   <int>69</int> 
-   <object class="de.sharebox.entities.User"> 
-    <void property="id"> 
-     <int>69</int> 
-    </void> 
-    <void property="limit"> 
-     <double>2.0</double> 
-    </void> 
-    <void property="mail"> 
-     <string>tester@web.de</string> 
-    </void> 
-    <void property="name"> 
-     <string>tester</string> 
-    </void> 
-    <void property="password"> 
-     <string>tester</string> 
-    </void> 
-   </object> 
-  </void> 
-  <void method="put"> 
-   <int>3</int> 
-   <object class="de.sharebox.entities.User"> 
-    <void property="id"> 
-     <int>3</int> 
-    </void> 
-    <void property="limit"> 
-     <double>2.0</double> 
-    </void> 
-    <void property="mail"> 
-     <string>eilin@t-online.de</string> 
-    </void> 
-    <void property="name"> 
-     <string>eilin</string> 
-    </void> 
-    <void property="password"> 
-     <string>eilin</string> 
-    </void> 
-   </object> 
-  </void> 
-  <void method="put"> 
-   <int>96</int> 
-   <object class="de.sharebox.entities.User"> 
-    <void property="id"> 
-     <int>96</int> 
-    </void> 
-    <void property="limit"> 
-     <double>2.0</double> 
-    </void> 
-    <void property="mail"> 
-     <string></string> 
-    </void> 
-    <void property="name"> 
-     <string>hannah</string> 
-    </void> 
-    <void property="password"> 
-     <string>hannahstinkt</string> 
-    </void> 
-   </object> 
-  </void> 
-  <void method="put"> 
    <int>67</int> 
    <object class="de.sharebox.entities.User"> 
     <void property="id"> 
@@ -94,50 +14,30 @@
      <string>tester1@t-online.de</string> 
     </void> 
     <void property="name"> 
-     <string>tester1</string> 
+     <string>tester</string> 
     </void> 
     <void property="password"> 
-     <string>tester1</string> 
+     <string>tester</string> 
     </void> 
    </object> 
   </void> 
   <void method="put"> 
-   <int>74</int> 
+   <int>59</int> 
    <object class="de.sharebox.entities.User"> 
     <void property="id"> 
-     <int>74</int> 
+     <int>59</int> 
     </void> 
     <void property="limit"> 
      <double>2.0</double> 
     </void> 
     <void property="mail"> 
-     <string></string> 
+     <string>martin@web.de</string> 
     </void> 
     <void property="name"> 
-     <string>dirk2</string> 
+     <string>martin</string> 
     </void> 
     <void property="password"> 
-     <string></string> 
-    </void> 
-   </object> 
-  </void> 
-  <void method="put"> 
-   <int>31</int> 
-   <object class="de.sharebox.entities.User"> 
-    <void property="id"> 
-     <int>31</int> 
-    </void> 
-    <void property="limit"> 
-     <double>2.0</double> 
-    </void> 
-    <void property="mail"> 
-     <string></string> 
-    </void> 
-    <void property="name"> 
-     <string>heinzi</string> 
-    </void> 
-    <void property="password"> 
-     <string></string> 
+     <string>martin</string> 
     </void> 
    </object> 
   </void> 

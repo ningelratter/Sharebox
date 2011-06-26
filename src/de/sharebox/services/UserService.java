@@ -44,22 +44,39 @@ public class UserService {
 
 	private File file = new File("data/users.xml");
 
+	// creates a user account and checks before, if id is unique
 	public User createUser(String name, String password, String mail) {
 
 		if (name != null && !name.isEmpty() && password != null
 				&& !password.isEmpty()) {
+
 			int id = createUniqueId();
-			User user = new User(name, id, limit, password, mail, language);
-			userByIdMap.put(id, user);
+			boolean idCheck = false;
 
-			// TODO insert....
+			for (User user : userByIdMap.values()) {
+				int i = user.getId();
 
-			// System.out.println(user.getMail());
+				if (id == i) {
 
-			return user;
-		} else {
-			return null;
+					idCheck = false;
+				} else {
+					idCheck = true;
+				}
+			}
+			if (idCheck) {
+				User user1 = new User(name, id, limit, password, mail, language);
+				userByIdMap.put(id, user1);
+				return user1;
+
+			} else {
+				// recursive call if id wasn't unique
+				createUser(name, password, mail);
+
+			}
+
 		}
+		return null;
+
 	}
 
 	// changes the UserName
@@ -86,6 +103,7 @@ public class UserService {
 	 * @param password
 	 * @return
 	 */
+	// gets User by name and password and checks if user exist
 	public User getUserByName(String name, String password) {
 		for (User user : userByIdMap.values()) {
 			if (name.equals(user.getName())
@@ -96,7 +114,7 @@ public class UserService {
 		return null;
 	}
 
-	// gets User over his Emailadress
+	// gets User over his mailadress
 
 	public User getUserByMail(String mail) {
 		for (User user : userByIdMap.values()) {
@@ -114,6 +132,7 @@ public class UserService {
 	 * 
 	 * @return id
 	 */
+	// creates an id
 	private int createUniqueId() {
 		Random random = new Random();
 		int id = random.nextInt(100);
@@ -137,6 +156,15 @@ public class UserService {
 			e.printStackTrace();
 		}
 
+	}
+
+	// removes user from data bank and saves the change
+	public void removeUser(User user) {
+
+		int i = user.getId();
+		userByIdMap.remove(i);
+		saveUsers();
+		loadUsers();
 	}
 
 	public void saveUsers() {

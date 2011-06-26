@@ -40,6 +40,13 @@ public class Controller {
 	 * @param password
 	 * @return the user
 	 */
+	//is removing user from data bank
+	public void removeUser(User user){
+		
+		userService.removeUser(user);
+	}
+	
+	
 	public User getUser(String name, String password) {
 		return userService.getUserByName(name, password);
 	}

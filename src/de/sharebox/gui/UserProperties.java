@@ -4,6 +4,8 @@
 package de.sharebox.gui;
 
 import de.sharebox.controller.Controller;
+import javax.swing.JTable;
+import javax.swing.JToolBar;
 
 /**
  * @author MW
@@ -23,7 +25,9 @@ public class UserProperties extends ChangeablePanel {
 	public UserProperties(Controller c){
 		
 		super(c);
+		
+		JToolBar toolBar = new JToolBar();
+		toolBar.setBounds(64, 71, 379, 205);
+		add(toolBar);
 	}
-	
-	
 }

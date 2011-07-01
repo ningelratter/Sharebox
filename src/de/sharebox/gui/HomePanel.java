@@ -50,12 +50,4 @@ public class HomePanel extends MenuPanel {
 
 	}
 
-	/**
-	 * function????
-	 * @author MW
-	 * @param component
-	 * @param popup
-	 */
-	private static void addPopup(Component component, final JPopupMenu popup) {
-	}
 }

@@ -56,6 +56,7 @@ public class RegisterPanel extends ChangeablePanel {
 
 		// button registered
 		JButton Registrieren = new JButton("Registrieren");
+		Registrieren.setToolTipText("Alle Daten eingeben? Dann los!");
 		Registrieren.addMouseListener(new MouseAdapter() {
 
 			@Override
@@ -97,41 +98,54 @@ public class RegisterPanel extends ChangeablePanel {
 		mail.setColumns(10);
 
 		// label name
-		JLabel lblNewLabel = new JLabel("Benutzername:");
-		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblNewLabel.setBounds(94, 291, 106, 20);
-		add(lblNewLabel);
+		JLabel Benutzername = new JLabel("Benutzername:");
+		Benutzername.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		Benutzername.setBounds(94, 291, 106, 20);
+		add(Benutzername);
 
 		// label password
-		JLabel lblPasswort = new JLabel("Passwort:");
-		lblPasswort.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblPasswort.setBounds(94, 337, 69, 20);
-		add(lblPasswort);
+		JLabel Passwort = new JLabel("Passwort:");
+		Passwort.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		Passwort.setBounds(94, 337, 69, 20);
+		add(Passwort);
 
 		// label email
-		JLabel lblNewLabel_1 = new JLabel("Email:");
-		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblNewLabel_1.setBounds(94, 392, 45, 20);
-		add(lblNewLabel_1);
+		JLabel Email = new JLabel("Email:");
+		Email.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		Email.setBounds(94, 392, 45, 20);
+		add(Email);
 
 		// label registration
-		JLabel lblRegistration = new JLabel("Registration:");
-		lblRegistration.setHorizontalAlignment(SwingConstants.CENTER);
-		lblRegistration.setFont(new Font("Tahoma", Font.BOLD, 20));
-		lblRegistration.setBounds(210, 84, 218, 65);
-		add(lblRegistration);
+		JLabel Registration = new JLabel("Registration:");
+		Registration.setHorizontalAlignment(SwingConstants.CENTER);
+		Registration.setFont(new Font("Tahoma", Font.BOLD, 20));
+		Registration.setBounds(210, 84, 218, 65);
+		add(Registration);
 
 		// label statement - what the user have to do
-		JLabel lblBitteGebenSie = new JLabel(
+		JLabel BitteGebenSie = new JLabel(
 				"Bitte geben Sie nun folgende f\u00FCr die Registrierung notwendigen Daten ein:");
-		lblBitteGebenSie.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblBitteGebenSie.setBounds(52, 191, 541, 20);
-		add(lblBitteGebenSie);
+		BitteGebenSie.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		BitteGebenSie.setBounds(52, 191, 541, 20);
+		add(BitteGebenSie);
 
 		// registered - button
 		Registrieren.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		Registrieren.setBounds(272, 445, 147, 58);
 		add(Registrieren);
+		// login-button leads back to LoginPanel-View
+		JButton backToLogin = new JButton("Login");
+		backToLogin.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseReleased(MouseEvent y) {
+				LoginPanel loginPanel = new LoginPanel(controller);
+				changePanel(loginPanel);
+
+			}
+		});
+		backToLogin.setToolTipText("Zur\u00FCck zum Login");
+		backToLogin.setBounds(297, 562, 89, 23);
+		add(backToLogin);
 
 	}
 
@@ -204,7 +218,7 @@ public class RegisterPanel extends ChangeablePanel {
 				wrongPassword.setText("ungültiges Passwort");
 
 			}
-			//shows a helpMessage with the right input format
+			// shows a helpMessage with the right input format
 			JLabel helpMessage = new JLabel("");
 			helpMessage.setForeground(Color.RED);
 			helpMessage.setFont(new Font("Tahoma", Font.PLAIN, 16));

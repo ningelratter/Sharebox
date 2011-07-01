@@ -65,6 +65,7 @@ public class LoginPanel extends ChangeablePanel {
 
 		// text field userName
 		final JTextField loginNameField = new JTextField("username");
+		//is clearing the field for the Users input
 		loginNameField.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent e) {
@@ -88,10 +89,12 @@ public class LoginPanel extends ChangeablePanel {
 		final JPasswordField loginPasswordField = new JPasswordField("password");
 		loginPasswordField.addFocusListener(new FocusAdapter() {
 			@Override
+			//is clearing the field for Users Input
 			public void focusGained(FocusEvent arg0) {
 				loginPasswordField.setText("");
 			}
 		});
+		//is clearing the field for Users Input
 		loginPasswordField.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent e) {

@@ -4,15 +4,8 @@ import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 
 import javax.swing.JButton;
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
-import javax.swing.JToolBar;
-import javax.swing.UIManager;
 
 import de.sharebox.controller.Controller;
 
@@ -42,7 +35,8 @@ public class ChangeablePanel extends ShareboxPanel {
 
 		// button exit
 		JButton exitButton = new JButton("ShareBox-Ultimate beenden");
-		exitButton.setToolTipText("Hier klicken, um sich von ShareBoxUltimate abzumelden");
+		exitButton
+				.setToolTipText("Hier klicken, um sich von ShareBoxUltimate abzumelden");
 		exitButton.setBounds(0, 618, 640, 23);
 		// create new ActionListener
 		ActionListener exitButtonClickedActionListener = new ActionListener() {
@@ -90,20 +84,29 @@ public class ChangeablePanel extends ShareboxPanel {
 		parent.repaint();
 
 	}
-	//opens LoignPanel-View
-	public void changePanel(LoginPanel loginPanel){
-		
+
+	// opens LoignPanel-View
+	public void changePanel(LoginPanel loginPanel) {
+
 		Container parent = getParent();
 		parent.removeAll();
 		parent.add(loginPanel);
 		parent.validate();
 		parent.repaint();
 	}
-	//opens ForgottenLoginPanel-View
-	public void changePanel(ForgottenLoginPanel forgottenLoginPanel){
+
+	// opens ForgottenLoginPanel-View
+	public void changePanel(ForgottenLoginPanel forgottenLoginPanel) {
 		Container parent = getParent();
 		parent.removeAll();
 		parent.add(forgottenLoginPanel);
+		parent.validate();
+		parent.repaint();
+	}
+	public void changePanel(UserProperties userProperties) {
+		Container parent = getParent();
+		parent.removeAll();
+		parent.add(userProperties);
 		parent.validate();
 		parent.repaint();
 	}

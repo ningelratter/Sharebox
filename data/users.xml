@@ -42,7 +42,6 @@
    </object> 
   </void> 
   <void method="put"> 
-<<<<<<< HEAD
    <int>78</int> 
    <object class="de.sharebox.entities.User"> 
     <void property="id"> 
@@ -55,7 +54,7 @@
      <string>eilin@123.de</string> 
     </void> 
     <void property="name"> 
-     <string>eilin</string> 
+     <string>Eilin</string> 
     </void> 
     <void property="password"> 
      <string>123</string> 
@@ -63,10 +62,7 @@
    </object> 
   </void> 
   <void method="put"> 
-   <int>46</int> 
-=======
    <int>74</int> 
->>>>>>> d5af1d4e95ce58f71122a688ccd6b6cd7a258649
    <object class="de.sharebox.entities.User"> 
     <void property="id"> 
      <int>74</int> 

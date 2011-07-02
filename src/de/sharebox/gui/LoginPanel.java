@@ -5,8 +5,12 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -16,12 +20,6 @@ import javax.swing.JTextField;
 import de.sharebox.controller.Controller;
 import de.sharebox.entities.User;
 import de.sharebox.models.UserModel;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.event.InputMethodListener;
-import java.awt.event.InputMethodEvent;
-import java.awt.event.FocusAdapter;
-import java.awt.event.FocusEvent;
 
 /**
  * 
@@ -65,7 +63,7 @@ public class LoginPanel extends ChangeablePanel {
 
 		// text field userName
 		final JTextField loginNameField = new JTextField("username");
-		//is clearing the field for the Users input
+		// is clearing the field for the Users input
 		loginNameField.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent e) {
@@ -89,12 +87,12 @@ public class LoginPanel extends ChangeablePanel {
 		final JPasswordField loginPasswordField = new JPasswordField("password");
 		loginPasswordField.addFocusListener(new FocusAdapter() {
 			@Override
-			//is clearing the field for Users Input
+			// is clearing the field for Users Input
 			public void focusGained(FocusEvent arg0) {
 				loginPasswordField.setText("");
 			}
 		});
-		//is clearing the field for Users Input
+		// is clearing the field for Users Input
 		loginPasswordField.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent e) {
@@ -113,7 +111,8 @@ public class LoginPanel extends ChangeablePanel {
 					String name = loginNameField.getText();
 					// string constructor - creates string from charArray
 
-					String password = new String(loginPasswordField.getPassword());
+					String password = new String(loginPasswordField
+							.getPassword());
 					User user = controller.getUser(name, password);
 
 					if (user != null) {
@@ -189,9 +188,7 @@ public class LoginPanel extends ChangeablePanel {
 						@Override
 						// change the view when user push the register button
 						public void actionPerformed(final ActionEvent g) {
-							ForgottenLoginPanel forgottenLoginPanel = new ForgottenLoginPanel(
-									controller);
-							changePanel(forgottenLoginPanel);
+							changePanel(new ForgottenLoginPanel(controller));
 						}
 					};
 					forgottenLogin

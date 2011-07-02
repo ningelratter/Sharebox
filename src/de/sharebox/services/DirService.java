@@ -13,12 +13,13 @@ public class DirService implements Serializable, Comparable<File> {
 
 	private static final long serialVersionUID = 3540898262107664579L;
 
-	public static void createRootDirLocation(String rootDir) {
+	public static void createRootDirLocation(int id) {
 		String path = System.getProperty("user.dir");
-
+		String userId;
+		userId = String.valueOf(id);
 		try {
 
-			File dir = new File(path + "\\" + rootDir);
+			File dir = new File(path + "\\" + userId);
 
 			if (!dir.isDirectory()) {
 
@@ -35,9 +36,9 @@ public class DirService implements Serializable, Comparable<File> {
 
 	}
 
-	// public static void renameRootDirLocation(String rootDir){
+	public static void renameRootDirLocation(String rootDir) {
 
-	// }
+	}
 
 	@Override
 	public int compareTo(File arg0) {

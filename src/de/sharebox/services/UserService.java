@@ -8,7 +8,6 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
@@ -21,7 +20,7 @@ import de.sharebox.entities.User;
  */
 public class UserService {
 
-	// Map for holding users
+	// Map holding users
 	private Map<Integer, User> userByIdMap = new HashMap<Integer, User>();
 
 	public UserService() {
@@ -46,33 +45,46 @@ public class UserService {
 
 	// creates a user account and checks before, if id is unique
 	public User createUser(String name, String password, String mail) {
-
-		if (name != null && !name.isEmpty() && password != null && !password.isEmpty()) {
+		// check if userdata is not empty
+		if (name != null && !name.isEmpty() && password != null
+				&& !password.isEmpty()) {
 
 			int id = createUniqueId();
 			boolean idCheck = false;
 
+			// checks the existing ids from user.xml to create a unique id!
 			for (User user : userByIdMap.values()) {
-				int i = user.getId();
+				// if user.xml contains no users --> id has to be unique
+				// otherwise check is required
+				if (user != null) {
+					int i = user.getId();
 
-				if (id == i) {
+					if (id == i) {
 
-					idCheck = false;
+						idCheck = false;
+					} else {
+						idCheck = true;
+					}
+
 				} else {
+
 					idCheck = true;
 				}
+				// idCheck true--> new user is going to be created otherwise new
+				// call for a unique id
+				if (idCheck) {
+					User user1 = new User(name, id, limit, password, mail,
+							language);
+					userByIdMap.put(id, user1);
+					return user1;
+
+				} else {
+					// recursive call if id wasn't unique
+					createUser(name, password, mail);
+
+				}
+
 			}
-			if (idCheck) {
-				User user1 = new User(name, id, limit, password, mail, language);
-				userByIdMap.put(id, user1);
-				return user1;
-
-			} else {
-				// recursive call if id wasn't unique
-				createUser(name, password, mail);
-
-			}
-
 		}
 		return null;
 
@@ -95,14 +107,11 @@ public class UserService {
 	public void setUserEmail(User user, String email) {
 		user.setMail(email);
 	}
-	
+
 	// changes the Mailadress of the user
 	public void setUserLimit(User user, double limit) {
 		user.setLimit(limit);
 	}
-
-
-
 
 	/**
 	 * get the user
@@ -113,22 +122,39 @@ public class UserService {
 	 */
 	// gets User by name and password and checks if user exist
 	public User getUserByName(String name, String password) {
+
 		for (User user : userByIdMap.values()) {
-			if (name.equals(user.getName()) && password.equals(user.getPassword())) {
-				return user;
+			if (user != null) {
+				if (name.equals(user.getName())
+						&& password.equals(user.getPassword())) {
+					return user;
+				} else {
+					return null;
+				}
+			} else {
+
+				return null;
 			}
 		}
 		return null;
 	}
 
-	// gets User over his mailadress
+	// gets User over his mail
 
 	public User getUserByMail(String mail) {
 		for (User user : userByIdMap.values()) {
+			if (user != null) {
 
-			if (mail.equals(user.getMail())) {
+				if (mail.equals(user.getMail())) {
 
-				return user;
+					return user;
+				} else {
+					return null;
+				}
+			}
+
+			else {
+				return null;
 			}
 		}
 		return null;
@@ -143,8 +169,6 @@ public class UserService {
 	private int createUniqueId() {
 		Random random = new Random();
 		int id = random.nextInt(100);
-
-		List<String> idList;
 
 		return id;
 	}

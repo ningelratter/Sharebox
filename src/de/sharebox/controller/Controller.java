@@ -55,7 +55,7 @@ public class Controller {
 	}
 
 	public User getUser(String name, String password) {
-		return userService.getUserByName(name, password);
+		return userService.getUserByName(name,password);
 	}
 
 	public User getUser(String mail) {

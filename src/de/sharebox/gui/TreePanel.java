@@ -24,15 +24,20 @@ import de.sharebox.models.UserModel;
  */
 public class TreePanel extends ChangeablePanel {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	File root;
 
-	TreePanel(Controller controller,UserModel userModel) {
+	TreePanel(Controller controller, UserModel userModel) {
 		super(controller);
 		setLayout(null);
-		// get userPath 
+		// get userPath
 		User user = userModel.getUser();
-		String path = user.getRootDir();
+		String userDir = user.getRootDir();
 
+		// if Tree is getting to big for screen, JScrollPane lets you navigate
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(10, 111, 594, 501);
 		add(scrollPane);
@@ -48,7 +53,8 @@ public class TreePanel extends ChangeablePanel {
 		tree.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		tree.setRootVisible(true);
 		// creates new JTree
-		buildTreeModelAccordingToDirectoryStructure(root = new File(path), tree);
+		buildTreeModelAccordingToDirectoryStructure(root = new File(userDir),
+				tree);
 
 	}
 

@@ -7,7 +7,7 @@ import de.sharebox.services.DirService;
 
 /**
  * 
- * Objectclass user
+ * Object class user
  * 
  * @author MW
  * @version 11.06.11
@@ -25,7 +25,6 @@ public class User {
 	private String mail;
 	private List<String> dirList = new ArrayList<String>();
 
-
 	// TODO private List history;
 
 	public User() {
@@ -41,7 +40,7 @@ public class User {
 		setPassword(password);
 		setMail(mail);
 		setLanguage(language);
-		setRootDir(name);
+		setRootDir(id);
 	}
 
 	public void setName(String name) {
@@ -115,14 +114,15 @@ public class User {
 		return id + ": " + name;
 	}
 
-	public void setRootDir(String name) {
+	public void setRootDir(int id) {
 
-		DirService.createRootDirLocation(name);
+		DirService.createRootDirLocation(id);
 
 	}
-	public String getRootDir(){
-		
-		return name;
+
+	public String getRootDir() {
+
+		return (String.valueOf(id));
 	}
-	
+
 }

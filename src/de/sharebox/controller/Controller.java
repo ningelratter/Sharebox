@@ -1,6 +1,7 @@
 package de.sharebox.controller;
 
 import de.sharebox.entities.User;
+import de.sharebox.services.HistoryService;
 import de.sharebox.services.UserService;
 
 /**
@@ -15,15 +16,17 @@ import de.sharebox.services.UserService;
 public class Controller {
 
 	private UserService userService;
+	private HistoryService historyService;
 
-	// constructor
 	// constructor
 	public Controller() {
 		userService = new UserService();
+		historyService = new HistoryService();
 	}
 
 	/**
-	 * call to create a user in the userService From type User.
+	 * call to create a user in the userService From type User and call to write
+	 * history
 	 * 
 	 * @param name
 	 * @param password
@@ -31,7 +34,10 @@ public class Controller {
 	 * @return a user with his properties
 	 */
 	public User createUser(String name, String password, String mail) {
-		return userService.createUser(name, password, mail);
+		User user = userService.createUser(name, password, mail);
+		historyService.logUserCreatedItself(user.getId(), name);
+		return user;
+
 	}
 
 	/**
@@ -40,13 +46,14 @@ public class Controller {
 	 * @param password
 	 * @return the user
 	 */
-	//is removing user from data bank
-	public void removeUser(User user){
-		
+	// is removing user from data bank
+	public void removeUser(User user) {
+
 		userService.removeUser(user);
+		historyService.logremoveUser(user);
+
 	}
-	
-	
+
 	public User getUser(String name, String password) {
 		return userService.getUserByName(name, password);
 	}
@@ -64,6 +71,7 @@ public class Controller {
 	public void setUserName(User user, String name) {
 
 		userService.setUserName(user, name);
+		historyService.logUserNameChanged(user.getId(), name);
 
 	}
 
@@ -71,12 +79,20 @@ public class Controller {
 	public void setUserPassword(User user, String password) {
 
 		userService.setUserPassword(user, password);
+		historyService.logUserPasswordChanged(user.getId());
 	}
 
 	// calls the userService to change the mailadress of the user
 	public void setUserEmail(User user, String email) {
 
 		userService.setUserEmail(user, email);
+		historyService.logUserEmailChanged(user.getId(), email);
+	}
+	
+	public void setUserLimit(User user, double limit) {
+		userService.setUserLimit(user, limit);
+		historyService.logUserLimitChanged(user.getId(), limit);
+		
 	}
 
 }

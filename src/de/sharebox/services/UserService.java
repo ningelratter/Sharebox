@@ -47,8 +47,7 @@ public class UserService {
 	// creates a user account and checks before, if id is unique
 	public User createUser(String name, String password, String mail) {
 
-		if (name != null && !name.isEmpty() && password != null
-				&& !password.isEmpty()) {
+		if (name != null && !name.isEmpty() && password != null && !password.isEmpty()) {
 
 			int id = createUniqueId();
 			boolean idCheck = false;
@@ -83,6 +82,7 @@ public class UserService {
 	public void setUserName(User user, String name) {
 
 		user.setName(name);
+
 	}
 
 	// changes the UserPassword
@@ -95,6 +95,14 @@ public class UserService {
 	public void setUserEmail(User user, String email) {
 		user.setMail(email);
 	}
+	
+	// changes the Mailadress of the user
+	public void setUserLimit(User user, double limit) {
+		user.setLimit(limit);
+	}
+
+
+
 
 	/**
 	 * get the user
@@ -106,8 +114,7 @@ public class UserService {
 	// gets User by name and password and checks if user exist
 	public User getUserByName(String name, String password) {
 		for (User user : userByIdMap.values()) {
-			if (name.equals(user.getName())
-					&& password.equals(user.getPassword())) {
+			if (name.equals(user.getName()) && password.equals(user.getPassword())) {
 				return user;
 			}
 		}
@@ -138,8 +145,6 @@ public class UserService {
 		int id = random.nextInt(100);
 
 		List<String> idList;
-
-	
 
 		return id;
 	}

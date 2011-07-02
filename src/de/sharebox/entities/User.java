@@ -25,6 +25,7 @@ public class User {
 	private String mail;
 	private List<String> dirList = new ArrayList<String>();
 
+
 	// TODO private List history;
 
 	public User() {

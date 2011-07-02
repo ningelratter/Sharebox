@@ -15,28 +15,29 @@ public class DirService implements Serializable, Comparable<File> {
 
 	public static void createRootDirLocation(String rootDir) {
 		String path = System.getProperty("user.dir");
-				
+
 		try {
-			
+
 			File dir = new File(path + "\\" + rootDir);
-			if(!dir.isDirectory()){
-				
+
+			if (!dir.isDirectory()) {
+
 				dir.mkdir();
-			}
-			else{
+			} else {
 				System.out.println("order gibts es schon!");
 			}
-			
+
+			dir.mkdir();
+
 		} catch (Throwable NullPointerException) {
 			// TODO hier weitere mögliche Fehler abfangen
 		}
-		
-		}
-		
-		// public static void renameRootDirLocation(String rootDir){
 
-		// }
-	
+	}
+
+	// public static void renameRootDirLocation(String rootDir){
+
+	// }
 
 	@Override
 	public int compareTo(File arg0) {

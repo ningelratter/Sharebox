@@ -13,6 +13,10 @@ import de.sharebox.controller.Controller;
 import de.sharebox.models.UserModel;
 
 public class MenuPanel extends ChangeablePanel {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -8555827717858274404L;
 	UserModel userModel;
 
 	public MenuPanel(final Controller controller, final UserModel userModel) {
@@ -21,7 +25,7 @@ public class MenuPanel extends ChangeablePanel {
 
 		// creates a toolbar
 		JToolBar toolBar = new JToolBar();
-		toolBar.setBounds(0, 0, 640, 37);
+		toolBar.setBounds(0, 0, 596, 37);
 		add(toolBar);
 		// cretes a menubar on the toolbar
 		JMenuBar menuBar = new JMenuBar();
@@ -119,6 +123,7 @@ public class MenuPanel extends ChangeablePanel {
 			}
 		});
 		mnLogout.add(mntmLogout);
+
 	}
 
 }

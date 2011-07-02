@@ -8,6 +8,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 
 import de.sharebox.controller.Controller;
+import javax.swing.JScrollBar;
 
 /**
  * 
@@ -37,7 +38,7 @@ public class ChangeablePanel extends ShareboxPanel {
 		JButton exitButton = new JButton("ShareBox-Ultimate beenden");
 		exitButton
 				.setToolTipText("Hier klicken, um sich von ShareBoxUltimate abzumelden");
-		exitButton.setBounds(0, 618, 640, 23);
+		exitButton.setBounds(21, 618, 584, 23);
 		// create new ActionListener
 		ActionListener exitButtonClickedActionListener = new ActionListener() {
 

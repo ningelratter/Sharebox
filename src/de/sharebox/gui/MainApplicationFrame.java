@@ -1,11 +1,12 @@
 package de.sharebox.gui;
 
+import java.awt.BorderLayout;
 import java.awt.Dimension;
 
 import javax.swing.JFrame;
 
 import de.sharebox.controller.Controller;
-import java.awt.BorderLayout;
+
 //testcomment
 /**
  * 
@@ -26,12 +27,12 @@ public class MainApplicationFrame extends JFrame {
 
 	/**
 	 * 
-	 * Creates the design of the view when the application started. The controller
-	 * will be created and it take the call for LoginPanel.
+	 * Creates the design of the view when the application started. The
+	 * controller will be created and it take the call for LoginPanel.
 	 * 
-	 * @author Eilin
+	 * @author Eilin,MW
 	 */
-	
+
 	public MainApplicationFrame() {
 
 		// design of the view
@@ -49,11 +50,12 @@ public class MainApplicationFrame extends JFrame {
 
 		pack();
 		setVisible(true);
+
 	}
 
 	public static void main(String[] args) {
 		// text in the head of the window
-	//	System.out.println("Sharebox-Ultimate");
+		// System.out.println("Sharebox-Ultimate");
 		new MainApplicationFrame();
 
 	}

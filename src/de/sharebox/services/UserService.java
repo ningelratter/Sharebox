@@ -139,8 +139,6 @@ public class UserService {
 
 		List<String> idList;
 
-	
-
 		return id;
 	}
 

@@ -45,7 +45,7 @@ public class HomePanel extends MenuPanel {
 		label.setBounds(20, 69, 310, 56);
 		add(label);
 
-		TreePanel treePanel = new TreePanel(controller);
+		TreePanel treePanel = new TreePanel(controller,userModel);
 		add(treePanel);
 	
 

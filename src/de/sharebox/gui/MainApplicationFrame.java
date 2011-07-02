@@ -4,10 +4,10 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 
 import javax.swing.JFrame;
+import javax.swing.JScrollPane;
 
 import de.sharebox.controller.Controller;
 
-//testcomment
 /**
  * 
  * This class is the start application. Produce the first view of the

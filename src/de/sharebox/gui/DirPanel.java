@@ -20,7 +20,7 @@ public class DirPanel extends MenuPanel {
 	public DirPanel(Controller controller, UserModel userModel) {
 		super(controller, userModel);
 		// shows TreePanel
-		TreePanel treePanel = new TreePanel(controller);
+		TreePanel treePanel = new TreePanel(controller, userModel);
 		add(treePanel);
 	}
 }

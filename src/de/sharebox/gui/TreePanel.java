@@ -16,6 +16,8 @@ import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreeNode;
 
 import de.sharebox.controller.Controller;
+import de.sharebox.entities.User;
+import de.sharebox.models.UserModel;
 
 /**
  * @author MW class thats shows users Directories and Files as a tree
@@ -24,17 +26,18 @@ public class TreePanel extends ChangeablePanel {
 
 	File root;
 
-	TreePanel(Controller controller) {
+	TreePanel(Controller controller,UserModel userModel) {
 		super(controller);
 		setLayout(null);
-		// get userPath
-		String path = System.getProperty("user.dir");
+		// get userPath 
+		User user = userModel.getUser();
+		String path = user.getRootDir();
 
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(10, 111, 594, 501);
 		add(scrollPane);
 
-		// is creating a JTree with users Directorys and Files
+		// is creating a JTree with users Directories and Files
 		JTree tree = new JTree();
 		scrollPane.setViewportView(tree);
 		tree.setVisibleRowCount(50);

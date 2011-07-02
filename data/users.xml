@@ -2,6 +2,46 @@
 <java version="1.6.0_26" class="java.beans.XMLDecoder"> 
  <object class="java.util.HashMap"> 
   <void method="put"> 
+   <int>48</int> 
+   <object class="de.sharebox.entities.User"> 
+    <void property="id"> 
+     <int>48</int> 
+    </void> 
+    <void property="limit"> 
+     <double>2.0</double> 
+    </void> 
+    <void property="mail"> 
+     <string>eilin@web.de</string> 
+    </void> 
+    <void property="name"> 
+     <string>eilin</string> 
+    </void> 
+    <void property="password"> 
+     <string>eilin</string> 
+    </void> 
+   </object> 
+  </void> 
+  <void method="put"> 
+   <int>22</int> 
+   <object class="de.sharebox.entities.User"> 
+    <void property="id"> 
+     <int>22</int> 
+    </void> 
+    <void property="limit"> 
+     <double>2.0</double> 
+    </void> 
+    <void property="mail"> 
+     <string>martin@web.de</string> 
+    </void> 
+    <void property="name"> 
+     <string>martin</string> 
+    </void> 
+    <void property="password"> 
+     <string>martin</string> 
+    </void> 
+   </object> 
+  </void> 
+  <void method="put"> 
    <int>67</int> 
    <object class="de.sharebox.entities.User"> 
     <void property="id"> 
@@ -38,6 +78,46 @@
     </void> 
     <void property="password"> 
      <string>martin</string> 
+    </void> 
+   </object> 
+  </void> 
+  <void method="put"> 
+   <int>27</int> 
+   <object class="de.sharebox.entities.User"> 
+    <void property="id"> 
+     <int>27</int> 
+    </void> 
+    <void property="limit"> 
+     <double>2.0</double> 
+    </void> 
+    <void property="mail"> 
+     <string>@web.de</string> 
+    </void> 
+    <void property="name"> 
+     <string>tester</string> 
+    </void> 
+    <void property="password"> 
+     <string>tester12345</string> 
+    </void> 
+   </object> 
+  </void> 
+  <void method="put"> 
+   <int>63</int> 
+   <object class="de.sharebox.entities.User"> 
+    <void property="id"> 
+     <int>63</int> 
+    </void> 
+    <void property="limit"> 
+     <double>2.0</double> 
+    </void> 
+    <void property="mail"> 
+     <string>tester123@web.de</string> 
+    </void> 
+    <void property="name"> 
+     <string>tester123</string> 
+    </void> 
+    <void property="password"> 
+     <string>tester123</string> 
     </void> 
    </object> 
   </void> 

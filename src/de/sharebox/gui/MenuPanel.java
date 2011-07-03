@@ -27,7 +27,7 @@ public class MenuPanel extends ChangeablePanel {
 		JToolBar toolBar = new JToolBar();
 		toolBar.setBounds(0, 0, 596, 37);
 		add(toolBar);
-	
+
 		// cretes a menubar on the toolbar
 		JMenuBar menuBar = new JMenuBar();
 		menuBar.setBorder(UIManager.getBorder("MenuBar.border"));
@@ -47,16 +47,16 @@ public class MenuPanel extends ChangeablePanel {
 			}
 		});
 		mnHome.add(mntmHome);
-		
+
 		// creates a submenu on the menubar
 		JMenu mnDatei = new JMenu("Datei");
 		mnDatei.setAutoscrolls(true);
 		menuBar.add(mnDatei);
-		
+
 		// creates a submenu on the menubar
 		JMenu mnBenutzereinstellungen = new JMenu("Benutzereinstellungen");
 		menuBar.add(mnBenutzereinstellungen);
-	
+
 		// creates a submenu on the menubar
 		JMenuItem mntmBenutzereinstellungenAnsehen = new JMenuItem("Benutzereinstellungen ansehen");
 		mntmBenutzereinstellungenAnsehen.addMouseListener(new MouseAdapter() {
@@ -67,7 +67,7 @@ public class MenuPanel extends ChangeablePanel {
 			}
 		});
 		mnBenutzereinstellungen.add(mntmBenutzereinstellungenAnsehen);
-		
+
 		// creates a menu on the menubar
 		JMenuItem mntmLogAufrufen = new JMenuItem("Log aufrufen");
 		mntmLogAufrufen.addMouseListener(new MouseAdapter() {
@@ -75,7 +75,7 @@ public class MenuPanel extends ChangeablePanel {
 			public void mouseReleased(MouseEvent arg0) {
 				HistoryPanel historyPanel = new HistoryPanel(controller, userModel);
 				changePanel(historyPanel);
-			} 
+			}
 		});
 		mnBenutzereinstellungen.add(mntmLogAufrufen);
 

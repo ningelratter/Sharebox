@@ -37,12 +37,12 @@ public class HistoryPanel extends MenuPanel {
 		User user = userModel.getUser();
 		String username = user.getName();
 		int userId = user.getId();
-		
+/*		
 	public List<History> getHistoryById(int userId) {
 
 				controller.getHistory(id);
 			}		
 	
-
+*/
 	}
 }

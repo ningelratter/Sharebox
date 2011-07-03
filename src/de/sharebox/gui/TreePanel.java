@@ -4,38 +4,58 @@
 package de.sharebox.gui;
 
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.TreeMap;
 
+import javax.swing.JMenuItem;
+import javax.swing.JPopupMenu;
 import javax.swing.JScrollPane;
 import javax.swing.JTree;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreeNode;
+import javax.swing.tree.TreePath;
 
 import de.sharebox.controller.Controller;
 import de.sharebox.entities.User;
 import de.sharebox.models.UserModel;
+import de.sharebox.services.DirService;
 
 /**
  * @author MW class thats shows users Directories and Files as a tree
  */
-public class TreePanel extends ChangeablePanel {
+public class TreePanel extends ChangeablePanel implements ItemListener,
+		ActionListener {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 	File root;
+	JTree tree;
+	JPopupMenu jPopup;
 
-	TreePanel(Controller controller, UserModel userModel) {
+	TreePanel(Controller controller, final UserModel userModel) {
 		super(controller);
 		setLayout(null);
+		final String label1 = "Order/Datei anlegen";
+		final String label2 = "Ordner/Datei löschen";
+		final String label3 = "Order/Datei umbenennen";
+		final String label4 = "Order/Datei einfügen";
+		final String label5 = "Eigenschaften";
+
 		// get userPath
 		User user = userModel.getUser();
-		String userDir = user.getRootDir();
+		final String userDir = user.getRootDir();
 
 		// if Tree is getting to big for screen, JScrollPane lets you navigate
 		JScrollPane scrollPane = new JScrollPane();
@@ -43,10 +63,9 @@ public class TreePanel extends ChangeablePanel {
 		add(scrollPane);
 
 		// is creating a JTree with users Directories and Files
-		JTree tree = new JTree();
+		final JTree tree = new JTree();
+
 		scrollPane.setViewportView(tree);
-		tree.setVisibleRowCount(50);
-		tree.setDragEnabled(true);
 		tree.setAutoscrolls(true);
 		tree.setEditable(true);
 		tree.setShowsRootHandles(true);
@@ -55,7 +74,74 @@ public class TreePanel extends ChangeablePanel {
 		// creates new JTree
 		buildTreeModelAccordingToDirectoryStructure(root = new File(userDir),
 				tree);
+		// listens on mouseActions in Tree
+		tree.addMouseListener(new MouseAdapter() {
 
+			public void mouseReleased(final MouseEvent evt) {
+				try {
+					// left mouse click
+					if (evt.getButton() == MouseEvent.BUTTON1) {
+						System.out.println("linksKlick");
+
+						int selRow = tree.getRowForLocation(evt.getX(),
+								evt.getY());
+						TreePath selPath = tree.getPathForLocation(evt.getX(),
+								evt.getY());
+
+						// System.out.println(selRow);
+						// System.out.println(selPath);
+						String path = makePath(selPath.getPath());
+						System.out.println(path);
+						File file = new File(path);
+						System.out.println(file.delete());
+						String apath = file.getAbsolutePath();
+						File file2 = new File(path);
+						file2.createNewFile();
+						
+						System.out.println(file2.isFile());
+						System.out.println(apath);
+				
+					DirService.removeDir(file2, userModel);
+
+					
+					// right mouse click
+					if (evt.getButton() == MouseEvent.BUTTON3) {
+
+						jPopup = new JPopupMenu();
+						jPopup.add(new JMenuItem(label1));
+						jPopup.add(new JMenuItem(label2));
+						jPopup.add(new JMenuItem(label3));
+						jPopup.add(new JMenuItem(label4));
+						jPopup.add(new JMenuItem(label5));
+						jPopup.show(tree, getX(), getY());
+
+						jPopup.show(evt.getComponent(), evt.getX(), evt.getY());
+
+					}
+					}} catch (NullPointerException e) {
+
+					e.getMessage();
+				} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+
+			}
+
+			// creates a string containing path from TreePath Object
+			private String makePath(Object[] p) {
+				String temp = "";
+				for (int i = 0; i < p.length; i++) {
+					if (i != p.length - 1) {
+						temp += p[i].toString() + "\\";
+					} else {
+						temp += p[i].toString();
+					}
+				}
+				return temp;
+			}
+
+		});
 	}
 
 	// builds Tree starting from given file
@@ -166,4 +252,17 @@ public class TreePanel extends ChangeablePanel {
 		}
 
 	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void itemStateChanged(ItemEvent arg0) {
+		// TODO Auto-generated method stub
+
+	}
+
 }

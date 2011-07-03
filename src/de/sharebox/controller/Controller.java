@@ -35,7 +35,9 @@ public class Controller {
 	 */
 	public User createUser(String name, String password, String mail) {
 		User user = userService.createUser(name, password, mail);
-		historyService.logUserCreatedItself(user.getId(), name);
+		if (user != null) {
+			historyService.logUserCreatedItself(user.getId(), name);
+		}
 		return user;
 
 	}
@@ -55,7 +57,7 @@ public class Controller {
 	}
 
 	public User getUser(String name, String password) {
-		return userService.getUserByName(name,password);
+		return userService.getUserByName(name, password);
 	}
 
 	public User getUser(String mail) {
@@ -88,11 +90,17 @@ public class Controller {
 		userService.setUserEmail(user, email);
 		historyService.logUserEmailChanged(user.getId(), email);
 	}
-	
+
+	// calls the userService and historyService to change and log them
 	public void setUserLimit(User user, double limit) {
 		userService.setUserLimit(user, limit);
 		historyService.logUserLimitChanged(user.getId(), limit);
-		
+
+	}
+
+	// calls the Logentries
+	public void getHistory(int id) {
+		historyService.getHistoryEntriesByUsers(id);
 	}
 
 }

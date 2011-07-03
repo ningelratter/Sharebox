@@ -123,8 +123,7 @@ public class RegisterPanel extends ChangeablePanel {
 		add(Registration);
 
 		// label statement - what the user have to do
-		JLabel BitteGebenSie = new JLabel(
-				"Bitte geben Sie nun folgende f\u00FCr die Registrierung notwendigen Daten ein:");
+		JLabel BitteGebenSie = new JLabel("Bitte geben Sie nun folgende f\u00FCr die Registrierung notwendigen Daten ein:");
 		BitteGebenSie.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		BitteGebenSie.setBounds(52, 191, 541, 20);
 		add(BitteGebenSie);
@@ -158,15 +157,13 @@ public class RegisterPanel extends ChangeablePanel {
 		String mail = RegisterPanel.this.mail.getText();
 
 		// checks if mail is valid
-
-		boolean validEmail = mail.contains("@") && mail.contains(".de")
-				|| mail.contains("@") && mail.contains(".com")
-				|| mail.contains("@") && mail.contains(".fr")
-				|| mail.contains("@") && mail.contains(".net");
+		boolean validEmail = mail.contains("@") && mail.contains(".de") || mail.contains("@") && mail.contains(".com")
+				|| mail.contains("@") && mail.contains(".fr") || mail.contains("@") && mail.contains(".net");
 		boolean validUserName = false;
 		int lengthUser = userName.length();
 		validUserName = (5 <= lengthUser && 12 >= lengthUser);
 
+		// checks if password is valid
 		boolean validPassword = false;
 		int lengthPwd = password.length();
 		validPassword = (5 <= lengthPwd && 12 >= lengthPwd);
@@ -177,11 +174,12 @@ public class RegisterPanel extends ChangeablePanel {
 			User user = controller.createUser(userName, password, mail);
 			// check if UserName is between 5-12 characters
 
-			// create a new UserModel
-			UserModel userModel = new UserModel(user);
-			// change into HomePanel with the userModel
-			changePanel(new HomePanel(controller, userModel));
-
+			if (user != null) {
+				// create a new UserModel
+				UserModel userModel = new UserModel(user);
+				// change into HomePanel with the userModel
+				changePanel(new HomePanel(controller, userModel));
+			}
 		}
 
 		// if mail is not valid - Popup is leading back to
@@ -224,8 +222,7 @@ public class RegisterPanel extends ChangeablePanel {
 			helpMessage.setFont(new Font("Tahoma", Font.PLAIN, 16));
 			helpMessage.setBounds(177, 519, 400, 50);
 			add(helpMessage);
-			helpMessage.setText("Hinweis:"
-					+ "Benutzername/Passwort: 5-12 Zeichen");
+			helpMessage.setText("Hinweis:" + "Benutzername/Passwort: 5-12 Zeichen");
 		}
 
 	}

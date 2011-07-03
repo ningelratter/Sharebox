@@ -9,8 +9,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
-
-
+import java.util.List;
 
 import de.sharebox.entities.History;
 import de.sharebox.entities.User;
@@ -24,31 +23,14 @@ import de.sharebox.entities.User;
 public class HistoryService {
 
 	// Map for holding users
-	private ArrayList<History> historyList = new ArrayList<History>();
+	private List<History> historyList = new ArrayList<History>();
 
 	private File file = new File("data/history.xml");
-	
-	public HistoryService(){
+
+	public HistoryService() {
 		loadHistory();
 	}
 
-	@SuppressWarnings("unchecked")
-	private void loadHistory() {
-		try {
-
-			if (file.exists()) {				
-				FileInputStream fis = new FileInputStream(file);
-				XMLDecoder decoder = new XMLDecoder(fis);
-				historyList = (ArrayList<History>) decoder.readObject();
-				decoder.close();
-			}
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}
-
-	}
-	
-	
 	// creates a historyentry for every activity
 	public History createHistory(int userId, String activity) {
 
@@ -59,15 +41,14 @@ public class HistoryService {
 
 	}
 
-	
 	// removes user from data bank and saves the change
 	public void logremoveUser(User user) {
 
 		createHistory(user.getId(), "User deleted" + user.getName());
 		loadHistory();
 	}
-	
-	public void logUserCreatedItself(int id, String userName){
+
+	public void logUserCreatedItself(int id, String userName) {
 		createHistory(id, "User created" + userName);
 	}
 
@@ -76,19 +57,46 @@ public class HistoryService {
 		createHistory(id, "Username changed to " + userName);
 	}
 
-	public void logUserPasswordChanged(int id){
+	public void logUserPasswordChanged(int id) {
 		createHistory(id, "Password changed");
 	}
-	
-	public void logUserEmailChanged(int id, String email){
+
+	public void logUserEmailChanged(int id, String email) {
 		createHistory(id, "Email changed" + email);
 	}
-	
-	public void logUserLimitChanged(int id, double limit){
+
+	public void logUserLimitChanged(int id, double limit) {
 		createHistory(id, "limit changed" + limit);
 	}
+
+	public List<History> getHistoryEntriesByUsers(int id){
+		
+		List<History> resultList = new ArrayList<History>();
+		for (History history: historyList) {
+			if(history.getUserId() == id){
+				resultList.add(history);
+			}
+		}
+		return resultList;
+		
+	}
 	
-	
+	@SuppressWarnings("unchecked")
+	private void loadHistory() {
+		try {
+
+			if (file.exists()) {
+				FileInputStream fis = new FileInputStream(file);
+				XMLDecoder decoder = new XMLDecoder(fis);
+				historyList = (ArrayList<History>) decoder.readObject();
+				decoder.close();
+			}
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+
+	}
+
 	// save the historyentry
 	public void saveHistory() {
 		try {

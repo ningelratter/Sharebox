@@ -25,14 +25,11 @@ public class User {
 	private String mail;
 	private List<String> dirList = new ArrayList<String>();
 
-	// TODO private List history;
-
 	public User() {
 
 	}
 
-	public User(String name, int id, double limit, String password,
-			String mail, int language) {
+	public User(String name, int id, double limit, String password, String mail, int language) {
 
 		setName(name);
 		setId(id);

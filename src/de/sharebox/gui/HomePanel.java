@@ -12,7 +12,7 @@ import javax.swing.JScrollBar;
 /**
  * 
  * This GUI is the view when login was successfully. Extends from
- * ChangeablePanel.
+ * MenuPanel.
  * 
  * @author MW
  * @version 11.06.11

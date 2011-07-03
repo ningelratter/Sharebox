@@ -26,11 +26,11 @@ import de.sharebox.models.UserModel;
  * 
  */
 // class in which the user can change the properties
-public class UserProperties extends MenuPanel {
+public class UserPropertiesPanel extends MenuPanel {
 
 	// every GUI class has to have a UID to verify
 	private static final long serialVersionUID = 2342342341L;
-	private JTextField benutzerField;
+	private JTextField userField;
 	private JTextField passwordField;
 	private JList languageList;
 	private JTextField limitField;
@@ -38,7 +38,7 @@ public class UserProperties extends MenuPanel {
 	JFrame frame;
 	Popup popup, popup1;
 
-	public UserProperties(final Controller controller, final UserModel userModel) {
+	public UserPropertiesPanel(final Controller controller, final UserModel userModel) {
 
 		super(controller, userModel);
 		final User user = userModel.getUser();
@@ -75,11 +75,11 @@ public class UserProperties extends MenuPanel {
 		lblLimit.setBounds(25, 298, 115, 34);
 		add(lblLimit);
 
-		benutzerField = new JTextField();
-		benutzerField.setToolTipText("Hier neuen Benutzernamen eingeben");
-		benutzerField.setBounds(168, 118, 203, 34);
-		add(benutzerField);
-		benutzerField.setColumns(10);
+		userField = new JTextField();
+		userField.setToolTipText("Hier neuen Benutzernamen eingeben");
+		userField.setBounds(168, 118, 203, 34);
+		add(userField);
+		userField.setColumns(10);
 
 		passwordField = new JPasswordField();
 		passwordField.setToolTipText("Hier neues Passwort eigeben");
@@ -135,7 +135,7 @@ public class UserProperties extends MenuPanel {
 				controller.saveData();
 				// TODO geht vllt auch mit repaint() aber wusste nicht wie! ;)
 				// is refreshing the view
-				changePanel(new UserProperties(controller, userModel));
+				changePanel(new UserPropertiesPanel(controller, userModel));
 			}
 		});
 		einstellungenndern
@@ -192,10 +192,10 @@ public class UserProperties extends MenuPanel {
 	// is setting the new userName
 	public void changeUserName(User user) {
 
-		String name = benutzerField.getText();
+		String name = userField.getText();
 		if (name.length() >= 5 && name.length() <= 12) {
 			controller.setUserName(user, name);
-		}
+		}		
 	}
 
 	// is setting the new password

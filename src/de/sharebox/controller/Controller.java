@@ -89,10 +89,16 @@ public class Controller {
 		historyService.logUserEmailChanged(user.getId(), email);
 	}
 	
+	//calls the userService and historyService to change and log them
 	public void setUserLimit(User user, double limit) {
 		userService.setUserLimit(user, limit);
 		historyService.logUserLimitChanged(user.getId(), limit);
 		
+	}
+	
+	//calls the Logentries
+	public void getHistory(int id){
+		historyService.getHistoryEntriesByUsers(id);
 	}
 
 }

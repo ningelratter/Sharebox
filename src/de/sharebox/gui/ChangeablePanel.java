@@ -104,7 +104,9 @@ public class ChangeablePanel extends ShareboxPanel {
 		parent.validate();
 		parent.repaint();
 	}
-	public void changePanel(UserProperties userProperties) {
+	
+	//opens UserPropertiesPanel
+	public void changePanel(UserPropertiesPanel userProperties) {
 		Container parent = getParent();
 		parent.removeAll();
 		parent.add(userProperties);
@@ -112,4 +114,12 @@ public class ChangeablePanel extends ShareboxPanel {
 		parent.repaint();
 	}
 
+	//opens HistoryPanel
+	public void changePanel(HistoryPanel historyPanel) {
+		Container parent = getParent();
+		parent.removeAll();
+		parent.add(historyPanel);
+		parent.validate();
+		parent.repaint();
+	}
 }

@@ -46,8 +46,7 @@ public class UserService {
 	// creates a user account and checks before, if id is unique
 	public User createUser(String name, String password, String mail) {
 		// check if userdata is not empty
-		if (name != null && !name.isEmpty() && password != null
-				&& !password.isEmpty()) {
+		if (name != null && !name.isEmpty() && password != null && !password.isEmpty()) {
 
 			int id = createUniqueId();
 			boolean idCheck = false;
@@ -73,8 +72,7 @@ public class UserService {
 				// idCheck true--> new user is going to be created otherwise new
 				// call for a unique id
 				if (idCheck) {
-					User user1 = new User(name, id, limit, password, mail,
-							language);
+					User user1 = new User(name, id, limit, password, mail, language);
 					userByIdMap.put(id, user1);
 					return user1;
 
@@ -108,6 +106,7 @@ public class UserService {
 		user.setMail(email);
 	}
 
+	// TODO limit wird bisher noch nicht geändert!!!
 	// changes the Mailadress of the user
 	public void setUserLimit(User user, double limit) {
 		user.setLimit(limit);
@@ -125,8 +124,7 @@ public class UserService {
 
 		for (User user : userByIdMap.values()) {
 			if (user != null) {
-				if (name.equals(user.getName())
-						&& password.equals(user.getPassword())) {
+				if (name.equals(user.getName()) && password.equals(user.getPassword())) {
 					return user;
 				} else {
 					return null;
@@ -140,7 +138,6 @@ public class UserService {
 	}
 
 	// gets User over his mail
-
 	public User getUserByMail(String mail) {
 		for (User user : userByIdMap.values()) {
 			if (user != null) {

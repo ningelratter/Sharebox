@@ -16,14 +16,17 @@ public class History {
 	private Date date;
 	private String activity;
 
-	public History(int userName, Date date, String activity) {
+	public History() {
+	}
+	
+	public History(int userId, Date date, String activity) {
 
-		setUser(userId);
+		setUserId(userId);
 		setDate(date);
 		setActivity(activity);
 	}
 
-	public void setUser(int userId) {
+	public void setUserId(int userId) {
 		this.userId = userId;
 	}
 
@@ -35,7 +38,7 @@ public class History {
 		this.activity = activity;
 	}
 
-	public int getUser() {
+	public int getUserId() {
 		return userId;
 	}
 

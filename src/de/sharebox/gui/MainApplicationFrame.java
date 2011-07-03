@@ -39,7 +39,7 @@ public class MainApplicationFrame extends JFrame {
 		setTitle("ShareBox-Ultimate");
 		setSize(640, 680);
 		setPreferredSize(new Dimension(640, 680));
-
+		
 		// create the controller, its the only one
 		Controller controller = new Controller();
 
@@ -58,4 +58,5 @@ public class MainApplicationFrame extends JFrame {
 		new MainApplicationFrame();
 
 	}
+	
 }

@@ -49,24 +49,24 @@ public class HistoryService {
 	}
 
 	public void logUserCreatedItself(int id, String userName) {
-		createHistory(id, "User created" + userName);
+		createHistory(id, userName + " created ");
 	}
 
 	// writes the history with userName, date and activity
 	public void logUserNameChanged(int id, String userName) {
-		createHistory(id, "Username changed to " + userName);
+		createHistory(id, " Username changed to " + userName);
 	}
 
 	public void logUserPasswordChanged(int id) {
-		createHistory(id, "Password changed");
+		createHistory(id, " Password changed ");
 	}
 
 	public void logUserEmailChanged(int id, String email) {
-		createHistory(id, "Email changed" + email);
+		createHistory(id, " Email changed to " + email);
 	}
 
 	public void logUserLimitChanged(int id, double limit) {
-		createHistory(id, "limit changed" + limit);
+		createHistory(id, " limit changed to " + limit);
 	}
 
 	public List<History> getHistoryEntriesByUsers(int id){

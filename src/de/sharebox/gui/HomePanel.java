@@ -7,7 +7,6 @@ import javax.swing.JLabel;
 import de.sharebox.controller.Controller;
 import de.sharebox.entities.User;
 import de.sharebox.models.UserModel;
-import javax.swing.JScrollBar;
 
 /**
  * 

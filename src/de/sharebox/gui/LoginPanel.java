@@ -9,8 +9,6 @@ import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -42,11 +40,10 @@ public class LoginPanel extends ChangeablePanel {
 		setLayout(null);
 
 		// Welcome Label
-		JLabel lblHerzlichWillkommenBei = new JLabel(
-				"Herzlich Willkommen bei ShareBoxUltimate");
-		lblHerzlichWillkommenBei.setFont(new Font("Tahoma", Font.PLAIN, 28));
-		lblHerzlichWillkommenBei.setBounds(42, 11, 620, 91);
-		add(lblHerzlichWillkommenBei);
+		JLabel welcomeLabel = new JLabel("Herzlich Willkommen bei ShareBoxUltimate");
+		welcomeLabel.setFont(new Font("Tahoma", Font.PLAIN, 28));
+		welcomeLabel.setBounds(42, 11, 620, 91);
+		add(welcomeLabel);
 
 		// label statement - what the user have to do
 		JLabel loginLabel = new JLabel("Bitte loggen Sie sich ein:");
@@ -55,23 +52,22 @@ public class LoginPanel extends ChangeablePanel {
 		add(loginLabel);
 
 		// label statement for registration
-		JLabel lblNochKeinLogin = new JLabel(
-				"noch kein Login? Dann melden Sie sich jetzt an:");
+		JLabel lblNochKeinLogin = new JLabel("Noch kein Login? Dann melden Sie sich jetzt an:");
 		lblNochKeinLogin.setBounds(134, 446, 376, 34);
 		lblNochKeinLogin.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		add(lblNochKeinLogin);
 
 		// text field userName
 		final JTextField loginNameField = new JTextField("username");
-		// is clearing the field for the Users input
-		loginNameField.addMouseListener(new MouseAdapter() {
+		loginNameField.addFocusListener(new FocusAdapter() {
 			@Override
-			public void mouseEntered(MouseEvent e) {
+			// is clearing the field for Users Input
+			public void focusGained(FocusEvent arg0) {
 				loginNameField.setText("");
 			}
 		});
-		loginNameField
-				.setToolTipText("Bitte geben Sie hier ihren Benutzernamen ein");
+
+		loginNameField.setToolTipText("Bitte geben Sie hier ihren Benutzernamen ein");
 		loginNameField.setBounds(190, 204, 110, 50);
 		add(loginNameField);
 		loginNameField.setFont(new Font("Tahoma", Font.PLAIN, 16));
@@ -92,15 +88,8 @@ public class LoginPanel extends ChangeablePanel {
 				loginPasswordField.setText("");
 			}
 		});
-		// is clearing the field for Users Input
-		loginPasswordField.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				loginPasswordField.setText("");
-			}
-		});
-		loginPasswordField
-				.setToolTipText("Bitte geben Sie hier ihr Passwort ein");
+
+		loginPasswordField.setToolTipText("Bitte geben Sie hier ihr Passwort ein");
 		loginPasswordField.addKeyListener(new KeyAdapter() {
 			@Override
 			// login with pressing enter key after password
@@ -111,14 +100,14 @@ public class LoginPanel extends ChangeablePanel {
 					String name = loginNameField.getText();
 					// string constructor - creates string from charArray
 
-					String password = new String(loginPasswordField
-							.getPassword());
+					String password = new String(loginPasswordField.getPassword());
 					User user = controller.getUser(name, password);
 
 					if (user != null) {
 
 						login(user);
-					} else {
+					}
+					else {
 						// show error message
 						loginFailedLabel.setText("Falsche Login-Daten");
 					}
@@ -160,8 +149,7 @@ public class LoginPanel extends ChangeablePanel {
 		forgottenLogin.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		forgottenLogin.setContentAreaFilled(false);
 		forgottenLogin.setBounds(190, 375, 220, 51);
-		forgottenLogin
-				.setToolTipText("Bitte klicken Sie hier, um ihren Benutzernamen und Passwort zu erfahren");
+		forgottenLogin.setToolTipText("Bitte klicken Sie hier, um ihren Benutzernamen und Passwort zu erfahren");
 
 		ActionListener loginButtonClickedActionListener = new ActionListener() {
 
@@ -177,7 +165,8 @@ public class LoginPanel extends ChangeablePanel {
 
 					login(user);
 
-				} else {
+				}
+				else {
 					// show error message
 					loginFailedLabel.setText("Falsche Login-Daten");
 					add(forgottenLogin);
@@ -191,8 +180,7 @@ public class LoginPanel extends ChangeablePanel {
 							changePanel(new ForgottenLoginPanel(controller));
 						}
 					};
-					forgottenLogin
-							.addActionListener(forgottenLoginClickedActionListener);
+					forgottenLogin.addActionListener(forgottenLoginClickedActionListener);
 					add(forgottenLogin);
 				}
 			}
@@ -200,12 +188,10 @@ public class LoginPanel extends ChangeablePanel {
 		};
 
 		loginButton.addActionListener(loginButtonClickedActionListener);
-
 	}
 
 	// logs an user in and changes the view
 	public void login(User user) {
-
 		UserModel userModel = new UserModel(user);
 		changePanel(new HomePanel(controller, userModel));
 	}

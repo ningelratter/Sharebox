@@ -6,7 +6,6 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
@@ -52,21 +51,19 @@ public class UserService {
 			User user = new User(name, id, limit, password, mail, language);
 			userByIdMap.put(id, user);
 			return user;
-		} else {
+		}
+		else {
 			return null;
 		}
 	}
 
 	// changes the UserName
 	public void setUserName(User user, String name) {
-
 		user.setName(name);
-
 	}
 
 	// changes the UserPassword
 	public void setUserPassword(User user, String password) {
-
 		user.setPassword(password);
 	}
 
@@ -75,8 +72,7 @@ public class UserService {
 		user.setMail(email);
 	}
 
-	// TODO limit wird bisher noch nicht geändert!!!
-	// changes the Mailadress of the user
+	// TODO limit wird bisher noch nicht geaendert!!!
 	public void setUserLimit(User user, double limit) {
 		user.setLimit(limit);
 	}
@@ -95,10 +91,12 @@ public class UserService {
 			if (user != null) {
 				if (name.equals(user.getName()) && password.equals(user.getPassword())) {
 					return user;
-				} else {
+				}
+				else {
 					return null;
 				}
-			} else {
+			}
+			else {
 
 				return null;
 			}
@@ -114,7 +112,8 @@ public class UserService {
 				if (mail.equals(user.getMail())) {
 
 					return user;
-				} else {
+				}
+				else {
 					return null;
 				}
 			}
@@ -133,21 +132,28 @@ public class UserService {
 	 */
 	// creates an id
 	private int createUniqueId() {
-		Random random = new Random();
-		int id = random.nextInt(100);
 
-		return id;
+		Random random = new Random();
+
+		while (true) {
+			int id = random.nextInt(100);
+			if (userByIdMap.containsKey(id)) {
+				return id;
+			}
+		}
 	}
 
 	@SuppressWarnings("unchecked")
 	public void loadUsers() {
 		try {
-
-			FileInputStream fis = new FileInputStream(file);
-			XMLDecoder decoder = new XMLDecoder(fis);
-			userByIdMap = (Map<Integer, User>) decoder.readObject();
-			decoder.close();
-		} catch (FileNotFoundException e) {
+			if (file.exists()) {
+				FileInputStream fis = new FileInputStream(file);
+				XMLDecoder decoder = new XMLDecoder(fis);
+				userByIdMap = (Map<Integer, User>) decoder.readObject();
+				decoder.close();
+			}
+		}
+		catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
 
@@ -159,7 +165,6 @@ public class UserService {
 		int i = user.getId();
 		userByIdMap.remove(i);
 		saveUsers();
-		loadUsers();
 	}
 
 	public void saveUsers() {
@@ -169,11 +174,9 @@ public class UserService {
 			XMLEncoder encoder = new XMLEncoder(fos);
 			encoder.writeObject(userByIdMap);
 			encoder.close();
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
+		}
+		catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
 	}
-
 };

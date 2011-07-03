@@ -43,9 +43,8 @@ public class UserPropertiesPanel extends MenuPanel {
 		super(controller, userModel);
 		final User user = userModel.getUser();
 
-		JLabel welcomeUserText = new JLabel(
-				"Hier k\u00F6nnen Sie die Einstellungen f\u00FCr: "
-						+ user.getName() + " \u00E4ndern!");
+		JLabel welcomeUserText =
+				new JLabel("Hier k\u00F6nnen Sie die Einstellungen f\u00FCr: " + user.getName() + " \u00E4ndern!");
 		welcomeUserText.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		welcomeUserText.setBounds(25, 33, 615, 54);
 		add(welcomeUserText);
@@ -105,8 +104,7 @@ public class UserPropertiesPanel extends MenuPanel {
 		languageList.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		languageList.setName("");
 		languageList.setModel(new AbstractListModel() {
-			String[] values = new String[] { "Deutsch = 0", "Englisch = 1",
-					"Franz\u00F6sisch = 2", "Spanisch = 3" };
+			String[] values = new String[] { "Deutsch = 0", "Englisch = 1", "Franz\u00F6sisch = 2", "Spanisch = 3" };
 
 			public int getSize() {
 				return values.length;
@@ -181,8 +179,7 @@ public class UserPropertiesPanel extends MenuPanel {
 
 			}
 		});
-		removeAccount
-				.setToolTipText("Hier klicken, wenn Sie ihren Account l\u00F6schen m\u00F6chten");
+		removeAccount.setToolTipText("Hier klicken, wenn Sie ihren Account l\u00F6schen m\u00F6chten");
 		removeAccount.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		removeAccount.setBounds(168, 537, 238, 54);
 		add(removeAccount);
@@ -195,7 +192,7 @@ public class UserPropertiesPanel extends MenuPanel {
 		String name = userField.getText();
 		if (name.length() >= 5 && name.length() <= 12) {
 			controller.setUserName(user, name);
-		}		
+		}
 	}
 
 	// is setting the new password
@@ -212,10 +209,9 @@ public class UserPropertiesPanel extends MenuPanel {
 
 		String email = emailField.getText();
 		// checking the mail properties
-		boolean validEmail = email.contains("@") && email.contains(".de")
-				|| email.contains("@") && email.contains(".com")
-				|| email.contains("@") && email.contains(".fr")
-				|| email.contains("@") && email.contains(".net");
+		boolean validEmail =
+				email.contains("@") && email.contains(".de") || email.contains("@") && email.contains(".com") ||
+						email.contains("@") && email.contains(".fr") || email.contains("@") && email.contains(".net");
 
 		if (validEmail) {
 
@@ -237,11 +233,9 @@ public class UserPropertiesPanel extends MenuPanel {
 		JButton stay = new JButton();
 		add(stay);
 
-		popup = factory.getPopup(frame, remove = new JButton(
-				"Ja, Accounnt löschen"), 250, 300);
+		popup = factory.getPopup(frame, remove = new JButton("Ja, Accounnt lï¿½schen"), 250, 300);
 		frame.setVisible(true);
-		popup1 = factory.getPopup(frame, stay = new JButton(
-				"Nein, Account nicht löschen"), 250, 400);
+		popup1 = factory.getPopup(frame, stay = new JButton("Nein, Account nicht lï¿½schen"), 250, 400);
 		popup.show();
 		popup1.show();
 		remove.addMouseListener(new MouseAdapter() {

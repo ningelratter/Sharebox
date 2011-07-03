@@ -36,9 +36,17 @@ public class RegisterPanel extends ChangeablePanel {
 	 */
 	private static final long serialVersionUID = 2135442992970725951L;
 
-	private JTextField userName;
-	private JTextField mail;
-	private JPasswordField password;
+	private JTextField usernameField;
+
+	private JTextField mailField;
+
+	private JPasswordField passwordField;
+
+	private JLabel wrongUserLabel;
+
+	private JLabel wrongMailLabel;
+
+	private JLabel wrongPasswordLabel;
 
 	/**
 	 * creates the view for registration
@@ -55,14 +63,14 @@ public class RegisterPanel extends ChangeablePanel {
 		setSize(new Dimension(640, 680));
 
 		// button registered
-		JButton Registrieren = new JButton("Registrieren");
-		Registrieren.setToolTipText("Alle Daten eingeben? Dann los!");
-		Registrieren.addMouseListener(new MouseAdapter() {
+		JButton registerButton = new JButton("Registrieren");
+		registerButton.setToolTipText("Alle Daten eingeben? Dann los!");
+
+		registerButton.addMouseListener(new MouseAdapter() {
 
 			@Override
 			// logic - create a user with the input from fields
 			public void mouseClicked(MouseEvent arg0) {
-
 				userRegistration();
 			}
 		});
@@ -70,68 +78,92 @@ public class RegisterPanel extends ChangeablePanel {
 		setLayout(null);
 
 		// TextField name
-		userName = new JTextField();
-		userName.setBounds(272, 291, 166, 20);
-		add(userName);
-		userName.setColumns(10);
+		usernameField = new JTextField();
+		usernameField.setBounds(272, 291, 166, 20);
+		add(usernameField);
+		usernameField.setColumns(10);
+
+		wrongUserLabel = new JLabel("ung\u00FCltiger Benutzername");
+		// error label user
+		wrongUserLabel.setForeground(Color.RED);
+		wrongUserLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		wrongUserLabel.setBounds(272, 270, 200, 20);
+		wrongUserLabel.setVisible(false);
+		add(wrongUserLabel);
+
 		// TExtField password
-		password = new JPasswordField();
-		password.setBounds(272, 339, 166, 20);
-		add(password);
+		passwordField = new JPasswordField();
+		passwordField.setBounds(272, 340, 166, 20);
+		add(passwordField);
+
+		// error label password
+		wrongPasswordLabel = new JLabel("ung\u00FCltiges Passwort");
+		wrongPasswordLabel.setForeground(Color.RED);
+		wrongPasswordLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		wrongPasswordLabel.setBounds(272, 320, 200, 20);
+		wrongPasswordLabel.setVisible(false);
+		add(wrongPasswordLabel);
 
 		// TextField mail
-		mail = new JTextField();
+		mailField = new JTextField();
 		// finish registration with Enter
-		mail.addKeyListener(new KeyAdapter() {
+		mailField.addKeyListener(new KeyAdapter() {
+
 			@Override
 			public void keyReleased(KeyEvent e) {
-
 				if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-
 					userRegistration();
 				}
 			}
 		});
 
-		mail.setBounds(272, 394, 166, 20);
-		add(mail);
-		mail.setColumns(10);
+		mailField.setBounds(272, 390, 166, 20);
+		mailField.setColumns(10);
+		add(mailField);
+
+		wrongMailLabel = new JLabel("ung\u00FCltige Email");
+		wrongMailLabel.setForeground(Color.RED);
+		wrongMailLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		wrongMailLabel.setBounds(272, 370, 200, 20);
+		wrongMailLabel.setVisible(false);
+		add(wrongMailLabel);
 
 		// label name
-		JLabel Benutzername = new JLabel("Benutzername:");
-		Benutzername.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		Benutzername.setBounds(94, 291, 106, 20);
-		add(Benutzername);
+		JLabel usernameLabel = new JLabel("Benutzername:");
+		usernameLabel.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		usernameLabel.setBounds(94, 291, 106, 20);
+		add(usernameLabel);
 
 		// label password
-		JLabel Passwort = new JLabel("Passwort:");
-		Passwort.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		Passwort.setBounds(94, 337, 69, 20);
-		add(Passwort);
+		JLabel passwortLabel = new JLabel("Passwort:");
+		passwortLabel.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		passwortLabel.setBounds(94, 337, 69, 20);
+		add(passwortLabel);
 
 		// label email
-		JLabel Email = new JLabel("Email:");
-		Email.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		Email.setBounds(94, 392, 45, 20);
-		add(Email);
+		JLabel mailLabel = new JLabel("Email:");
+		mailLabel.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		mailLabel.setBounds(94, 392, 45, 20);
+		add(mailLabel);
 
 		// label registration
-		JLabel Registration = new JLabel("Registration:");
-		Registration.setHorizontalAlignment(SwingConstants.CENTER);
-		Registration.setFont(new Font("Tahoma", Font.BOLD, 20));
-		Registration.setBounds(210, 84, 218, 65);
-		add(Registration);
+		JLabel registerLabel = new JLabel("Registration:");
+		registerLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		registerLabel.setFont(new Font("Tahoma", Font.BOLD, 20));
+		registerLabel.setBounds(210, 84, 218, 65);
+		add(registerLabel);
 
 		// label statement - what the user have to do
-		JLabel BitteGebenSie = new JLabel("Bitte geben Sie nun folgende f\u00FCr die Registrierung notwendigen Daten ein:");
-		BitteGebenSie.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		BitteGebenSie.setBounds(52, 191, 541, 20);
-		add(BitteGebenSie);
+		JLabel enterDataLabel =
+				new JLabel("Bitte geben Sie nun folgende f\u00FCr die Registrierung notwendigen Daten ein:");
+		enterDataLabel.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		enterDataLabel.setBounds(52, 191, 541, 20);
+		add(enterDataLabel);
 
 		// registered - button
-		Registrieren.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		Registrieren.setBounds(272, 445, 147, 58);
-		add(Registrieren);
+		registerButton.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		registerButton.setBounds(272, 445, 147, 58);
+		add(registerButton);
 		// login-button leads back to LoginPanel-View
 		JButton backToLogin = new JButton("Login");
 		backToLogin.addMouseListener(new MouseAdapter() {
@@ -146,84 +178,48 @@ public class RegisterPanel extends ChangeablePanel {
 		backToLogin.setBounds(297, 562, 89, 23);
 		add(backToLogin);
 
+		// shows a helpMessage with the right input format
+		JLabel helpMessage = new JLabel("");
+		helpMessage.setForeground(Color.BLACK);
+		helpMessage.setFont(new Font("Tahoma", Font.ITALIC, 14));
+		helpMessage.setBounds(177, 220, 400, 50);
+		add(helpMessage);
+		helpMessage.setText("Hinweis:" + "Benutzername/Passwort: 5-12 Zeichen");
 	}
 
 	// gets the input from Fields and tries to register a user with input
 	public void userRegistration() {
 
-		String userName = RegisterPanel.this.userName.getText();
-		@SuppressWarnings("deprecation")
-		String password = RegisterPanel.this.password.getText();
-		String mail = RegisterPanel.this.mail.getText();
+		String userName = usernameField.getText();
+		String password = new String(passwordField.getPassword());
+		String mail = mailField.getText();
 
-		// checks if mail is valid
-		boolean validEmail = mail.contains("@") && mail.contains(".de") || mail.contains("@") && mail.contains(".com")
-				|| mail.contains("@") && mail.contains(".fr") || mail.contains("@") && mail.contains(".net");
-		boolean validUserName = false;
-		int lengthUser = userName.length();
-		validUserName = (5 <= lengthUser && 12 >= lengthUser);
+		// checks if mail is valid (an arbitrary string (\\w+) + @ + an arbitrary
+		// string (\\w+) + . + valid suffix
+		boolean validEmail = mail.matches("\\w+@\\w+\\.(de|com|fr|net)");
+
+		int nameLength = userName.length();
+		boolean validUserName = (5 <= nameLength && 12 >= nameLength);
 
 		// checks if password is valid
-		boolean validPassword = false;
-		int lengthPwd = password.length();
-		validPassword = (5 <= lengthPwd && 12 >= lengthPwd);
+		int passwordLength = password.length();
+		boolean validPassword = (5 <= passwordLength && 12 >= passwordLength);
 
+		// everything is valid
 		if (validEmail && validUserName && validPassword) {
 			// transferred the params to the controller and save it as a
 			// user
 			User user = controller.createUser(userName, password, mail);
-			// check if UserName is between 5-12 characters
-
-			if (user != null) {
-				// create a new UserModel
-				UserModel userModel = new UserModel(user);
-				// change into HomePanel with the userModel
-				changePanel(new HomePanel(controller, userModel));
-			}
+			// create a new UserModel
+			UserModel userModel = new UserModel(user);
+			// change into HomePanel with the userModel
+			changePanel(new HomePanel(controller, userModel));
 		}
-
-		// if mail is not valid - Popup is leading back to
-		// RegisterPanel
 		else {
-
-			if (validEmail == false) {
-				// is shown when password is to short
-				// error label email
-				JLabel wrongEmail = new JLabel("");
-				wrongEmail.setForeground(Color.RED);
-				wrongEmail.setFont(new Font("Tahoma", Font.PLAIN, 16));
-				wrongEmail.setBounds(446, 394, 147, 20);
-				add(wrongEmail);
-				wrongEmail.setText("ungültige Email");
-
-			}
-			if (validUserName == false) {
-				// error label user
-				JLabel wrongUser = new JLabel("");
-				wrongUser.setForeground(Color.RED);
-				wrongUser.setFont(new Font("Tahoma", Font.PLAIN, 16));
-				wrongUser.setBounds(446, 291, 147, 20);
-				add(wrongUser);
-				wrongUser.setText("ungültiger Benutzername");
-			}
-			if (validPassword == false) {
-				// error label password
-				JLabel wrongPassword = new JLabel("");
-				wrongPassword.setForeground(Color.RED);
-				wrongPassword.setFont(new Font("Tahoma", Font.PLAIN, 16));
-				wrongPassword.setBounds(448, 339, 147, 20);
-				add(wrongPassword);
-				wrongPassword.setText("ungültiges Passwort");
-
-			}
-			// shows a helpMessage with the right input format
-			JLabel helpMessage = new JLabel("");
-			helpMessage.setForeground(Color.RED);
-			helpMessage.setFont(new Font("Tahoma", Font.PLAIN, 16));
-			helpMessage.setBounds(177, 519, 400, 50);
-			add(helpMessage);
-			helpMessage.setText("Hinweis:" + "Benutzername/Passwort: 5-12 Zeichen");
+			wrongUserLabel.setVisible(!validUserName);
+			wrongPasswordLabel.setVisible(!validPassword);
+			// is shown when password is to short
+			wrongMailLabel.setVisible(!validEmail);
 		}
-
 	}
 }

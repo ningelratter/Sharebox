@@ -11,7 +11,6 @@ import java.awt.event.ItemListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.TreeMap;
@@ -95,36 +94,35 @@ public class TreePanel extends ChangeablePanel implements ItemListener,
 						File file = new File(path);
 						System.out.println(file.delete());
 						String apath = file.getAbsolutePath();
-						File file2 = new File(path);
-						file2.createNewFile();
-						
+						File file2 = new File(apath);
+
 						System.out.println(file2.isFile());
 						System.out.println(apath);
-				
-					DirService.removeDir(file2, userModel);
 
-					
-					// right mouse click
-					if (evt.getButton() == MouseEvent.BUTTON3) {
+						DirService.removeDir(file2, userModel);
 
-						jPopup = new JPopupMenu();
-						jPopup.add(new JMenuItem(label1));
-						jPopup.add(new JMenuItem(label2));
-						jPopup.add(new JMenuItem(label3));
-						jPopup.add(new JMenuItem(label4));
-						jPopup.add(new JMenuItem(label5));
-						jPopup.show(tree, getX(), getY());
+						// right mouse click
+						if (evt.getButton() == MouseEvent.BUTTON3) {
 
-						jPopup.show(evt.getComponent(), evt.getX(), evt.getY());
+							jPopup = new JPopupMenu();
+							jPopup.add(new JMenuItem(label1));
+							jPopup.add(new JMenuItem(label2));
+							jPopup.add(new JMenuItem(label3));
+							jPopup.add(new JMenuItem(label4));
+							jPopup.add(new JMenuItem(label5));
+							jPopup.show(tree, getX(), getY());
 
+							jPopup.show(evt.getComponent(), evt.getX(),
+									evt.getY());
+
+						}
 					}
-					}} catch (NullPointerException e) {
+				} catch (NullPointerException e) {
 
 					e.getMessage();
-				} catch (IOException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 
 			}
 

@@ -9,6 +9,7 @@ import de.sharebox.controller.Controller;
 import de.sharebox.entities.History;
 import de.sharebox.entities.User;
 import de.sharebox.models.UserModel;
+import java.awt.Font;
 
 /**
  * 
@@ -49,6 +50,7 @@ public class HistoryPanel extends MenuPanel {
 		}
 
 		TextArea currentUserHistory = new TextArea(historyString);
+		currentUserHistory.setFont(new Font("Dialog", Font.BOLD, 12));
 //		currentUserHistory.setToolTipText("History");
 		currentUserHistory.setEditable(false);
 		currentUserHistory.setBounds(25, 50, 500, 500);

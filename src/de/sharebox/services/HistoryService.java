@@ -31,7 +31,7 @@ public class HistoryService {
 		loadHistory();
 	}
 
-	// creates a historyentry for every activity
+	// creates a history entry for every activity
 	public History createHistory(int userId, String activity) {
 
 		History history = new History(userId, new Date(), activity);
@@ -97,7 +97,7 @@ public class HistoryService {
 
 	}
 
-	// save the historyentry
+	// save the history entry
 	public void saveHistory() {
 		try {
 			FileOutputStream fos = new FileOutputStream(file);

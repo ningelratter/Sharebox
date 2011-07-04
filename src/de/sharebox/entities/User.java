@@ -37,7 +37,7 @@ public class User {
 		setPassword(password);
 		setMail(mail);
 		setLanguage(language);
-		setRootDir(id);
+		
 	}
 
 	public void setName(String name) {
@@ -118,8 +118,8 @@ public class User {
 	}
 
 	public String getRootDir() {
-
-		return (String.valueOf(id));
+		String userId = String.valueOf(id);
+		return (System.getProperty("user.dir")+"\\"+userId);
 	}
 
 }

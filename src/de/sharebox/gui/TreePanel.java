@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package de.sharebox.gui;
 
@@ -11,6 +11,7 @@ import java.awt.event.ItemListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.TreeMap;
@@ -36,8 +37,8 @@ public class TreePanel extends ChangeablePanel implements ItemListener,
 		ActionListener {
 
 	/**
-	 * 
-	 */
+*
+*/
 	private static final long serialVersionUID = 1L;
 	File root;
 	JTree tree;
@@ -47,7 +48,7 @@ public class TreePanel extends ChangeablePanel implements ItemListener,
 		super(controller);
 		setLayout(null);
 		final String label1 = "Order/Datei anlegen";
-		final String label2 = "Ordner/Datei löschen";
+		final String label2 = "Ordner/Datei legen";
 		final String label3 = "Order/Datei umbenennen";
 		final String label4 = "Order/Datei einfügen";
 		final String label5 = "Eigenschaften";
@@ -94,11 +95,10 @@ public class TreePanel extends ChangeablePanel implements ItemListener,
 						File file = new File(path);
 						System.out.println(file.delete());
 						String apath = file.getAbsolutePath();
-						File file2 = new File(apath);
-
+						File file2 = new File(path);
+						file2.createNewFile();
 						System.out.println(file2.isFile());
 						System.out.println(apath);
-
 						DirService.removeDir(file2, userModel);
 
 						// right mouse click
@@ -120,6 +120,7 @@ public class TreePanel extends ChangeablePanel implements ItemListener,
 				} catch (NullPointerException e) {
 
 					e.getMessage();
+				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}

@@ -46,10 +46,12 @@ public class UserService {
 	// creates a user account and checks before, if id is unique
 	public User createUser(String name, String password, String mail) {
 		// check if userdata is not empty
-		if (name != null && !name.isEmpty() && password != null && !password.isEmpty()) {
+		if (name != null && !name.isEmpty() && password != null
+				&& !password.isEmpty()) {
 
 			int id = createUniqueId();
 			User user = new User(name, id, limit, password, mail, language);
+			user.setRootDir(id);
 			userByIdMap.put(id, user);
 			return user;
 		} else {
@@ -93,7 +95,8 @@ public class UserService {
 
 		for (User user : userByIdMap.values()) {
 			if (user != null) {
-				if (name.equals(user.getName()) && password.equals(user.getPassword())) {
+				if (name.equals(user.getName())
+						&& password.equals(user.getPassword())) {
 					return user;
 				} else {
 					return null;

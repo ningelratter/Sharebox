@@ -46,6 +46,7 @@ public class HomePanel extends MenuPanel {
 
 		TreePanel treePanel = new TreePanel(controller,userModel);
 		add(treePanel);
+		
 	
 
 	}

@@ -74,7 +74,6 @@ public class Controller {
 
 	// calls the userService to change the UserName
 	public void setUserName(User user, String name) {
-
 		userService.setUserName(user, name);
 		historyService.logUserNameChanged(user.getId(), name);
 
@@ -105,5 +104,4 @@ public class Controller {
 	public List<History> getHistory(int id) {
 		return historyService.getHistoryEntriesByUsers(id);
 	}
-
 }

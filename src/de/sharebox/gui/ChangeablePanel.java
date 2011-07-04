@@ -8,7 +8,6 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 
 import de.sharebox.controller.Controller;
-import javax.swing.JScrollBar;
 
 /**
  * 
@@ -56,69 +55,10 @@ public class ChangeablePanel extends ShareboxPanel {
 		add(exitButton);
 	}
 
-	// opens HomePanel-View
-	public void changePanel(HomePanel homePanel) {
+	public void changePanel(ChangeablePanel panel) {
 		Container parent = getParent();
 		parent.removeAll();
-		parent.add(homePanel);
-		parent.validate();
-		parent.repaint();
-	}
-
-	// opens RegisterPanel-View
-	public void changePanel(RegisterPanel registerPanel) {
-
-		Container parent = getParent();
-		parent.removeAll();
-		parent.add(registerPanel);
-		parent.validate();
-		parent.repaint();
-	}
-
-	// opens DirPanel-View
-	public void changePanel(DirPanel dirPanel) {
-
-		Container parent = getParent();
-		parent.removeAll();
-		parent.add(dirPanel);
-		parent.validate();
-		parent.repaint();
-
-	}
-
-	// opens LoignPanel-View
-	public void changePanel(LoginPanel loginPanel) {
-
-		Container parent = getParent();
-		parent.removeAll();
-		parent.add(loginPanel);
-		parent.validate();
-		parent.repaint();
-	}
-
-	// opens ForgottenLoginPanel-View
-	public void changePanel(ForgottenLoginPanel forgottenLoginPanel) {
-		Container parent = getParent();
-		parent.removeAll();
-		parent.add(forgottenLoginPanel);
-		parent.validate();
-		parent.repaint();
-	}
-	
-	//opens UserPropertiesPanel
-	public void changePanel(UserPropertiesPanel userProperties) {
-		Container parent = getParent();
-		parent.removeAll();
-		parent.add(userProperties);
-		parent.validate();
-		parent.repaint();
-	}
-
-	//opens HistoryPanel
-	public void changePanel(HistoryPanel historyPanel) {
-		Container parent = getParent();
-		parent.removeAll();
-		parent.add(historyPanel);
+		parent.add(panel);
 		parent.validate();
 		parent.repaint();
 	}

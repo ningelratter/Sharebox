@@ -6,7 +6,6 @@ import java.awt.event.MouseEvent;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
-import javax.swing.JToolBar;
 import javax.swing.UIManager;
 
 import de.sharebox.controller.Controller;
@@ -23,30 +22,23 @@ public class MenuPanel extends ChangeablePanel {
 		super(controller);
 		this.userModel = userModel;
 
-		// creates a toolbar
-		JToolBar toolBar = new JToolBar();
-		toolBar.setBounds(0, 0, 596, 37);
-		add(toolBar);
-
 		// cretes a menubar on the toolbar
 		JMenuBar menuBar = new JMenuBar();
 		menuBar.setBorder(UIManager.getBorder("MenuBar.border"));
-		toolBar.add(menuBar);
+		menuBar.setBounds(0, 0, MainApplicationFrame.mainWindowWidth, 37);
+		add(menuBar);
 
 		JMenu mnHome = new JMenu("Home");
-		menuBar.add(mnHome);
+		mnHome.addMouseListener(new MouseAdapter() {
 
-		JMenuItem mntmHome = new JMenuItem("Home");
-		mntmHome.addMouseListener(new MouseAdapter() {
 			@Override
-			public void mouseReleased(MouseEvent arg0) {
-
+			public void mouseClicked(MouseEvent e) {
 				HomePanel homePanel = new HomePanel(controller, userModel);
 				changePanel(homePanel);
-
 			}
 		});
-		mnHome.add(mntmHome);
+
+		menuBar.add(mnHome);
 
 		// creates a submenu on the menubar
 		JMenu mnDatei = new JMenu("Datei");
@@ -106,7 +98,6 @@ public class MenuPanel extends ChangeablePanel {
 
 				DirPanel dirPanel = new DirPanel(controller, userModel);
 				changePanel(dirPanel);
-
 			}
 		});
 
@@ -116,20 +107,16 @@ public class MenuPanel extends ChangeablePanel {
 		JMenu mnLogout = new JMenu("Logout");
 		menuBar.add(mnLogout);
 
-		JMenuItem mntmLogout = new JMenuItem("Logout");
 		// logs a user out - leads back in loginPanel
-		mntmLogout.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseReleased(MouseEvent arg0) {
-				// saves the user before logout
+		mnLogout.addMouseListener(new MouseAdapter() {
 
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				// saves the user before logout
 				controller.saveData();
 				LoginPanel loginPanel = new LoginPanel(controller);
 				changePanel(loginPanel);
 			}
 		});
-		mnLogout.add(mntmLogout);
-
 	}
-
 }

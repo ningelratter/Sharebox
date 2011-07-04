@@ -43,6 +43,8 @@ public class TreePanel extends ChangeablePanel implements ItemListener,
 	File root;
 	JTree tree;
 	JPopupMenu jPopup;
+	TreePath selPath;
+	int selRow;
 
 	TreePanel(Controller controller, final UserModel userModel) {
 		super(controller);
@@ -78,69 +80,65 @@ public class TreePanel extends ChangeablePanel implements ItemListener,
 		tree.addMouseListener(new MouseAdapter() {
 
 			public void mouseReleased(final MouseEvent evt) {
+
+				// left mouse click
+				if (evt.getButton() == MouseEvent.BUTTON1) {
+					System.out.println("linksKlick");
+
+					selRow = tree.getRowForLocation(evt.getX(), evt.getY());
+					selPath = tree.getPathForLocation(evt.getX(), evt.getY());
+
+				
+				// System.out.println(selRow);
+				// System.out.println(selPath);
+				String path = makePath(selPath.getPath());
+				System.out.println(path);
+				File file = new File(path);
+				System.out.println(file.delete());
+				String apath = file.getAbsolutePath();
+				File file2 = new File(path);
 				try {
-					// left mouse click
-					if (evt.getButton() == MouseEvent.BUTTON1) {
-						System.out.println("linksKlick");
-
-						int selRow = tree.getRowForLocation(evt.getX(),
-								evt.getY());
-						TreePath selPath = tree.getPathForLocation(evt.getX(),
-								evt.getY());
-
-						// System.out.println(selRow);
-						// System.out.println(selPath);
-						String path = makePath(selPath.getPath());
-						System.out.println(path);
-						File file = new File(path);
-						System.out.println(file.delete());
-						String apath = file.getAbsolutePath();
-						File file2 = new File(path);
-						file2.createNewFile();
-						System.out.println(file2.isFile());
-						System.out.println(apath);
-						DirService.removeDir(file2, userModel);
-
-						// right mouse click
-						if (evt.getButton() == MouseEvent.BUTTON3) {
-
-							jPopup = new JPopupMenu();
-							jPopup.add(new JMenuItem(label1));
-							jPopup.add(new JMenuItem(label2));
-							jPopup.add(new JMenuItem(label3));
-							jPopup.add(new JMenuItem(label4));
-							jPopup.add(new JMenuItem(label5));
-							jPopup.show(tree, getX(), getY());
-
-							jPopup.show(evt.getComponent(), evt.getX(),
-									evt.getY());
-
-						}
-					}
-				} catch (NullPointerException e) {
-
-					e.getMessage();
+					file2.createNewFile();
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-
-			}
-
-			// creates a string containing path from TreePath Object
-			private String makePath(Object[] p) {
-				String temp = "";
-				for (int i = 0; i < p.length; i++) {
-					if (i != p.length - 1) {
-						temp += p[i].toString() + "\\";
-					} else {
-						temp += p[i].toString();
-					}
+				System.out.println(file2.isFile());
+				System.out.println(apath);
+				DirService.removeDir(file2, userModel);
 				}
-				return temp;
-			}
+				// right mouse click
+				if (evt.getButton() == MouseEvent.BUTTON3) {
+					System.out.println("Rechtsklick");
 
+					jPopup = new JPopupMenu();
+					jPopup.add(new JMenuItem(label1));
+					jPopup.add(new JMenuItem(label2));
+					jPopup.add(new JMenuItem(label3));
+					jPopup.add(new JMenuItem(label4));
+					jPopup.add(new JMenuItem(label5));
+					jPopup.show(tree, getX(), getY());
+
+					jPopup.show(evt.getComponent(), evt.getX(), evt.getY());
+
+				}
+
+			}
 		});
+
+	}
+
+	// creates a string containing path from TreePath Object
+	private String makePath(Object[] p) {
+		String temp = "";
+		for (int i = 0; i < p.length; i++) {
+			if (i != p.length - 1) {
+				temp += p[i].toString() + "\\";
+			} else {
+				temp += p[i].toString();
+			}
+		}
+		return temp;
 	}
 
 	// builds Tree starting from given file
@@ -242,7 +240,7 @@ public class TreePanel extends ChangeablePanel implements ItemListener,
 
 					currentFiles.add(folders);
 				}
-				// puts all files that are not directorys in an array
+				// puts all files that are not directories in an array
 				// "currentFiles"
 			} else {
 				currentFiles = new ArrayList<File>();

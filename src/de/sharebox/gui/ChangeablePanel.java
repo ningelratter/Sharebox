@@ -42,8 +42,8 @@ public class ChangeablePanel extends ShareboxPanel {
 		ActionListener exitButtonClickedActionListener = new ActionListener() {
 
 			@Override
-			// closing the programm
-			public void actionPerformed(ActionEvent e) {
+			// closing the program
+			public void actionPerformed(ActionEvent eevent) {
 				controller.saveData();
 				System.exit(0);
 			}
@@ -56,10 +56,19 @@ public class ChangeablePanel extends ShareboxPanel {
 	}
 
 	public void changePanel(ChangeablePanel panel) {
+		try{
 		Container parent = getParent();
 		parent.removeAll();
 		parent.add(panel);
 		parent.validate();
 		parent.repaint();
+		}
+		catch(NullPointerException nullE){
+			
+			nullE.getMessage();
+			
+		
+		}
+		}
 	}
-}
+

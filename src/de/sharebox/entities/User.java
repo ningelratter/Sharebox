@@ -17,38 +17,40 @@ import de.sharebox.services.DirService;
 
 public class User {
 
-	private int id;
+	private int idU;
 	private int language;
-	private double limit;
+	private int limit;
 	private String name;
 	private String password;
 	private String mail;
 	private List<String> dirList = new ArrayList<String>();
 
 	public User() {
+		// standard constructor
 
 	}
 
-	public User(String name, int id, double limit, String password, String mail, int language) {
+	public User(String name, int idU, int limit, String password, String mail,
+			int language) {
 
 		setName(name);
-		setId(id);
+		setId(idU);
 		setLimit(limit);
 		setPassword(password);
 		setMail(mail);
 		setLanguage(language);
-		
+
 	}
 
 	public void setName(String name) {
 		this.name = name;
 	}
 
-	public void setId(int id) {
-		this.id = id;
+	public void setId(int idU) {
+		this.idU = idU;
 	}
 
-	public void setLimit(double limit) {
+	public void setLimit(int limit) {
 		this.limit = limit;
 	}
 
@@ -83,10 +85,10 @@ public class User {
 	}
 
 	public int getId() {
-		return id;
+		return idU;
 	}
 
-	public double getLimit() {
+	public int getLimit() {
 		return limit;
 	}
 
@@ -108,18 +110,18 @@ public class User {
 
 	@Override
 	public String toString() {
-		return id + ": " + name;
+		return idU + ": " + name;
 	}
 
-	public void setRootDir(int id) {
+	public void setRootDir(int idU) {
 
-		DirService.createRootDirLocation(id);
+		DirService.createRootDirLocation(idU);
 
 	}
 
 	public String getRootDir() {
-		String userId = String.valueOf(id);
-		return (System.getProperty("user.dir")+"\\"+userId);
+		String userId = String.valueOf(idU);
+		return (System.getProperty("user.dir") + "\\" + userId);
 	}
 
 }

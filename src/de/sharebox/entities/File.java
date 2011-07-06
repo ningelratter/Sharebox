@@ -15,14 +15,15 @@ public class File {
 	private User owner;
 	private Date creationDate;
 	private Date lastChange;
-	private int id;
+	private int idU;
 	private double size;
 
-	public File(String name, User owner, int id, double size, Date creationDate, Date lastChange) {
+	public File(String name, User owner, int idU, double size,
+			Date creationDate, Date lastChange) {
 
 		setName(name);
 		setOwner(owner);
-		setId(id);
+		setId(idU);
 		setsize(size);
 		setcreationDate(creationDate);
 		setlastChange(lastChange);
@@ -37,8 +38,8 @@ public class File {
 		this.owner = owner;
 	}
 
-	public void setId(int id) {
-		this.id = id;
+	public void setId(int idU) {
+		this.idU = idU;
 	}
 
 	public void setsize(double size) {
@@ -62,17 +63,19 @@ public class File {
 	}
 
 	public int getId() {
-		return id;
+		return idU;
 	}
 
 	public double getsize() {
 		return size;
 	}
 
+	@SuppressWarnings("deprecation")
 	public String getcreationDate() {
 		return creationDate.toLocaleString();
 	}
 
+	@SuppressWarnings("deprecation")
 	public String getlastChange() {
 		return lastChange.toLocaleString();
 	}

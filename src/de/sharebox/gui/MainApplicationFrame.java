@@ -27,23 +27,24 @@ public class MainApplicationFrame extends JFrame {
 
 	/**
 	 * 
-	 * Creates the design of the view when the application started. The controller
-	 * will be created and it take the call for LoginPanel.
+	 * Creates the design of the view when the application started. The
+	 * controller will be created and it take the call for LoginPanel.
 	 * 
 	 * @author Eilin,MW
 	 */
 
-	public static final int mainWindowWidth = 680;
-	public static final int mainWindowHeight = 640;
+	public static final int MAINWINDOWWIDTH = 680;
+	public static final int MAINWINDOWHEIGHT = 640;
 
 	public MainApplicationFrame() {
+		super();
 
 		// design of the view
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setTitle("ShareBox-Ultimate");
 		setResizable(false);
 		setSize(640, 680);
-		setPreferredSize(new Dimension(mainWindowHeight, mainWindowWidth));
+		setPreferredSize(new Dimension(MAINWINDOWHEIGHT, MAINWINDOWWIDTH));
 
 		// create the data directory
 		new File("data").mkdir();

@@ -17,6 +17,7 @@ public class History {
 	private String activity;
 
 	public History() {
+		//standard constructor
 	}
 	
 	public History(int userId, Date date, String activity) {

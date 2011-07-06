@@ -18,8 +18,8 @@ import de.sharebox.services.UserService;
 
 public class Controller {
 
-	private UserService userService;
-	private HistoryService historyService;
+	private final UserService userService;
+	private final HistoryService historyService;
 
 	// constructor
 	public Controller() {
@@ -101,7 +101,7 @@ public class Controller {
 	}
 
 	// calls the Logentries
-	public List<History> getHistory(int id) {
-		return historyService.getHistoryEntriesByUsers(id);
+	public List<History> getHistory(int idI) {
+		return historyService.getHistoryEntriesByUsers(idI);
 	}
 }

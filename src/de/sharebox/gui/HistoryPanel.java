@@ -1,15 +1,13 @@
 package de.sharebox.gui;
 
+import java.awt.Font;
 import java.awt.TextArea;
 import java.util.List;
-
-import javax.swing.JLabel;
 
 import de.sharebox.controller.Controller;
 import de.sharebox.entities.History;
 import de.sharebox.entities.User;
 import de.sharebox.models.UserModel;
-import java.awt.Font;
 
 /**
  * 
@@ -46,12 +44,14 @@ public class HistoryPanel extends MenuPanel {
 
 		String historyString = "History of user " + username + "\n\n";
 		for (History history : historyEntries) {
-			historyString +=  history.getDate() + " " + history.getActivity() + "\n";
+			historyString = new StringBuffer().append(historyString)
+					.append(history.getDate()).append(" ")
+					.append(history.getActivity()).append("\n").toString();
 		}
 
 		TextArea currentUserHistory = new TextArea(historyString);
 		currentUserHistory.setFont(new Font("Dialog", Font.BOLD, 12));
-//		currentUserHistory.setToolTipText("History");
+		// currentUserHistory.setToolTipText("History");
 		currentUserHistory.setEditable(false);
 		currentUserHistory.setBounds(25, 50, 500, 500);
 		add(currentUserHistory);

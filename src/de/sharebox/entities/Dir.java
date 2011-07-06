@@ -5,6 +5,7 @@ import java.util.List;
 
 /**
  * Objectclass directory
+ * 
  * @author MW aus Berlin
  * @version 11.06.11
  * 
@@ -16,13 +17,14 @@ public class Dir {
 	private String name;
 	private Date creationDate;
 	private Date lastChange;
-	private int id;
+	private int idD;
 	private double size;
 	private List<String> userList;
 	private List<String> fileList;
 
 	// constructor
-	public Dir(String name, User owner, double size, Date creationDate, Date lastChange, int id, List<String> userlist,
+	public Dir(String name, User owner, double size, Date creationDate,
+			Date lastChange, int idD, List<String> userlist,
 			List<String> filelist) {
 
 		setName(name);
@@ -30,7 +32,7 @@ public class Dir {
 		setSize(size);
 		setCreationDate(creationDate);
 		setLastChange(lastChange);
-		setId(id);
+		setId(idD);
 		setUserList(userList);
 		setFileList(fileList);
 
@@ -57,8 +59,8 @@ public class Dir {
 		this.lastChange = lastChange;
 	}
 
-	public void setId(int id) {
-		this.id = id;
+	public void setId(int idD) {
+		this.idD = idD;
 	}
 
 	public void setUserList(List<String> userList) {
@@ -81,16 +83,18 @@ public class Dir {
 		return size;
 	}
 
+	@SuppressWarnings("deprecation")
 	public String getCreationDate() {
 		return creationDate.toLocaleString();
 	}
 
+	@SuppressWarnings("deprecation")
 	public String getLastChange() {
 		return lastChange.toLocaleString();
 	}
 
 	public int getId() {
-		return id;
+		return idD;
 	}
 
 	public List<String> getUserList() {

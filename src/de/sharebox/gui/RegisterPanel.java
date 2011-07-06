@@ -36,29 +36,32 @@ public class RegisterPanel extends ChangeablePanel {
 	 */
 	private static final long serialVersionUID = 2135442992970725951L;
 
-	private JTextField usernameField;
+	private final JTextField usernameField;
 
-	private JTextField mailField;
+	private final JTextField mailField;
 
-	private JPasswordField passwordField;
+	private final JPasswordField passwordField;
 
-	private JLabel wrongUserLabel;
+	private final JLabel wrongUserLabel;
 
-	private JLabel wrongMailLabel;
+	private final JLabel wrongMailLabel;
 
-	private JLabel wrongPasswordLabel;
+	private final JLabel wrongPasswordLabel;
 
 	/**
 	 * creates the view for registration
 	 * 
 	 * @param c
 	 */
-	public RegisterPanel(Controller c) {
-		super(c);
+	public RegisterPanel(final Controller controller) {
+		super(controller);
+
+		Font font = new Font("Tahoma", Font.PLAIN, 14);
+		Font font2 = new Font("Tahoma", Font.PLAIN, 16);
+		Font font3 = new Font("Tahoma", Font.BOLD, 20);
 
 		// design of the view
 		setForeground(Color.WHITE);
-		setFont(new Font("Tahoma", Font.PLAIN, 18));
 		setPreferredSize(new Dimension(640, 680));
 		setSize(new Dimension(640, 680));
 
@@ -86,7 +89,7 @@ public class RegisterPanel extends ChangeablePanel {
 		wrongUserLabel = new JLabel("ung\u00FCltiger Benutzername");
 		// error label user
 		wrongUserLabel.setForeground(Color.RED);
-		wrongUserLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		wrongUserLabel.setFont(font);
 		wrongUserLabel.setBounds(272, 270, 200, 20);
 		wrongUserLabel.setVisible(false);
 		add(wrongUserLabel);
@@ -99,7 +102,7 @@ public class RegisterPanel extends ChangeablePanel {
 		// error label password
 		wrongPasswordLabel = new JLabel("ung\u00FCltiges Passwort");
 		wrongPasswordLabel.setForeground(Color.RED);
-		wrongPasswordLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		wrongPasswordLabel.setFont(font);
 		wrongPasswordLabel.setBounds(272, 320, 200, 20);
 		wrongPasswordLabel.setVisible(false);
 		add(wrongPasswordLabel);
@@ -110,8 +113,8 @@ public class RegisterPanel extends ChangeablePanel {
 		mailField.addKeyListener(new KeyAdapter() {
 
 			@Override
-			public void keyReleased(KeyEvent e) {
-				if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+			public void keyReleased(KeyEvent eevent) {
+				if (eevent.getKeyCode() == KeyEvent.VK_ENTER) {
 					userRegistration();
 				}
 			}
@@ -123,65 +126,65 @@ public class RegisterPanel extends ChangeablePanel {
 
 		wrongMailLabel = new JLabel("ung\u00FCltige Email");
 		wrongMailLabel.setForeground(Color.RED);
-		wrongMailLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		wrongMailLabel.setFont(font);
 		wrongMailLabel.setBounds(272, 370, 200, 20);
 		wrongMailLabel.setVisible(false);
 		add(wrongMailLabel);
 
 		// label name
 		JLabel usernameLabel = new JLabel("Benutzername:");
-		usernameLabel.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		usernameLabel.setFont(font2);
 		usernameLabel.setBounds(94, 291, 106, 20);
 		add(usernameLabel);
 
 		// label password
 		JLabel passwortLabel = new JLabel("Passwort:");
-		passwortLabel.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		passwortLabel.setFont(font2);
 		passwortLabel.setBounds(94, 337, 69, 20);
 		add(passwortLabel);
 
 		// label email
 		JLabel mailLabel = new JLabel("Email:");
-		mailLabel.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		mailLabel.setFont(font2);
 		mailLabel.setBounds(94, 392, 45, 20);
 		add(mailLabel);
 
 		// label registration
 		JLabel registerLabel = new JLabel("Registration:");
 		registerLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		registerLabel.setFont(new Font("Tahoma", Font.BOLD, 20));
+		registerLabel.setFont(font3);
 		registerLabel.setBounds(210, 84, 218, 65);
 		add(registerLabel);
 
 		// label statement - what the user have to do
-		JLabel enterDataLabel =
-				new JLabel("Bitte geben Sie nun folgende f\u00FCr die Registrierung notwendigen Daten ein:");
-		enterDataLabel.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		JLabel enterDataLabel = new JLabel(
+				"Bitte geben Sie nun folgende f\u00FCr die Registrierung notwendigen Daten ein:");
+		enterDataLabel.setFont(font2);
 		enterDataLabel.setBounds(52, 191, 541, 20);
 		add(enterDataLabel);
 
 		// registered - button
-		registerButton.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		registerButton.setFont(font2);
 		registerButton.setBounds(272, 445, 147, 58);
 		add(registerButton);
 		// login-button leads back to LoginPanel-View
 		JButton backToLogin = new JButton("Login");
 		backToLogin.addMouseListener(new MouseAdapter() {
 			@Override
-			public void mouseReleased(MouseEvent y) {
+			public void mouseReleased(MouseEvent yevent) {
 				LoginPanel loginPanel = new LoginPanel(controller);
 				changePanel(loginPanel);
 
 			}
 		});
-		backToLogin.setToolTipText("Zur\u00FCck zum Login");
+		backToLogin.setToolTipText("Zurück zum Login");
 		backToLogin.setBounds(297, 562, 89, 23);
 		add(backToLogin);
 
 		// shows a helpMessage with the right input format
 		JLabel helpMessage = new JLabel("");
 		helpMessage.setForeground(Color.BLACK);
-		helpMessage.setFont(new Font("Tahoma", Font.ITALIC, 14));
+		helpMessage.setFont(font);
 		helpMessage.setBounds(177, 220, 400, 50);
 		add(helpMessage);
 		helpMessage.setText("Hinweis:" + "Benutzername/Passwort: 5-12 Zeichen");
@@ -194,7 +197,8 @@ public class RegisterPanel extends ChangeablePanel {
 		String password = new String(passwordField.getPassword());
 		String mail = mailField.getText();
 
-		// checks if mail is valid (an arbitrary string (\\w+) + @ + an arbitrary
+		// checks if mail is valid (an arbitrary string (\\w+) + @ + an
+		// arbitrary
 		// string (\\w+) + . + valid suffix
 		boolean validEmail = mail.matches("\\w+@\\w+\\.(de|com|fr|net)");
 
@@ -214,8 +218,7 @@ public class RegisterPanel extends ChangeablePanel {
 			UserModel userModel = new UserModel(user);
 			// change into HomePanel with the userModel
 			changePanel(new HomePanel(controller, userModel));
-		}
-		else {
+		} else {
 			wrongUserLabel.setVisible(!validUserName);
 			wrongPasswordLabel.setVisible(!validPassword);
 			// is shown when password is to short

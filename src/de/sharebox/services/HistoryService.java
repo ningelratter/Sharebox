@@ -25,7 +25,7 @@ public class HistoryService {
 	// Map for holding users
 	private List<History> historyList = new ArrayList<History>();
 
-	private File file = new File("data/history.xml");
+	private final File file = new File("data/history.xml");
 
 	public HistoryService() {
 		loadHistory();
@@ -36,7 +36,12 @@ public class HistoryService {
 
 		History history = new History(userId, new Date(), activity);
 		historyList.add(history);
-		saveHistory();
+		try {
+			saveHistory();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return history;
 
 	}
@@ -48,39 +53,39 @@ public class HistoryService {
 		loadHistory();
 	}
 
-	public void logUserCreatedItself(int id, String userName) {
-		createHistory(id, userName + " created ");
+	public void logUserCreatedItself(int idU, String userName) {
+		createHistory(idU, userName + " created ");
 	}
 
 	// writes the history with userName, date and activity
-	public void logUserNameChanged(int id, String userName) {
-		createHistory(id, " Username changed to " + userName);
+	public void logUserNameChanged(int idU, String userName) {
+		createHistory(idU, " Username changed to " + userName);
 	}
 
-	public void logUserPasswordChanged(int id) {
-		createHistory(id, " Password changed ");
+	public void logUserPasswordChanged(int idU) {
+		createHistory(idU, " Password changed ");
 	}
 
-	public void logUserEmailChanged(int id, String email) {
-		createHistory(id, " Email changed to " + email);
+	public void logUserEmailChanged(int idU, String email) {
+		createHistory(idU, " Email changed to " + email);
 	}
 
-	public void logUserLimitChanged(int id, double limit) {
-		createHistory(id, " limit changed to " + limit);
+	public void logUserLimitChanged(int idU, double limit) {
+		createHistory(idU, " limit changed to " + limit);
 	}
 
-	public List<History> getHistoryEntriesByUsers(int id){
-		
+	public List<History> getHistoryEntriesByUsers(int idU) {
+
 		List<History> resultList = new ArrayList<History>();
-		for (History history: historyList) {
-			if(history.getUserId() == id){
+		for (History history : historyList) {
+			if (history.getUserId() == idU) {
 				resultList.add(history);
 			}
 		}
 		return resultList;
-		
+
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	private void loadHistory() {
 		try {
@@ -98,7 +103,7 @@ public class HistoryService {
 	}
 
 	// save the history entry
-	public void saveHistory() {
+	public void saveHistory() throws IOException {
 		try {
 			FileOutputStream fos = new FileOutputStream(file);
 			// encoder from java to xml
@@ -106,8 +111,6 @@ public class HistoryService {
 			encoder.writeObject(historyList);
 			encoder.close();
 		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}

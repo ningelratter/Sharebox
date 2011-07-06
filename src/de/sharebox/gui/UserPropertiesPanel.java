@@ -30,48 +30,53 @@ public class UserPropertiesPanel extends MenuPanel {
 
 	// every GUI class has to have a UID to verify
 	private static final long serialVersionUID = 2342342341L;
-	private JTextField userField;
-	private JTextField passwordField;
-	private JList languageList;
-	private JTextField limitField;
-	private JTextField emailField;
-	JFrame frame;
-	Popup popup, popup1;
+	private final JTextField userField;
+	private final JTextField passwordField;
+	private final JList languageList;
+	private final JTextField limitField;
+	private final JTextField emailField;
+	private JFrame frame;
+	private Popup popup, popup1;
+	private final User user;
 
 	public UserPropertiesPanel(final Controller controller,
 			final UserModel userModel) {
 
 		super(controller, userModel);
-		final User user = userModel.getUser();
+		user = userModel.getUser();
 
-		JLabel welcomeUserText =
-				new JLabel("Hier k\u00F6nnen Sie die Einstellungen f\u00FCr: " + user.getName() + " \u00E4ndern!");
-		welcomeUserText.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		Font font = new Font("Tahoma", Font.PLAIN, 18);
+		Font font2 = new Font("Tahoma", Font.PLAIN, 16);
+		Font font3 = new Font("Tahoma", Font.PLAIN, 14);
+		JLabel welcomeUserText = new JLabel(
+				"Hier koennen Sie die Einstellungen fuer: " + user.getName()
+						+ " aendern!");
+		welcomeUserText.setFont(font);
 		welcomeUserText.setBounds(25, 33, 615, 54);
 		add(welcomeUserText);
 
 		JLabel lblUsername = new JLabel("Benutzername:");
-		lblUsername.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		lblUsername.setFont(font2);
 		lblUsername.setBounds(25, 116, 115, 34);
 		add(lblUsername);
 
 		JLabel lblPasswort = new JLabel("Passwort:");
-		lblPasswort.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		lblPasswort.setFont(font2);
 		lblPasswort.setBounds(25, 169, 115, 34);
 		add(lblPasswort);
 
 		JLabel lblEmail = new JLabel("Email:");
-		lblEmail.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		lblEmail.setFont(font2);
 		lblEmail.setBounds(25, 230, 115, 34);
 		add(lblEmail);
 
 		JLabel lblSprache = new JLabel("Sprache:");
-		lblSprache.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		lblSprache.setFont(font2);
 		lblSprache.setBounds(25, 364, 115, 34);
 		add(lblSprache);
 
 		JLabel lblLimit = new JLabel("Limit:");
-		lblLimit.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		lblLimit.setFont(font2);
 		lblLimit.setBounds(25, 298, 115, 34);
 		add(lblLimit);
 
@@ -101,11 +106,16 @@ public class UserPropertiesPanel extends MenuPanel {
 
 		languageList = new JList();
 		languageList
-				.setToolTipText("w\u00E4hlen Sie die gew\u00FCnschte Sprache in der ihre ShareBoxUltimate angezeigt werden soll");
-		languageList.setFont(new Font("Tahoma", Font.PLAIN, 14));
+				.setToolTipText("waehlen Sie die gewuenschte Sprache in der ihre ShareBoxUltimate angezeigt werden soll");
+		languageList.setFont(font3);
 		languageList.setName("");
 		languageList.setModel(new AbstractListModel() {
-			String[] values = new String[] { "Deutsch = 0", "Englisch = 1", "Franz\u00F6sisch = 2", "Spanisch = 3" };
+			/**
+			 * 
+			 */
+			private static final long serialVersionUID = -3117312090257427767L;
+			String[] values = new String[] { "Deutsch = 0", "Englisch = 1",
+					"Franz\u00F6sisch = 2", "Spanisch = 3" };
 
 			public int getSize() {
 				return values.length;
@@ -123,7 +133,7 @@ public class UserPropertiesPanel extends MenuPanel {
 		limitField.setBounds(168, 300, 203, 34);
 		add(limitField);
 
-		JButton einstellungenndern = new JButton("Einstellungen \u00E4ndern");
+		JButton einstellungenndern = new JButton("Einstellungen aendern");
 		einstellungenndern.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseReleased(MouseEvent arg0) {
@@ -138,8 +148,8 @@ public class UserPropertiesPanel extends MenuPanel {
 			}
 		});
 		einstellungenndern
-				.setToolTipText("Hier klicken, wenn die get\u00E4tigten Einstellungen \u00FCbernommen werden sollen");
-		einstellungenndern.setFont(new Font("Tahoma", Font.PLAIN, 18));
+				.setToolTipText("Hier klicken, wenn die getaetigten Einstellungen uebernommen werden sollen");
+		einstellungenndern.setFont(font);
 		einstellungenndern.setBounds(168, 462, 238, 54);
 		add(einstellungenndern);
 
@@ -159,29 +169,30 @@ public class UserPropertiesPanel extends MenuPanel {
 		currentLimit.setToolTipText("aktuelles Limit");
 		currentLimit.setBounds(25, 330, 115, 34);
 		add(currentLimit);
-		double d = user.getLimit();
-		String s = String.valueOf(d);
-		currentLimit.setText(s);
+		double limit = user.getLimit();
+		String sLimit = String.valueOf(limit);
+		currentLimit.setText(sLimit);
 
 		JLabel currentLanguage = new JLabel((String) null);
 		currentLanguage.setToolTipText("aktuell eingestellte Sprache");
 		currentLanguage.setBounds(25, 406, 115, 34);
 		add(currentLanguage);
-		int i = user.getLanguage();
-		String s1 = String.valueOf(i);
-		currentLanguage.setText(s1);
+		int iLanguage = user.getLanguage();
+		String sLanguage = String.valueOf(iLanguage);
+		currentLanguage.setText(sLanguage);
 
-		JButton removeAccount = new JButton("Account l\u00F6schen");
+		JButton removeAccount = new JButton("Account loeschen");
 		removeAccount.addMouseListener(new MouseAdapter() {
 			@Override
-			public void mouseReleased(MouseEvent e) {
+			public void mouseReleased(MouseEvent eevent) {
 
 				areYouSure();
 
 			}
 		});
-		removeAccount.setToolTipText("Hier klicken, wenn Sie ihren Account l\u00F6schen m\u00F6chten");
-		removeAccount.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		removeAccount
+				.setToolTipText("Hier klicken, wenn Sie ihren Account l\u00F6schen m\u00F6chten");
+		removeAccount.setFont(font);
 		removeAccount.setBounds(168, 537, 238, 54);
 		add(removeAccount);
 
@@ -210,9 +221,10 @@ public class UserPropertiesPanel extends MenuPanel {
 
 		String email = emailField.getText();
 		// checking the mail properties
-		boolean validEmail =
-				email.contains("@") && email.contains(".de") || email.contains("@") && email.contains(".com") ||
-						email.contains("@") && email.contains(".fr") || email.contains("@") && email.contains(".net");
+		boolean validEmail = email.contains("@") && email.contains(".de")
+				|| email.contains("@") && email.contains(".com")
+				|| email.contains("@") && email.contains(".fr")
+				|| email.contains("@") && email.contains(".net");
 
 		if (validEmail) {
 
@@ -234,16 +246,17 @@ public class UserPropertiesPanel extends MenuPanel {
 		JButton stay = new JButton();
 		add(stay);
 
-		popup = factory.getPopup(frame, remove = new JButton("Ja, Accounnt l�schen"), 250, 300);
+		popup = factory.getPopup(frame, remove = new JButton(
+				"Ja, Accounnt loeschen"), 250, 300);
 		frame.setVisible(true);
-		popup1 = factory.getPopup(frame, stay = new JButton("Nein, Account nicht l�schen"), 250, 400);
+		popup1 = factory.getPopup(frame, stay = new JButton(
+				"Nein, Account nicht loeschen"), 250, 400);
 		popup.show();
 		popup1.show();
 		remove.addMouseListener(new MouseAdapter() {
 
 			public void mouseClicked(MouseEvent arg0) {
 
-				User user = userModel.getUser();
 				controller.removeUser(user);
 				LoginPanel loginPanel = new LoginPanel(controller);
 				changePanel(loginPanel);

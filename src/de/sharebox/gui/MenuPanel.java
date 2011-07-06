@@ -6,9 +6,11 @@ import java.awt.event.MouseEvent;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JProgressBar;
 import javax.swing.UIManager;
 
 import de.sharebox.controller.Controller;
+import de.sharebox.entities.User;
 import de.sharebox.models.UserModel;
 
 public class MenuPanel extends ChangeablePanel {
@@ -16,23 +18,24 @@ public class MenuPanel extends ChangeablePanel {
 	 * 
 	 */
 	private static final long serialVersionUID = -8555827717858274404L;
-	UserModel userModel;
 
-	public MenuPanel(final Controller controller, final UserModel userModel) {
+	public MenuPanel(final Controller controller, final UserModel userM) {
 		super(controller);
-		this.userModel = userModel;
+		final UserModel userModel = userM;
+		User user = userModel.getUser();
+		int limit = user.getLimit();
 
-		// cretes a menubar on the toolbar
+		// creates a menubar on the toolbar
 		JMenuBar menuBar = new JMenuBar();
 		menuBar.setBorder(UIManager.getBorder("MenuBar.border"));
-		menuBar.setBounds(0, 0, MainApplicationFrame.mainWindowWidth, 37);
+		menuBar.setBounds(0, 0, 440, 37);
 		add(menuBar);
 
 		JMenu mnHome = new JMenu("Home");
 		mnHome.addMouseListener(new MouseAdapter() {
 
 			@Override
-			public void mouseClicked(MouseEvent e) {
+			public void mouseClicked(MouseEvent event1) {
 				HomePanel homePanel = new HomePanel(controller, userModel);
 				changePanel(homePanel);
 			}
@@ -50,11 +53,13 @@ public class MenuPanel extends ChangeablePanel {
 		menuBar.add(mnBenutzereinstellungen);
 
 		// creates a submenu on the menubar
-		JMenuItem mntmBenutzereinstellungenAnsehen = new JMenuItem("Benutzereinstellungen ansehen");
+		JMenuItem mntmBenutzereinstellungenAnsehen = new JMenuItem(
+				"Benutzereinstellungen ansehen");
 		mntmBenutzereinstellungenAnsehen.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseReleased(MouseEvent arg0) {
-				UserPropertiesPanel userProperties = new UserPropertiesPanel(controller, userModel);
+				UserPropertiesPanel userProperties = new UserPropertiesPanel(
+						controller, userModel);
 				changePanel(userProperties);
 			}
 		});
@@ -65,7 +70,8 @@ public class MenuPanel extends ChangeablePanel {
 		mntmLogAufrufen.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseReleased(MouseEvent arg0) {
-				HistoryPanel historyPanel = new HistoryPanel(controller, userModel);
+				HistoryPanel historyPanel = new HistoryPanel(controller,
+						userModel);
 				changePanel(historyPanel);
 			}
 		});
@@ -76,11 +82,13 @@ public class MenuPanel extends ChangeablePanel {
 		menuBar.add(mnEinladungenVerschicken);
 
 		// creates a submenu "Einladungen verschicken"
-		JMenuItem mntmEinladungenVerschicken = new JMenuItem("Einladungen verschicken");
+		JMenuItem mntmEinladungenVerschicken = new JMenuItem(
+				"Einladungen verschicken");
 		mnEinladungenVerschicken.add(mntmEinladungenVerschicken);
 
 		// creates a submenu "Einladungen annehmen"
-		JMenuItem mntmEinladungenAnnehmen = new JMenuItem("Einladungen annehmen");
+		JMenuItem mntmEinladungenAnnehmen = new JMenuItem(
+				"Einladungen annehmen");
 		mnEinladungenVerschicken.add(mntmEinladungenAnnehmen);
 
 		// creates a menu "Verzeichnisliste"
@@ -88,13 +96,14 @@ public class MenuPanel extends ChangeablePanel {
 		menuBar.add(mnVerzeichnisliste);
 
 		// creates a submenu "Verzeichnisliste anzeigen"
-		JMenuItem mntmVerzeichnisliste = new JMenuItem("Verzeichnisliste anzeigen");
+		JMenuItem mntmVerzeichnisliste = new JMenuItem(
+				"Verzeichnisliste anzeigen");
 		// mouseclick on the submenu "Verzeichnisliste anzeigen" opens
 		// DirPanel-View
 		mntmVerzeichnisliste.addMouseListener(new MouseAdapter() {
 			@Override
 			// Change into DirPanel
-			public void mouseReleased(MouseEvent e) {
+			public void mouseReleased(MouseEvent eevent2) {
 
 				DirPanel dirPanel = new DirPanel(controller, userModel);
 				changePanel(dirPanel);
@@ -107,11 +116,22 @@ public class MenuPanel extends ChangeablePanel {
 		JMenu mnLogout = new JMenu("Logout");
 		menuBar.add(mnLogout);
 
+		JMenuItem mntmLogout = new JMenuItem("Logout");
+		mnLogout.add(mntmLogout);
+		// shows user limit
+		JProgressBar progressBar = new JProgressBar();
+		progressBar.setToolTipText("Ihr verbleibender Speicher in %");
+		progressBar.setStringPainted(true);
+		progressBar.setBounds(466, 11, 146, 26);
+		progressBar.setMaximum(100);
+		progressBar.setValue(limit);
+		add(progressBar);
+
 		// logs a user out - leads back in loginPanel
-		mnLogout.addMouseListener(new MouseAdapter() {
+		mntmLogout.addMouseListener(new MouseAdapter() {
 
 			@Override
-			public void mouseClicked(MouseEvent e) {
+			public void mouseReleased(MouseEvent eevent3) {
 				// saves the user before logout
 				controller.saveData();
 				LoginPanel loginPanel = new LoginPanel(controller);

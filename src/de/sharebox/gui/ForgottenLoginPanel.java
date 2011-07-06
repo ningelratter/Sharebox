@@ -28,31 +28,31 @@ public class ForgottenLoginPanel extends ChangeablePanel {
 	 * 
 	 */
 	private static final long serialVersionUID = -5039410585133415906L;
-	private JTextField emailInput;
-	JFrame frame;
-	Popup popup, popup1, popup2;
+	private final JTextField emailInput;
+	private JFrame frame;
+	private Popup popup, popup1, popup2;
 
 	public ForgottenLoginPanel(final Controller controller) {
 		super(controller);
-		setFont(new Font("Tahoma", Font.BOLD, 18));
-
-		JLabel howToRestore = new JLabel("Geben Sie hier ihre Emailadresse ein: ");
+		Font font = new Font("Tahoma", Font.BOLD, 18);
+		
+		JLabel howToRestore = new JLabel(
+				"Geben Sie hier ihre Emailadresse ein: ");
+		howToRestore.setFont(font);
 		howToRestore.setToolTipText("Enter Email\r\n");
-		howToRestore.setFont(new Font("Tahoma", Font.BOLD, 18));
 		howToRestore.setBounds(145, 99, 349, 77);
 		add(howToRestore);
 		// gets you back into loginPanel-View
-		JLabel goBackToLogin = new JLabel("Zur\u00FCck zum Login:");
-		goBackToLogin.setFont(new Font("Tahoma", Font.BOLD, 18));
+		JLabel goBackToLogin = new JLabel("Zurueck zum Login:");
 		goBackToLogin.setBounds(222, 410, 188, 90);
 		add(goBackToLogin);
 
 		emailInput = new JTextField();
 		emailInput.addKeyListener(new KeyAdapter() {
 			@Override
-			public void keyReleased(KeyEvent e) {
+			public void keyReleased(KeyEvent event2) {
 
-				if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+				if (event2.getKeyCode() == KeyEvent.VK_ENTER) {
 					String mail = emailInput.getText();
 					User user = controller.getUser(mail);
 
@@ -60,8 +60,7 @@ public class ForgottenLoginPanel extends ChangeablePanel {
 						String userName = user.getName();
 						String userPassword = user.getPassword();
 						printData(userName, userPassword);
-					}
-					else {
+					} else {
 
 						emailNotFound();
 					}
@@ -94,21 +93,24 @@ public class ForgottenLoginPanel extends ChangeablePanel {
 
 			}
 		});
-		getUserData.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		getUserData.setToolTipText("Hier klicken, um Benutzerdaten \u00FCber die Emailadresse anzeigen zu lassen");
+		Font font2 = new Font("Tahoma", Font.PLAIN, 16);
+		getUserData.setFont(font2);
+		getUserData
+				.setToolTipText("Hier klicken, um Benutzerdaten ueber die Emailadresse anzeigen zu lassen");
 		getUserData.setBounds(199, 336, 211, 63);
 		add(getUserData);
 
 		JButton backToLogin = new JButton("Login");
 		backToLogin.addMouseListener(new MouseAdapter() {
 			@Override
-			public void mouseReleased(MouseEvent z) {
+			public void mouseReleased(MouseEvent zevent) {
 
 				changePanel(new LoginPanel(controller));
 			}
 		});
-		backToLogin.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		backToLogin.setToolTipText("Hier klicken, um zum Login zur\u00FCck zu gelangen");
+		backToLogin.setFont(font2);
+		backToLogin
+				.setToolTipText("Hier klicken, um zum Login zurueckzugelangen");
 		backToLogin.setBounds(242, 495, 144, 63);
 		add(backToLogin);
 
@@ -127,21 +129,23 @@ public class ForgottenLoginPanel extends ChangeablePanel {
 		add(userN);
 
 		JButton userPwd = new JButton();
-		add(userN);
+		add(userPwd);
 
-		JButton backToLogin = new JButton("Zur�ck zum Login");
-		backToLogin.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		JButton backToLogin = new JButton("Zurueck zum Login");
 		add(backToLogin);
 
-		popup = factory.getPopup(frame, userN = new JButton("Benutzername: " + userName), 200, 350);
-		popup2 = factory.getPopup(frame, userPwd = new JButton("Passwort: " + userPassword), 200, 400);
-		popup1 = factory.getPopup(frame, backToLogin = new JButton("Zur�ck zum Login"), 325, 500);
+		popup = factory.getPopup(frame, userN = new JButton("Benutzername: "
+				+ userName), 200, 350);
+		popup2 = factory.getPopup(frame, userPwd = new JButton("Passwort: "
+				+ userPassword), 200, 400);
+		popup1 = factory.getPopup(frame, backToLogin = new JButton(
+				"Zurueck zum Login"), 325, 500);
 
 		popup.show();
 		popup1.show();
 		popup2.show();
 		frame.setVisible(true);
-
+		
 		backToLogin.addMouseListener(new MouseAdapter() {
 
 			public void mouseClicked(MouseEvent arg0) {
@@ -165,7 +169,8 @@ public class ForgottenLoginPanel extends ChangeablePanel {
 
 		PopupFactory factory = PopupFactory.getSharedInstance();
 
-		JButton noUser = new JButton("Keinen Benutzer mit dieser Mail-Adresse gefunden");
+		JButton noUser = new JButton(
+				"Keinen Benutzer mit dieser Mail-Adresse gefunden");
 		frame.add(noUser);
 
 		popup = factory.getPopup(frame, noUser, 200, 350);
@@ -175,7 +180,8 @@ public class ForgottenLoginPanel extends ChangeablePanel {
 
 			public void mouseClicked(MouseEvent arg0) {
 
-				ForgottenLoginPanel forgottenLoginPanel = new ForgottenLoginPanel(controller);
+				ForgottenLoginPanel forgottenLoginPanel = new ForgottenLoginPanel(
+						controller);
 				changePanel(forgottenLoginPanel);
 				frame.setVisible(false);
 			}

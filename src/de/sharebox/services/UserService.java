@@ -31,16 +31,16 @@ public class UserService {
 	/**
 	 * standard adjustment for new users
 	 */
-	private double limit = 2.0;
+	private final int limit = 100;
 
 	/**
 	 * standard adjustment, change language at class UserObject
 	 * 
 	 * @link{setLanguage()
 	 */
-	private int language = 0;
+	private final int language = 0;
 
-	private File file = new File("data/users.xml");
+	private final File file = new File("data/users.xml");
 
 	// creates a user account and checks before, if id is unique
 	public User createUser(String name, String password, String mail) {
@@ -48,13 +48,13 @@ public class UserService {
 		if (name != null && !name.isEmpty() && password != null
 				&& !password.isEmpty()) {
 
-			int id = createUniqueId();
-			User user = new User(name, id, limit, password, mail, language);
-			user.setRootDir(id);
-			userByIdMap.put(id, user);
+			int idUnique = createUniqueId();
+			User user = new User(name, idUnique, limit, password, mail,
+					language);
+			user.setRootDir(idUnique);
+			userByIdMap.put(idUnique, user);
 			return user;
-		}
-		else {
+		} else {
 			return null;
 		}
 	}
@@ -75,7 +75,7 @@ public class UserService {
 	}
 
 	// TODO limit wird bisher noch nicht geaendert!!!
-	public void setUserLimit(User user, double limit) {
+	public void setUserLimit(User user, int limit) {
 		user.setLimit(limit);
 	}
 
@@ -94,12 +94,10 @@ public class UserService {
 				if (name.equals(user.getName())
 						&& password.equals(user.getPassword())) {
 					return user;
-				}
-				else {
+				} else {
 					return null;
 				}
-			}
-			else {
+			} else {
 
 				return null;
 			}
@@ -115,8 +113,7 @@ public class UserService {
 				if (mail.equals(user.getMail())) {
 
 					return user;
-				}
-				else {
+				} else {
 					return null;
 				}
 			}
@@ -139,9 +136,9 @@ public class UserService {
 		Random random = new Random();
 
 		while (true) {
-			int id = random.nextInt(100);
-			if (!userByIdMap.containsKey(id)) {
-				return id;
+			int idUnique = random.nextInt(100);
+			if (!userByIdMap.containsKey(idUnique)) {
+				return idUnique;
 			}
 		}
 	}
@@ -155,8 +152,7 @@ public class UserService {
 				userByIdMap = (Map<Integer, User>) decoder.readObject();
 				decoder.close();
 			}
-		}
-		catch (FileNotFoundException e) {
+		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
 
@@ -165,8 +161,8 @@ public class UserService {
 	// removes user from data bank and saves the change
 	public void removeUser(User user) {
 
-		int i = user.getId();
-		userByIdMap.remove(i);
+		int iId = user.getId();
+		userByIdMap.remove(iId);
 		saveUsers();
 	}
 
@@ -177,8 +173,7 @@ public class UserService {
 			XMLEncoder encoder = new XMLEncoder(fos);
 			encoder.writeObject(userByIdMap);
 			encoder.close();
-		}
-		catch (FileNotFoundException e) {
+		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
 	}

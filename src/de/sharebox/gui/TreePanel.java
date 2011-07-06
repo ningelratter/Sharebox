@@ -36,9 +36,8 @@ public class TreePanel extends ChangeablePanel implements ItemListener,
 *
 */
 	private static final long serialVersionUID = 1L;
-	File rootDir;
-	JTree tree;
-	JPopupMenu jPopup;
+	private  final File rootDir;
+	private JPopupMenu jPopup;
 
 	TreePanel(Controller controller, final UserModel userModel) {
 		super(controller);
@@ -59,6 +58,10 @@ public class TreePanel extends ChangeablePanel implements ItemListener,
 		add(scrollPane);
 
 		rootDir = new File(userDir);
+		// sollte man hier nicht lieber den DirService aufrufen mit
+		// createRootDirLocation?
+		// andererseits besteht der Ordner theoretisch ja schon oder ist das
+		// eher als Absicherung gedacht?
 		rootDir.mkdir();
 
 		// is creating a JTree with users Directories and Files
@@ -69,7 +72,7 @@ public class TreePanel extends ChangeablePanel implements ItemListener,
 		tree.setEditable(true);
 		tree.setShowsRootHandles(true);
 		tree.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		tree.setRootVisible(false);
+		tree.setRootVisible(true);
 
 		// listens on mouseActions in Tree
 		tree.addMouseListener(new MouseAdapter() {
@@ -78,6 +81,8 @@ public class TreePanel extends ChangeablePanel implements ItemListener,
 
 				// left mouse click
 				if (evt.getButton() == MouseEvent.BUTTON1) {
+
+					// TODO
 
 				}
 				// right mouse click
@@ -102,7 +107,7 @@ public class TreePanel extends ChangeablePanel implements ItemListener,
 	}
 
 	@Override
-	public void actionPerformed(ActionEvent e) {
+	public void actionPerformed(ActionEvent eevent1) {
 		// TODO Auto-generated method stub
 
 	}
@@ -115,8 +120,8 @@ public class TreePanel extends ChangeablePanel implements ItemListener,
 
 	class FileSystemModel implements TreeModel {
 
-		private File root;
-
+		private final File root;
+	
 		private Vector<TreeModelListener> listeners = new Vector<TreeModelListener>();
 
 		public FileSystemModel(File rootDirectory) {
@@ -137,8 +142,9 @@ public class TreePanel extends ChangeablePanel implements ItemListener,
 			File file = (File) parent;
 			if (file.isDirectory()) {
 				String[] fileList = file.list();
-				if (fileList != null)
+				if (fileList != null) {
 					return file.list().length;
+				}
 			}
 			return 0;
 		}

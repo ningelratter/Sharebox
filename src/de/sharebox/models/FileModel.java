@@ -9,6 +9,8 @@ package de.sharebox.models;
 public class FileModel {
 
 	FileModel() {
+		
+		//standard constructor
 
 	}
 

@@ -16,10 +16,10 @@ public class DirService implements Serializable, Comparable<File> {
 
 	private static final long serialVersionUID = 3540898262107664579L;
 
-	public static void createRootDirLocation(int id) {
+	public static void createRootDirLocation(int idU) {
 		String path = System.getProperty("user.dir");
 		String userId;
-		userId = String.valueOf(id);
+		userId = String.valueOf(idU);
 
 		File dir = new File(path + "\\" + userId);
 
@@ -31,36 +31,36 @@ public class DirService implements Serializable, Comparable<File> {
 
 		}
 	}
-	
-	public static File[] listofFiles(File file){
-		
+
+	public static File[] listofFiles(File file) {
+
 		File[] files = file.listFiles();
-		for(int nIndex = 0; nIndex < files.length; nIndex++){
+		for (int nIndex = 0; nIndex < files.length; nIndex++) {
 			listofFiles(files[nIndex]);
 		}
-						
+
 		return files;
 	}
 
 	public static void renameRootDirLocation(String rootDir) {
+		
+		//TODO 
 
 	}
-
-
 
 	public static boolean removeDir(File dir, UserModel userModel) {
 		String path = System.getProperty("user.dir");
 		User user = userModel.getUser();
-		String id = user.getRootDir();
+		String idU = user.getRootDir();
 
 		// can't remove if directory doess'nt exists or if its the RootDir of a
 		// user
-		if (dir.getPath().equals(path + "\\" + id)) {
+		if (dir.getPath().equals(path + "\\" + idU)) {
 			System.out.println("root");
 			return false;
 		} else {
-			 deleteSubFolder(dir);
-			 return true;
+			deleteSubFolder(dir);
+			return true;
 		}
 	}
 
@@ -73,18 +73,15 @@ public class DirService implements Serializable, Comparable<File> {
 			}
 			files[nIndex].delete();
 		}
-		
+
 	}
 
-	
 	@Override
 	public int compareTo(File arg0) {
-		// TODO Auto-generated method stub
+		// Auto-generated method stub
 		return 0;
 	}
-	
-	
-	
+
 }
 
 /*

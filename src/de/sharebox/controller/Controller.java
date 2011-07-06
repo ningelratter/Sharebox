@@ -94,7 +94,7 @@ public class Controller {
 	}
 
 	// calls the userService and historyService to change and log them
-	public void setUserLimit(User user, double limit) {
+	public void setUserLimit(User user, int limit) {
 		userService.setUserLimit(user, limit);
 		historyService.logUserLimitChanged(user.getId(), limit);
 

@@ -137,7 +137,7 @@ public class UserService {
 
 		while (true) {
 			int id = random.nextInt(100);
-			if (userByIdMap.containsKey(id)) {
+			if (!userByIdMap.containsKey(id)) {
 				return id;
 			}
 		}

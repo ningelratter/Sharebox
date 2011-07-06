@@ -28,7 +28,7 @@ public class MenuPanel extends ChangeablePanel {
 		// creates a menubar on the toolbar
 		JMenuBar menuBar = new JMenuBar();
 		menuBar.setBorder(UIManager.getBorder("MenuBar.border"));
-		menuBar.setBounds(0, 0, 440, 37);
+		menuBar.setBounds(0, 0, 640, 37);
 		add(menuBar);
 
 		JMenu mnHome = new JMenu("Home");
@@ -118,14 +118,17 @@ public class MenuPanel extends ChangeablePanel {
 
 		JMenuItem mntmLogout = new JMenuItem("Logout");
 		mnLogout.add(mntmLogout);
+		
+		
+		
 		// shows user limit
 		JProgressBar progressBar = new JProgressBar();
 		progressBar.setToolTipText("Ihr verbleibender Speicher in %");
 		progressBar.setStringPainted(true);
-		progressBar.setBounds(466, 11, 146, 26);
+		progressBar.setBounds(580, 11, 50, 10);
 		progressBar.setMaximum(100);
 		progressBar.setValue(limit);
-		add(progressBar);
+		menuBar.add(progressBar);
 
 		// logs a user out - leads back in loginPanel
 		mntmLogout.addMouseListener(new MouseAdapter() {

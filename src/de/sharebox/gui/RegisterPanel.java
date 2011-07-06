@@ -157,8 +157,8 @@ public class RegisterPanel extends ChangeablePanel {
 		add(registerLabel);
 
 		// label statement - what the user have to do
-		JLabel enterDataLabel = new JLabel(
-				"Bitte geben Sie nun folgende f\u00FCr die Registrierung notwendigen Daten ein:");
+		JLabel enterDataLabel =
+				new JLabel("Bitte geben Sie nun folgende f\u00FCr die Registrierung notwendigen Daten ein:");
 		enterDataLabel.setFont(font2);
 		enterDataLabel.setBounds(52, 191, 541, 20);
 		add(enterDataLabel);
@@ -177,7 +177,7 @@ public class RegisterPanel extends ChangeablePanel {
 
 			}
 		});
-		backToLogin.setToolTipText("Zurück zum Login");
+		backToLogin.setToolTipText("Zurueck zum Login");
 		backToLogin.setBounds(297, 562, 89, 23);
 		add(backToLogin);
 
@@ -218,7 +218,8 @@ public class RegisterPanel extends ChangeablePanel {
 			UserModel userModel = new UserModel(user);
 			// change into HomePanel with the userModel
 			changePanel(new HomePanel(controller, userModel));
-		} else {
+		}
+		else {
 			wrongUserLabel.setVisible(!validUserName);
 			wrongPasswordLabel.setVisible(!validPassword);
 			// is shown when password is to short

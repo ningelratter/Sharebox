@@ -44,9 +44,9 @@ public class HistoryPanel extends MenuPanel {
 
 		String historyString = "History of user " + username + "\n\n";
 		for (History history : historyEntries) {
-			historyString = new StringBuffer().append(historyString)
-					.append(history.getDate()).append(" ")
-					.append(history.getActivity()).append("\n").toString();
+			historyString =
+					new StringBuffer().append(historyString).append(history.getDate()).append(" ").append(history.getActivity())
+							.append("\n").toString();
 		}
 
 		TextArea currentUserHistory = new TextArea(historyString);

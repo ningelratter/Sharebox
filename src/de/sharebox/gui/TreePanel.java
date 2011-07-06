@@ -29,15 +29,14 @@ import de.sharebox.models.UserModel;
 /**
  * @author MW class thats shows users Directories and Files as a tree
  */
-public class TreePanel extends ChangeablePanel implements ItemListener,
-		ActionListener {
+public class TreePanel extends ChangeablePanel implements ItemListener, ActionListener {
 
-	/**
-*
-*/
-	private static final long serialVersionUID = 1L;
-	private  final File rootDir;
+	private static final long serialVersionUID = -3558567367073733821L;
+
+	private final File rootDir;
 	private JPopupMenu jPopup;
+	private JTree tree;
+	private String userDir;
 
 	TreePanel(Controller controller, final UserModel userModel) {
 		super(controller);
@@ -50,7 +49,7 @@ public class TreePanel extends ChangeablePanel implements ItemListener,
 
 		// get userPath
 		User user = userModel.getUser();
-		final String userDir = user.getRootDir();
+		userDir = user.getRootDir();
 
 		// if Tree is getting to big for screen, JScrollPane lets you navigate
 		JScrollPane scrollPane = new JScrollPane();
@@ -65,14 +64,14 @@ public class TreePanel extends ChangeablePanel implements ItemListener,
 		rootDir.mkdir();
 
 		// is creating a JTree with users Directories and Files
-		final JTree tree = new JTree(new FileSystemModel(rootDir));
+		tree = new JTree(new FileSystemModel(rootDir));
 
 		scrollPane.setViewportView(tree);
 		tree.setAutoscrolls(true);
 		tree.setEditable(true);
 		tree.setShowsRootHandles(true);
 		tree.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		tree.setRootVisible(true);
+		tree.setRootVisible(false);
 
 		// listens on mouseActions in Tree
 		tree.addMouseListener(new MouseAdapter() {
@@ -100,7 +99,6 @@ public class TreePanel extends ChangeablePanel implements ItemListener,
 					jPopup.show(tree, getX(), getY());
 
 					jPopup.show(evt.getComponent(), evt.getX(), evt.getY());
-
 				}
 			}
 		});
@@ -121,7 +119,7 @@ public class TreePanel extends ChangeablePanel implements ItemListener,
 	class FileSystemModel implements TreeModel {
 
 		private final File root;
-	
+
 		private Vector<TreeModelListener> listeners = new Vector<TreeModelListener>();
 
 		public FileSystemModel(File rootDirectory) {
@@ -129,7 +127,7 @@ public class TreePanel extends ChangeablePanel implements ItemListener,
 		}
 
 		public Object getRoot() {
-			return root;
+			return new TreeFile(root);
 		}
 
 		public Object getChild(Object parent, int index) {
@@ -176,16 +174,13 @@ public class TreePanel extends ChangeablePanel implements ItemListener,
 			File parent = new File(fileParentPath);
 			int[] changedChildrenIndices = { getIndexOfChild(parent, targetFile) };
 			Object[] changedChildren = { targetFile };
-			fireTreeNodesChanged(path.getParentPath(), changedChildrenIndices,
-					changedChildren);
+			fireTreeNodesChanged(path.getParentPath(), changedChildrenIndices, changedChildren);
 
 		}
 
-		private void fireTreeNodesChanged(TreePath parentPath, int[] indices,
-				Object[] children) {
+		private void fireTreeNodesChanged(TreePath parentPath, int[] indices, Object[] children) {
 
-			TreeModelEvent event = new TreeModelEvent(this, parentPath,
-					indices, children);
+			TreeModelEvent event = new TreeModelEvent(this, parentPath, indices, children);
 			for (TreeModelListener listener : listeners) {
 				listener.treeNodesChanged(event);
 			}
@@ -203,6 +198,10 @@ public class TreePanel extends ChangeablePanel implements ItemListener,
 
 			private static final long serialVersionUID = -2543661820439650693L;
 
+			public TreeFile(File file) {
+				super(file.getAbsolutePath());
+			}
+
 			public TreeFile(File parent, String child) {
 				super(parent, child);
 			}
@@ -211,5 +210,28 @@ public class TreePanel extends ChangeablePanel implements ItemListener,
 				return getName();
 			}
 		}
+	}
+
+	public File getSelectedFile() {
+		TreePath selectionPath = tree.getSelectionPath();
+		if (selectionPath != null) {
+			Object[] path = selectionPath.getPath();
+
+			StringBuilder pathBuilder = new StringBuilder(userDir);
+
+			if (path.length > 1) {
+				for (int i = 1; i < path.length; i++) {
+					pathBuilder.append("/" + path[i]);
+				}
+			}
+
+			return new File(pathBuilder.toString());
+		}
+
+		return null;
+	}
+
+	public void updateTree() {
+		tree.setModel(new FileSystemModel(rootDir));
 	}
 }

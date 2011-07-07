@@ -121,7 +121,7 @@ public class User {
 
 	public String getRootDir() {
 		String userId = String.valueOf(idU);
-		return (System.getProperty("user.dir") + "\\" + userId);
+		return (System.getProperty("user.dir") + "/" + userId);
 	}
 
 }

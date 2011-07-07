@@ -6,11 +6,9 @@ import java.awt.event.MouseEvent;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
-import javax.swing.JProgressBar;
 import javax.swing.UIManager;
 
 import de.sharebox.controller.Controller;
-import de.sharebox.entities.User;
 import de.sharebox.models.UserModel;
 
 public class MenuPanel extends ChangeablePanel {
@@ -19,11 +17,8 @@ public class MenuPanel extends ChangeablePanel {
 	 */
 	private static final long serialVersionUID = -8555827717858274404L;
 
-	public MenuPanel(final Controller controller, final UserModel userM) {
+	public MenuPanel(final Controller controller, final UserModel userModel) {
 		super(controller);
-		final UserModel userModel = userM;
-		User user = userModel.getUser();
-		int limit = user.getLimit();
 
 		// creates a menubar on the toolbar
 		JMenuBar menuBar = new JMenuBar();
@@ -53,13 +48,11 @@ public class MenuPanel extends ChangeablePanel {
 		menuBar.add(mnBenutzereinstellungen);
 
 		// creates a submenu on the menubar
-		JMenuItem mntmBenutzereinstellungenAnsehen = new JMenuItem(
-				"Benutzereinstellungen ansehen");
+		JMenuItem mntmBenutzereinstellungenAnsehen = new JMenuItem("Benutzereinstellungen ansehen");
 		mntmBenutzereinstellungenAnsehen.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseReleased(MouseEvent arg0) {
-				UserPropertiesPanel userProperties = new UserPropertiesPanel(
-						controller, userModel);
+				UserPropertiesPanel userProperties = new UserPropertiesPanel(controller, userModel);
 				changePanel(userProperties);
 			}
 		});
@@ -70,8 +63,7 @@ public class MenuPanel extends ChangeablePanel {
 		mntmLogAufrufen.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseReleased(MouseEvent arg0) {
-				HistoryPanel historyPanel = new HistoryPanel(controller,
-						userModel);
+				HistoryPanel historyPanel = new HistoryPanel(controller, userModel);
 				changePanel(historyPanel);
 			}
 		});
@@ -82,13 +74,11 @@ public class MenuPanel extends ChangeablePanel {
 		menuBar.add(mnEinladungenVerschicken);
 
 		// creates a submenu "Einladungen verschicken"
-		JMenuItem mntmEinladungenVerschicken = new JMenuItem(
-				"Einladungen verschicken");
+		JMenuItem mntmEinladungenVerschicken = new JMenuItem("Einladungen verschicken");
 		mnEinladungenVerschicken.add(mntmEinladungenVerschicken);
 
 		// creates a submenu "Einladungen annehmen"
-		JMenuItem mntmEinladungenAnnehmen = new JMenuItem(
-				"Einladungen annehmen");
+		JMenuItem mntmEinladungenAnnehmen = new JMenuItem("Einladungen annehmen");
 		mnEinladungenVerschicken.add(mntmEinladungenAnnehmen);
 
 		// creates a menu "Verzeichnisliste"
@@ -96,8 +86,7 @@ public class MenuPanel extends ChangeablePanel {
 		menuBar.add(mnVerzeichnisliste);
 
 		// creates a submenu "Verzeichnisliste anzeigen"
-		JMenuItem mntmVerzeichnisliste = new JMenuItem(
-				"Verzeichnisliste anzeigen");
+		JMenuItem mntmVerzeichnisliste = new JMenuItem("Verzeichnisliste anzeigen");
 		// mouseclick on the submenu "Verzeichnisliste anzeigen" opens
 		// DirPanel-View
 		mntmVerzeichnisliste.addMouseListener(new MouseAdapter() {
@@ -118,23 +107,12 @@ public class MenuPanel extends ChangeablePanel {
 
 		JMenuItem mntmLogout = new JMenuItem("Logout");
 		mnLogout.add(mntmLogout);
-		
-		
-		
-		// shows user limit
-		JProgressBar progressBar = new JProgressBar();
-		progressBar.setToolTipText("Ihr verbleibender Speicher in %");
-		progressBar.setStringPainted(true);
-		progressBar.setBounds(580, 11, 50, 10);
-		progressBar.setMaximum(100);
-		progressBar.setValue(limit);
-		menuBar.add(progressBar);
 
 		// logs a user out - leads back in loginPanel
 		mntmLogout.addMouseListener(new MouseAdapter() {
 
 			@Override
-			public void mouseReleased(MouseEvent eevent3) {
+			public void mouseReleased(MouseEvent event3) {
 				// saves the user before logout
 				controller.saveData();
 				LoginPanel loginPanel = new LoginPanel(controller);

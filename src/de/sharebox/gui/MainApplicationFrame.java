@@ -27,8 +27,8 @@ public class MainApplicationFrame extends JFrame {
 
 	/**
 	 * 
-	 * Creates the design of the view when the application started. The
-	 * controller will be created and it take the call for LoginPanel.
+	 * Creates the design of the view when the application started. The controller
+	 * will be created and it take the call for LoginPanel.
 	 * 
 	 * @author Eilin,MW
 	 */
@@ -58,7 +58,6 @@ public class MainApplicationFrame extends JFrame {
 
 		pack();
 		setVisible(true);
-
 	}
 
 	public static void main(String[] args) {

@@ -41,8 +41,7 @@ public class LoginPanel extends ChangeablePanel {
 		Font font = new Font("Tahoma", Font.PLAIN, 28);
 		Font font2 = new Font("Tahoma", Font.PLAIN, 16);
 		// Welcome Label
-		JLabel welcomeLabel = new JLabel(
-				"Herzlich Willkommen bei ShareBoxUltimate");
+		JLabel welcomeLabel = new JLabel("Herzlich Willkommen bei ShareBoxUltimate");
 		welcomeLabel.setFont(font);
 		welcomeLabel.setBounds(42, 11, 620, 91);
 		add(welcomeLabel);
@@ -54,8 +53,7 @@ public class LoginPanel extends ChangeablePanel {
 		add(loginLabel);
 
 		// label statement for registration
-		JLabel lblNochKeinLogin = new JLabel(
-				"Noch kein Login? Dann melden Sie sich jetzt an:");
+		JLabel lblNochKeinLogin = new JLabel("Noch kein Login? Dann melden Sie sich jetzt an:");
 		lblNochKeinLogin.setBounds(134, 446, 376, 34);
 		lblNochKeinLogin.setFont(font2);
 		add(lblNochKeinLogin);
@@ -70,8 +68,7 @@ public class LoginPanel extends ChangeablePanel {
 			}
 		});
 
-		loginNameField
-				.setToolTipText("Bitte geben Sie hier ihren Benutzernamen ein");
+		loginNameField.setToolTipText("Bitte geben Sie hier ihren Benutzernamen ein");
 		loginNameField.setBounds(190, 204, 110, 50);
 		add(loginNameField);
 		loginNameField.setFont(font2);
@@ -105,11 +102,9 @@ public class LoginPanel extends ChangeablePanel {
 		forgottenLogin.setFont(font2);
 		forgottenLogin.setContentAreaFilled(false);
 		forgottenLogin.setBounds(190, 375, 220, 51);
-		forgottenLogin
-				.setToolTipText("Bitte klicken Sie hier, um ihren Benutzernamen und Passwort zu erfahren");
+		forgottenLogin.setToolTipText("Bitte klicken Sie hier, um ihren Benutzernamen und Passwort zu erfahren");
 
-		loginPasswordField
-				.setToolTipText("Bitte geben Sie hier ihr Passwort ein");
+		loginPasswordField.setToolTipText("Bitte geben Sie hier ihr Passwort ein");
 		loginPasswordField.addKeyListener(new KeyAdapter() {
 			@Override
 			// login with pressing enter key after password
@@ -120,14 +115,14 @@ public class LoginPanel extends ChangeablePanel {
 					String name = loginNameField.getText();
 					// string constructor - creates string from charArray
 
-					String password = new String(loginPasswordField
-							.getPassword());
+					String password = new String(loginPasswordField.getPassword());
 					User user = controller.getUser(name, password);
 
 					if (user != null) {
 
 						login(user);
-					} else {
+					}
+					else {
 						// show error message
 						loginFailedLabel.setText("Falsche Login-Daten");
 						add(forgottenLogin);
@@ -142,8 +137,7 @@ public class LoginPanel extends ChangeablePanel {
 								changePanel(new ForgottenLoginPanel(controller));
 							}
 						};
-						forgottenLogin
-								.addActionListener(forgottenLoginClickedActionListener);
+						forgottenLogin.addActionListener(forgottenLoginClickedActionListener);
 						add(forgottenLogin);
 					}
 				}
@@ -186,7 +180,8 @@ public class LoginPanel extends ChangeablePanel {
 
 					login(user);
 
-				} else {
+				}
+				else {
 					// show error message
 					loginFailedLabel.setText("Falsche Login-Daten");
 					add(forgottenLogin);
@@ -200,8 +195,7 @@ public class LoginPanel extends ChangeablePanel {
 							changePanel(new ForgottenLoginPanel(controller));
 						}
 					};
-					forgottenLogin
-							.addActionListener(forgottenLoginClickedActionListener);
+					forgottenLogin.addActionListener(forgottenLoginClickedActionListener);
 					add(forgottenLogin);
 				}
 			}

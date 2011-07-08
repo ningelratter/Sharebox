@@ -162,6 +162,10 @@ public class UserTest {
 		assertEquals("rootDir equals userID",rootDir,path);
 	
 	}
+	public void resetGlobal(){
+		
+		user = null;
+	}
 	
 
 }

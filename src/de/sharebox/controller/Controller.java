@@ -11,7 +11,7 @@ import de.sharebox.services.HistoryService;
 import de.sharebox.services.UserService;
 
 /**
- * This class controll the services (UserService, FileService,
+ * This class controls the services (UserService, FileService,
  * DirectoryService).
  * 
  * @author Eilin
@@ -21,11 +21,11 @@ import de.sharebox.services.UserService;
 
 public class Controller {
 
-	private UserService userService;
+	private final UserService userService;
 
-	private HistoryService historyService;
+	private final HistoryService historyService;
 
-	private FileService fileService;
+	private final FileService fileService;
 
 	private User loggedInUser;
 

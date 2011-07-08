@@ -1,6 +1,3 @@
-**
-*
-*/
 package de.sharebox.gui;
 
 import java.awt.Font;

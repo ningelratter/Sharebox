@@ -81,8 +81,11 @@ public class MenuPanel extends ChangeablePanel {
 		JMenu mnLogout = new JMenu("Logout");
 		menuBar.add(mnLogout);
 
+		JMenuItem mntmLogout = new JMenuItem("Logout");
+		mnLogout.add(mntmLogout);
+
 		// logs a user out - leads back in loginPanel
-		mnLogout.addMouseListener(new MouseAdapter() {
+		mntmLogout.addMouseListener(new MouseAdapter() {
 
 			@Override
 			public void mouseReleased(MouseEvent event3) {

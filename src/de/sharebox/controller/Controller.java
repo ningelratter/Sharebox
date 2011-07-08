@@ -2,8 +2,11 @@ package de.sharebox.controller;
 
 import java.util.List;
 
+import de.sharebox.entities.AbstractFile;
+import de.sharebox.entities.Dir;
 import de.sharebox.entities.History;
 import de.sharebox.entities.User;
+import de.sharebox.services.FileService;
 import de.sharebox.services.HistoryService;
 import de.sharebox.services.UserService;
 
@@ -18,13 +21,19 @@ import de.sharebox.services.UserService;
 
 public class Controller {
 
-	private final UserService userService;
-	private final HistoryService historyService;
+	private UserService userService;
+
+	private HistoryService historyService;
+
+	private FileService fileService;
+
+	private User loggedInUser;
 
 	// constructor
 	public Controller() {
 		userService = new UserService();
 		historyService = new HistoryService();
+		fileService = new FileService();
 	}
 
 	/**
@@ -45,18 +54,20 @@ public class Controller {
 
 	}
 
-	/**
-	 * @author Eilin
-	 * @param name
-	 * @param password
-	 * @return the user
-	 */
-	// is removing user from data bank
 	public void removeUser(User user) {
-
 		userService.removeUser(user);
 		historyService.logremoveUser(user);
+	}
 
+	public User login(String name, String password) {
+		User user = getUser(name, password);
+		loggedInUser = user;
+		return user;
+	}
+
+	public void logout() {
+		saveData();
+		loggedInUser = null;
 	}
 
 	public User getUser(String name, String password) {
@@ -100,9 +111,34 @@ public class Controller {
 
 	}
 
+<<<<<<< HEAD
 	// calls the Log entries
 	public List<History> getHistory(int idI) {
 		return historyService.getHistoryEntriesByUsers(idI);
+=======
+	// calls the Logentries
+	public List<History> getHistory(int userId) {
+		return historyService.getHistoryEntriesByUsers(userId);
+	}
+
+	public void createDir(String folderName, Dir dir) {
+		fileService.createDir(loggedInUser.getId(), folderName, dir);
+		historyService.logFolderCreation(loggedInUser.getId(), folderName);
+	}
+
+	public void createTextFile(String fileName, Dir dir) {
+		fileService.createTextFile(loggedInUser.getId(), fileName, dir);
+		historyService.logTextFileCreation(loggedInUser.getId(), fileName);
+	}
+
+	public void removeFile(AbstractFile file) {
+		fileService.removeElement(file);
+		historyService.logFileDeletion(loggedInUser.getId(), file.getName());
+	}
+
+	public Dir getRootDir() {
+		return fileService.getRootDir(loggedInUser.getId());
+>>>>>>> 058caaeea1132cc4e3c1b56f776b87a4769cb83e
 	}
 	//
 	public void createDirector(int idU, String nameOfDirectory) {

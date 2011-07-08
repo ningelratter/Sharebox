@@ -46,6 +46,14 @@ public class HistoryService {
 
 	}
 
+	// logs a directory created action
+	
+	public void logDirectoryCreated(int idU, String nameOfDirectory) {
+
+		createHistory(idU, "Directory:" + nameOfDirectory + " created");
+
+	}
+
 	// removes user from data bank and saves the change
 	public void logremoveUser(User user) {
 

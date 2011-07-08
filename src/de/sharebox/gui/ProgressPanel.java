@@ -14,6 +14,7 @@ public class ProgressPanel extends JPanel {
 	private static final long serialVersionUID = 992059630592376542L;
 
 	public ProgressPanel(int limit) {
+		super();
 
 		setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED));
 

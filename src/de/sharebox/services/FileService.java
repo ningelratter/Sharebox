@@ -8,12 +8,10 @@ import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
-import de.sharebox.controller.Controller;
 import de.sharebox.entities.AbstractFile;
 import de.sharebox.entities.Dir;
 import de.sharebox.entities.TextFile;
 import de.sharebox.entities.User;
-import de.sharebox.gui.HomePanel;
 import de.sharebox.models.UserModel;
 
 /**
@@ -102,13 +100,11 @@ public class FileService implements Serializable {
 	}
 
 	// creates a text-file
-	public void createTextFile(int userId, String fileName, Dir parent,
-			User user) {
+	public void createTextFile(int userId, String fileName, Dir parent, User user) {
 		TextFile file = new TextFile(userId, fileName, parent);
 		addChild(parent, file);
-		
-	
-		}
+	}
+
 
 	private void addChild(Dir parent, AbstractFile file) {
 

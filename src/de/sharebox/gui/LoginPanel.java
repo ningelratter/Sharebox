@@ -21,9 +21,10 @@ import de.sharebox.models.UserModel;
 
 /**
  * 
- * This GUI is view for the Login. It extends from ChangeablePanel.
+ * This GUI is the view for the Login. It extends from ChangeablePanel.
  * 
- * @author Eilin, MW * @version 11.06.11
+ * @author Eilin, MW
+ * @version 11.06.11
  * 
  * 
  */
@@ -40,6 +41,7 @@ public class LoginPanel extends ChangeablePanel {
 		setLayout(null);
 		Font font = new Font("Tahoma", Font.PLAIN, 28);
 		Font font2 = new Font("Tahoma", Font.PLAIN, 16);
+
 		// Welcome Label
 		JLabel welcomeLabel = new JLabel("Herzlich Willkommen bei ShareBoxUltimate");
 		welcomeLabel.setFont(font);
@@ -68,6 +70,7 @@ public class LoginPanel extends ChangeablePanel {
 			}
 		});
 
+		// create the statement to put in user name
 		loginNameField.setToolTipText("Bitte geben Sie hier ihren Benutzernamen ein");
 		loginNameField.setBounds(190, 204, 110, 50);
 		add(loginNameField);
@@ -104,6 +107,7 @@ public class LoginPanel extends ChangeablePanel {
 		forgottenLogin.setBounds(190, 375, 220, 51);
 		forgottenLogin.setToolTipText("Bitte klicken Sie hier, um ihren Benutzernamen und Passwort zu erfahren");
 
+		// create the statement to put in password
 		loginPasswordField.setToolTipText("Bitte geben Sie hier ihr Passwort ein");
 		loginPasswordField.addKeyListener(new KeyAdapter() {
 			@Override
@@ -121,18 +125,18 @@ public class LoginPanel extends ChangeablePanel {
 					if (user != null) {
 
 						login(user);
-					}
-					else {
+					} else {
 						// show error message
 						loginFailedLabel.setText("Falsche Login-Daten");
 						add(forgottenLogin);
 						forgottenLogin.setVisible(true);
 						forgottenLogin.setText("Benutzerdaten vergessen?");
 
+						/**
+						 * When login failed view change to forgottenLoginPanel
+						 */
 						final ActionListener forgottenLoginClickedActionListener = new ActionListener() {
 							@Override
-							// change the view when user push the register
-							// button
 							public void actionPerformed(final ActionEvent evntg) {
 								changePanel(new ForgottenLoginPanel(controller));
 							}
@@ -143,6 +147,7 @@ public class LoginPanel extends ChangeablePanel {
 				}
 			}
 		});
+		//create password field
 		loginPasswordField.setPreferredSize(new Dimension(53, 20));
 		loginPasswordField.setBounds(316, 206, 128, 50);
 		add(loginPasswordField);
@@ -180,8 +185,7 @@ public class LoginPanel extends ChangeablePanel {
 
 					login(user);
 
-				}
-				else {
+				} else {
 					// show error message
 					loginFailedLabel.setText("Falsche Login-Daten");
 					add(forgottenLogin);

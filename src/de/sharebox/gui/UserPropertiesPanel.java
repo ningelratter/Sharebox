@@ -39,7 +39,8 @@ public class UserPropertiesPanel extends MenuPanel {
 	private Popup popup, popup1;
 	private final User user;
 
-	public UserPropertiesPanel(final Controller controller, final UserModel userModel) {
+	public UserPropertiesPanel(final Controller controller,
+			final UserModel userModel) {
 
 		super(controller, userModel);
 		user = userModel.getUser();
@@ -47,7 +48,9 @@ public class UserPropertiesPanel extends MenuPanel {
 		Font font = new Font("Tahoma", Font.PLAIN, 18);
 		Font font2 = new Font("Tahoma", Font.PLAIN, 16);
 		Font font3 = new Font("Tahoma", Font.PLAIN, 14);
-		JLabel welcomeUserText = new JLabel("Hier koennen Sie die Einstellungen fuer: " + user.getName() + " aendern!");
+		JLabel welcomeUserText = new JLabel(
+				"Hier koennen Sie die Einstellungen fuer: " + user.getName()
+						+ " aendern!");
 		welcomeUserText.setFont(font);
 		welcomeUserText.setBounds(25, 33, 615, 54);
 		add(welcomeUserText);
@@ -111,7 +114,8 @@ public class UserPropertiesPanel extends MenuPanel {
 			 * 
 			 */
 			private static final long serialVersionUID = -3117312090257427767L;
-			String[] values = new String[] { "Deutsch = 0", "Englisch = 1", "Franz\u00F6sisch = 2", "Spanisch = 3" };
+			String[] values = new String[] { "Deutsch = 0", "Englisch = 1",
+					"Franz\u00F6sisch = 2", "Spanisch = 3" };
 
 			public int getSize() {
 				return values.length;
@@ -143,7 +147,8 @@ public class UserPropertiesPanel extends MenuPanel {
 				changePanel(new UserPropertiesPanel(controller, userModel));
 			}
 		});
-		einstellungenndern.setToolTipText("Hier klicken, wenn die getaetigten Einstellungen uebernommen werden sollen");
+		einstellungenndern
+				.setToolTipText("Hier klicken, wenn die getaetigten Einstellungen uebernommen werden sollen");
 		einstellungenndern.setFont(font);
 		einstellungenndern.setBounds(168, 462, 238, 54);
 		add(einstellungenndern);
@@ -185,7 +190,8 @@ public class UserPropertiesPanel extends MenuPanel {
 
 			}
 		});
-		removeAccount.setToolTipText("Hier klicken, wenn Sie ihren Account l\u00F6schen m\u00F6chten");
+		removeAccount
+				.setToolTipText("Hier klicken, wenn Sie ihren Account l\u00F6schen m\u00F6chten");
 		removeAccount.setFont(font);
 		removeAccount.setBounds(168, 537, 238, 54);
 		add(removeAccount);
@@ -215,9 +221,10 @@ public class UserPropertiesPanel extends MenuPanel {
 
 		String email = emailField.getText();
 		// checking the mail properties
-		boolean validEmail =
-				email.contains("@") && email.contains(".de") || email.contains("@") && email.contains(".com") ||
-						email.contains("@") && email.contains(".fr") || email.contains("@") && email.contains(".net");
+		boolean validEmail = email.contains("@") && email.contains(".de")
+				|| email.contains("@") && email.contains(".com")
+				|| email.contains("@") && email.contains(".fr")
+				|| email.contains("@") && email.contains(".net");
 
 		if (validEmail) {
 
@@ -239,9 +246,11 @@ public class UserPropertiesPanel extends MenuPanel {
 		JButton stay = new JButton();
 		add(stay);
 
-		popup = factory.getPopup(frame, remove = new JButton("Ja, Accounnt loeschen"), 250, 300);
+		popup = factory.getPopup(frame, remove = new JButton(
+				"Ja, Accounnt loeschen"), 250, 300);
 		frame.setVisible(true);
-		popup1 = factory.getPopup(frame, stay = new JButton("Nein, Account nicht loeschen"), 250, 400);
+		popup1 = factory.getPopup(frame, stay = new JButton(
+				"Nein, Account nicht loeschen"), 250, 400);
 		popup.show();
 		popup1.show();
 		remove.addMouseListener(new MouseAdapter() {

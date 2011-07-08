@@ -8,7 +8,7 @@ import de.sharebox.services.HistoryService;
 import de.sharebox.services.UserService;
 
 /**
- * This class controll the services (UserService, FileService,
+ * This class controls the services (UserService, FileService,
  * DirectoryService).
  * 
  * @author Eilin
@@ -67,7 +67,7 @@ public class Controller {
 		return userService.getUserByMail(mail);
 	}
 
-	// calls the userService to save all Userprofiles
+	// calls the userService to save all User profiles
 	public void saveData() {
 		userService.saveUsers();
 	}
@@ -86,7 +86,7 @@ public class Controller {
 		historyService.logUserPasswordChanged(user.getId());
 	}
 
-	// calls the userService to change the mailadress of the user
+	// calls the userService to change the mail adress of the user
 	public void setUserEmail(User user, String email) {
 
 		userService.setUserEmail(user, email);
@@ -100,8 +100,16 @@ public class Controller {
 
 	}
 
-	// calls the Logentries
+	// calls the Log entries
 	public List<History> getHistory(int idI) {
 		return historyService.getHistoryEntriesByUsers(idI);
 	}
+	//
+	public void createDirector(int idU, String nameOfDirectory) {
+		
+		//erstell Aktion 
+		historyService.logDirectoryCreated(idU, nameOfDirectory);
+
+	}
+
 }

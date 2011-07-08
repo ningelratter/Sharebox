@@ -51,3 +51,4 @@ public class History {
 		return activity;
 	}
 }
+

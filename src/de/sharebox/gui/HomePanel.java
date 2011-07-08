@@ -57,9 +57,10 @@ public class HomePanel extends MenuPanel {
 		JButton addFolderButton = new JButton("+");
 		addFolderButton.addMouseListener(new MouseAdapter() {
 			@Override
-			public void mouseClicked(MouseEvent e) {
+			public void mouseClicked(MouseEvent eEvent1) {
 
-				String filenameDialog = JOptionPane.showInputDialog("Bitte Dateinamen eingeben");
+				String filenameDialog = JOptionPane
+						.showInputDialog("Bitte Dateinamen eingeben");
 				byte[] bytes = filenameDialog.getBytes();
 				if (bytes != null) {
 					String folderName = new String(bytes);
@@ -78,7 +79,7 @@ public class HomePanel extends MenuPanel {
 		JButton removeFolderButton = new JButton("-");
 		removeFolderButton.addMouseListener(new MouseAdapter() {
 			@Override
-			public void mouseClicked(MouseEvent e) {
+			public void mouseClicked(MouseEvent eEvent2) {
 				File selectedFile = treePanel.getSelectedFile();
 				if (selectedFile != null && selectedFile.exists()) {
 					selectedFile.delete();

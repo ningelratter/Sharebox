@@ -4,9 +4,9 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * Objectclass directory
+ * Object class directory
  * 
- * @author MW aus Berlin
+ * @author MW 
  * @version 11.06.11
  * 
  */

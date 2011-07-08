@@ -18,7 +18,7 @@ import de.sharebox.models.UserModel;
  * 
  * This GUI is the view when login was successfully. Extends from MenuPanel.
  * 
- * @author MW
+ * @author MW, Eilin
  * @version 11.06.11
  * 
  * 
@@ -32,9 +32,9 @@ public class HomePanel extends MenuPanel {
 	private static final long serialVersionUID = 2268226143091328329L;
 
 	/**
-	 * create the home view of the user
+	 * Create the home view of the user.
 	 * 
-	 * @param conotroller
+	 * @param controller
 	 * @param userModel
 	 */
 	public HomePanel(final Controller controller, final UserModel userModel) {
@@ -49,13 +49,19 @@ public class HomePanel extends MenuPanel {
 		label.setBounds(20, 69, 310, 56);
 		add(label);
 
+		//creates a progressPanel limit
 		ProgressPanel progressPanel = new ProgressPanel(user.getLimit());
 		progressPanel.setBounds(420, 50, 180, 25);
 		add(progressPanel);
 
 		final TreePanel treePanel = new TreePanel(controller);
 
+		//create the button directory
 		JButton addFolderButton = new JButton("O");
+		
+		/**
+		 * When button create directory is clicked user have to put dataname in and directory is produced.
+		 */
 		addFolderButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent event1) {
@@ -76,11 +82,17 @@ public class HomePanel extends MenuPanel {
 			}
 		});
 
+		//create button directory accessible
 		addFolderButton.setBounds(420, 80, 25, 25);
 		addFolderButton.setToolTipText("Ordner anlegen");
 		add(addFolderButton);
 
+		//create button data(file)
 		JButton addFileButton = new JButton("D");
+	
+		/**
+		 * When button file accessible is clicked user have to put directoryname in and file is produced.
+		 */
 		addFileButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent event2) {
@@ -102,11 +114,17 @@ public class HomePanel extends MenuPanel {
 			}
 		});
 
+		//create button file accessible
 		addFileButton.setBounds(450, 80, 25, 25);
 		addFileButton.setToolTipText("Datei anlegen");
 		add(addFileButton);
 
+		//create button file oder directory delete
 		JButton removeFileButton = new JButton("-");
+	
+		/**
+		 * When button remove is clicked selected file or directory is deleted.
+		 */
 		removeFileButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent event3) {
@@ -118,6 +136,7 @@ public class HomePanel extends MenuPanel {
 			}
 		});
 
+		//removes selected file or directory
 		removeFileButton.setBounds(480, 80, 25, 25);
 		removeFileButton.setToolTipText("Ordner oder Datei entfernen");
 		add(removeFileButton);
@@ -125,6 +144,13 @@ public class HomePanel extends MenuPanel {
 		add(treePanel);
 	}
 
+	/**
+	 * Method gives selected directory back.
+	 * 
+	 * @param controller
+	 * @param selectedItem
+	 * @return
+	 */
 	private Dir getSelectedDir(final Controller controller,
 			AbstractFile selectedItem) {
 		Dir selectedDir;

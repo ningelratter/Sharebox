@@ -53,6 +53,7 @@ public class HistoryPanel extends MenuPanel {
 					.append(history.getActivity()).append("\n").toString();
 		}
 
+		//create the layout of the current user
 		JTextArea currentUserHistory = new JTextArea(historyString);
 		currentUserHistory.setMargin(new Insets(10, 10, 10, 10));
 		currentUserHistory.setFont(new Font("Tahoma", Font.PLAIN, 14));

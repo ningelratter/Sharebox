@@ -8,10 +8,12 @@ import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
+import de.sharebox.controller.Controller;
 import de.sharebox.entities.AbstractFile;
 import de.sharebox.entities.Dir;
 import de.sharebox.entities.TextFile;
 import de.sharebox.entities.User;
+import de.sharebox.gui.HomePanel;
 import de.sharebox.models.UserModel;
 
 /**
@@ -33,9 +35,7 @@ public class FileService implements Serializable {
 		if (!dir.isDirectory()) {
 
 			dir.mkdir();
-		}
-		else {
-			System.out.println("order gibts es schon!");
+		} else {
 
 		}
 	}
@@ -64,10 +64,9 @@ public class FileService implements Serializable {
 		// can't remove if directory doess'nt exists or if its the RootDir of a
 		// user
 		if (dir.getPath().equals(path + "\\" + idU)) {
-			System.out.println("root");
+
 			return false;
-		}
-		else {
+		} else {
 			deleteSubFolder(dir);
 			return true;
 		}
@@ -88,22 +87,34 @@ public class FileService implements Serializable {
 
 		if (rootDirs.containsKey(userId)) {
 			return rootDirs.get(userId);
-		}
-		else {
+		} else {
 			Dir dir = new Dir(userId, "ROOT", null);
 			rootDirs.put(userId, dir);
 			return dir;
 		}
 	}
 
-	public void createDir(int userId, String folderName, Dir parent) {
+	// creates a directory
+	public void createDir(int userId, String folderName, Dir parent, User user) {
 		Dir dir = new Dir(userId, folderName, parent);
 		addChild(parent, dir);
+		UserService userService = new UserService();
+		int limit = (userService.getLimit(user) - 5);
+		userService.setUserLimit(user, limit);
 	}
 
-	public void createTextFile(int userId, String fileName, Dir parent) {
+	// creates a text-file
+	public void createTextFile(int userId, String fileName, Dir parent,
+			User user) {
 		TextFile file = new TextFile(userId, fileName, parent);
 		addChild(parent, file);
+		UserService userService = new UserService();
+		int limit = (userService.getLimit(user) - 5);
+		userService.setUserLimit(user, limit);
+		UserModel userModel = new UserModel(user);
+		Controller controller = new Controller();
+		changePanel(new HomePanel(controller, userModel));
+
 	}
 
 	private void addChild(Dir parent, AbstractFile file) {
@@ -122,8 +133,13 @@ public class FileService implements Serializable {
 		}
 	}
 
-	public void removeElement(AbstractFile file) {
+	// removes directory or file
+	public void removeElement(AbstractFile file, User user) {
 		Dir parent = file.getParent();
 		parent.removeChild(file);
+		UserService userService = new UserService();
+		int limit = (userService.getLimit(user) + 5);
+		userService.setUserLimit(user, limit);
+
 	}
 }

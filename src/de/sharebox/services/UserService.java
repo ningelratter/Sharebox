@@ -44,7 +44,7 @@ public class UserService {
 
 	// creates a user account and checks before, if id is unique
 	public User createUser(String name, String password, String mail) {
-		// check if userdata is not empty
+		// check if user data is not empty
 		if (name != null && !name.isEmpty() && password != null
 				&& !password.isEmpty()) {
 
@@ -69,14 +69,21 @@ public class UserService {
 		user.setPassword(password);
 	}
 
-	// changes the Mailadress of the user
+	// changes the mail of the user
 	public void setUserEmail(User user, String email) {
 		user.setMail(email);
 	}
 
-	// TODO limit wird bisher noch nicht geaendert!!!
+	// is changing the limit of the user
 	public void setUserLimit(User user, int limit) {
 		user.setLimit(limit);
+	}
+
+	// get user limit
+	public int getLimit(User user) {
+
+		return user.getLimit();
+
 	}
 
 	/**

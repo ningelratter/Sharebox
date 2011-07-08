@@ -2,16 +2,19 @@ package de.sharebox.controller;
 
 import java.util.List;
 
+import com.sun.java.swing.plaf.nimbus.ProgressBarPainter;
+
 import de.sharebox.entities.AbstractFile;
 import de.sharebox.entities.Dir;
 import de.sharebox.entities.History;
 import de.sharebox.entities.User;
+import de.sharebox.gui.ChangeablePanel;
 import de.sharebox.services.FileService;
 import de.sharebox.services.HistoryService;
 import de.sharebox.services.UserService;
 
 /**
- * This class controll the services (UserService, FileService,
+ * This class controls the services (UserService, FileService,
  * DirectoryService).
  * 
  * @author Eilin
@@ -21,11 +24,11 @@ import de.sharebox.services.UserService;
 
 public class Controller {
 
-	private UserService userService;
+	private final UserService userService;
 
-	private HistoryService historyService;
+	private final HistoryService historyService;
 
-	private FileService fileService;
+	private final FileService fileService;
 
 	private User loggedInUser;
 
@@ -118,18 +121,24 @@ public class Controller {
 	}
 
 	public void createDir(String folderName, Dir dir) {
-		fileService.createDir(loggedInUser.getId(), folderName, dir);
+		fileService.createDir(loggedInUser.getId(), folderName, dir,loggedInUser);
 		historyService.logFolderCreation(loggedInUser.getId(), folderName);
+	
+	
 	}
 
 	public void createTextFile(String fileName, Dir dir) {
-		fileService.createTextFile(loggedInUser.getId(), fileName, dir);
+		fileService.createTextFile(loggedInUser.getId(), fileName, dir,loggedInUser);
 		historyService.logTextFileCreation(loggedInUser.getId(), fileName);
+		
+	
 	}
 
 	public void removeFile(AbstractFile file) {
-		fileService.removeElement(file);
+		fileService.removeElement(file,loggedInUser);
 		historyService.logFileDeletion(loggedInUser.getId(), file.getName());
+	
+		
 	}
 
 	public Dir getRootDir() {

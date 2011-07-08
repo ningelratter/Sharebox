@@ -135,8 +135,6 @@ changeUserName(user);
 changeUserPassword(user);
 changeUserEmail(user);
 controller.saveData();
-// TODO geht vllt auch mit repaint() aber wusste nicht wie! ;)
-// is refreshing the view
 changePanel(new UserPropertiesPanel(controller, userModel));
 }
 });

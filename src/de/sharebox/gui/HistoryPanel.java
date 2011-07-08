@@ -14,7 +14,8 @@ import de.sharebox.models.UserModel;
 
 /**
  * 
- * This GUI shows the historyentries of the user. Extends from MenuPanel.
+ * 
+ * This GUI shows the history entries of the user. Extends from MenuPanel.
  * 
  * @author Eilin
  * @version 03.07.11
@@ -44,16 +45,14 @@ public class HistoryPanel extends MenuPanel {
 		int userId = user.getId();
 
 		List<History> historyEntries = controller.getHistory(userId);
-		
-		//statemant at the beginning of the panel
+
+		// statemant at the beginning of the panel
 		String historyString = "History of user " + username + "\n\n";
 		for (History history : historyEntries) {
-			historyString =
-					new StringBuffer().append(historyString).append(history.getDate()).append(" ").append(history.getActivity())
-							.append("\n").toString();
+			historyString = new StringBuffer().append(historyString).append(history.getDate()).append(" ")
+					.append(history.getActivity()).append("\n").toString();
 		}
 
-		//layout of the history
 		JTextArea currentUserHistory = new JTextArea(historyString);
 		currentUserHistory.setMargin(new Insets(10, 10, 10, 10));
 		currentUserHistory.setFont(new Font("Tahoma", Font.PLAIN, 14));

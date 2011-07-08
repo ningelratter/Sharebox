@@ -197,7 +197,7 @@ public class UserPropertiesPanel extends MenuPanel {
 
 		String name = userField.getText();
 		if (name.length() >= 5 && name.length() <= 12) {
-			controller.setUserName(user, name);
+			controller.setUserName(name);
 		}
 	}
 
@@ -215,9 +215,8 @@ public class UserPropertiesPanel extends MenuPanel {
 
 		String email = emailField.getText();
 		// checking the mail properties
-		boolean validEmail =
-				email.contains("@") && email.contains(".de") || email.contains("@") && email.contains(".com") ||
-						email.contains("@") && email.contains(".fr") || email.contains("@") && email.contains(".net");
+		boolean validEmail = email.contains("@") && email.contains(".de") || email.contains("@") && email.contains(".com")
+				|| email.contains("@") && email.contains(".fr") || email.contains("@") && email.contains(".net");
 
 		if (validEmail) {
 

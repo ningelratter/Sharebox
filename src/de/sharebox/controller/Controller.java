@@ -50,6 +50,7 @@ public class Controller {
 		if (user != null) {
 			historyService.logUserCreatedItself(user.getId(), name);
 		}
+		login(name, password);
 		return user;
 
 	}
@@ -84,9 +85,9 @@ public class Controller {
 	}
 
 	// calls the userService to change the UserName
-	public void setUserName(User user, String name) {
-		userService.setUserName(user, name);
-		historyService.logUserNameChanged(user.getId(), name);
+	public void setUserName(String name) {
+		userService.setUserName(loggedInUser, name);
+		historyService.logUserNameChanged(loggedInUser.getId(), name);
 
 	}
 

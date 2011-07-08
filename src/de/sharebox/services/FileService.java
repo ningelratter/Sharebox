@@ -98,9 +98,7 @@ public class FileService implements Serializable {
 	public void createDir(int userId, String folderName, Dir parent, User user) {
 		Dir dir = new Dir(userId, folderName, parent);
 		addChild(parent, dir);
-		UserService userService = new UserService();
-		int limit = (userService.getLimit(user) - 5);
-		userService.setUserLimit(user, limit);
+		
 	}
 
 	// creates a text-file
@@ -108,14 +106,9 @@ public class FileService implements Serializable {
 			User user) {
 		TextFile file = new TextFile(userId, fileName, parent);
 		addChild(parent, file);
-		UserService userService = new UserService();
-		int limit = (userService.getLimit(user) - 5);
-		userService.setUserLimit(user, limit);
-		UserModel userModel = new UserModel(user);
-		Controller controller = new Controller();
-		changePanel(new HomePanel(controller, userModel));
-
-	}
+		
+	
+		}
 
 	private void addChild(Dir parent, AbstractFile file) {
 
@@ -137,9 +130,6 @@ public class FileService implements Serializable {
 	public void removeElement(AbstractFile file, User user) {
 		Dir parent = file.getParent();
 		parent.removeChild(file);
-		UserService userService = new UserService();
-		int limit = (userService.getLimit(user) + 5);
-		userService.setUserLimit(user, limit);
 
 	}
 }

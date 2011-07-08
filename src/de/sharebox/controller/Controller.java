@@ -119,17 +119,18 @@ public class Controller {
 	public List<History> getHistory(int userId) {
 		return historyService.getHistoryEntriesByUsers(userId);
 	}
-
+	
 	public void createDir(String folderName, Dir dir) {
 		fileService.createDir(loggedInUser.getId(), folderName, dir,loggedInUser);
 		historyService.logFolderCreation(loggedInUser.getId(), folderName);
-	
+		userService.changeUserLimit(loggedInUser, 5);
 	
 	}
 
 	public void createTextFile(String fileName, Dir dir) {
 		fileService.createTextFile(loggedInUser.getId(), fileName, dir,loggedInUser);
 		historyService.logTextFileCreation(loggedInUser.getId(), fileName);
+		userService.changeUserLimit(loggedInUser,5);
 		
 	
 	}
@@ -137,6 +138,7 @@ public class Controller {
 	public void removeFile(AbstractFile file) {
 		fileService.removeElement(file,loggedInUser);
 		historyService.logFileDeletion(loggedInUser.getId(), file.getName());
+		userService.changeUserLimit(loggedInUser, -5);
 	
 		
 	}

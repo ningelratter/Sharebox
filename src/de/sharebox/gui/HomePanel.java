@@ -41,7 +41,7 @@ public class HomePanel extends MenuPanel {
 		super(controller, userModel);
 
 		// get the user
-		User user = userModel.getUser();
+		final User user = userModel.getUser();
 
 		// label statement welcome
 		JLabel label = new JLabel("Herzlich Willkommen, " + user.getName());
@@ -49,7 +49,7 @@ public class HomePanel extends MenuPanel {
 		label.setBounds(20, 69, 310, 56);
 		add(label);
 
-		ProgressPanel progressPanel = new ProgressPanel(user.getLimit());
+		final ProgressPanel progressPanel = new ProgressPanel(user.getLimit());
 		progressPanel.setBounds(420, 50, 180, 25);
 		add(progressPanel);
 
@@ -71,6 +71,7 @@ public class HomePanel extends MenuPanel {
 								selectedItem);
 						controller.createDir(folderName, selectedDir);
 						treePanel.updateTree();
+						changePanel(new HomePanel(controller, userModel));
 					}
 				}
 			}
@@ -97,6 +98,7 @@ public class HomePanel extends MenuPanel {
 								selectedItem);
 						controller.createTextFile(fileName, selectedDir);
 						treePanel.updateTree();
+						changePanel(new HomePanel(controller, userModel));
 					}
 				}
 			}
@@ -114,6 +116,7 @@ public class HomePanel extends MenuPanel {
 				if (selectedItem != null) {
 					controller.removeFile(selectedItem);
 					treePanel.updateTree();
+					changePanel(new HomePanel(controller, userModel));
 				}
 			}
 		});

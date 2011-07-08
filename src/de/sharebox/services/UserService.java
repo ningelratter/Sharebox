@@ -74,11 +74,19 @@ public class UserService {
 		user.setMail(email);
 	}
 
-	// is changing the limit of the user
+	// sets the limit of the user
 	public void setUserLimit(User user, int limit) {
 		user.setLimit(limit);
 	}
-
+	//changes the actual limit 
+	public void changeUserLimit(User user,int valueOfChange){
+		
+		int newLimit = (user.getLimit()-valueOfChange);
+		user.setLimit(newLimit);
+		
+	}
+	
+	
 	// get user limit
 	public int getLimit(User user) {
 
@@ -100,6 +108,23 @@ public class UserService {
 			if (user != null) {
 				if (name.equals(user.getName())
 						&& password.equals(user.getPassword())) {
+					return user;
+				} else {
+					return null;
+				}
+			} else {
+
+				return null;
+			}
+		}
+		return null;
+	}
+	//gets User by his Id
+	public User getUserById(int userId) {
+
+		for (User user : userByIdMap.values()) {
+			if (user != null) {
+				if (userId == (user.getId())) {
 					return user;
 				} else {
 					return null;

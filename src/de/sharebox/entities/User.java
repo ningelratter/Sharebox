@@ -1,9 +1,6 @@
 package de.sharebox.entities;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import de.sharebox.services.DirService;
+import de.sharebox.services.FileService;
 
 /**
  * 
@@ -23,15 +20,13 @@ public class User {
 	private String name;
 	private String password;
 	private String mail;
-	private List<String> dirList = new ArrayList<String>();
 
 	public User() {
 		// standard constructor
 
 	}
 
-	public User(String name, int idU, int limit, String password, String mail,
-			int language) {
+	public User(String name, int idU, int limit, String password, String mail, int language) {
 
 		setName(name);
 		setId(idU);
@@ -62,22 +57,8 @@ public class User {
 		this.mail = mail;
 	}
 
-	public void setDirList(List<String> dirList) {
-		this.dirList = dirList;
-	}
-
 	public void setLanguage(int language) {
 		this.language = language;
-	}
-
-	/**
-	 * add a directory to a user
-	 * 
-	 * @author Eilin
-	 * @param dir
-	 */
-	public void addDir(String dir) {
-		dirList.add(dir);
 	}
 
 	public String getName() {
@@ -104,10 +85,6 @@ public class User {
 		return language;
 	}
 
-	public List<String> getDirList() {
-		return dirList;
-	}
-
 	@Override
 	public String toString() {
 		return idU + ": " + name;
@@ -115,7 +92,7 @@ public class User {
 
 	public void setRootDir(int idU) {
 
-		DirService.createRootDirLocation(idU);
+		FileService.createRootDirLocation(idU);
 
 	}
 

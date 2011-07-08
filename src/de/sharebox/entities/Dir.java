@@ -1,108 +1,46 @@
 package de.sharebox.entities;
 
-import java.util.Date;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Objectclass directory
  * 
  * @author MW aus Berlin
  * @version 11.06.11
  * 
  */
 
-public class Dir {
+public class Dir extends AbstractFile {
 
-	private User owner;
-	private String name;
-	private Date creationDate;
-	private Date lastChange;
-	private int idD;
-	private double size;
-	private List<String> userList;
-	private List<String> fileList;
+	private List<AbstractFile> children = new ArrayList<AbstractFile>();
 
-	// constructor
-	public Dir(String name, User owner, double size, Date creationDate,
-			Date lastChange, int idD, List<String> userlist,
-			List<String> filelist) {
-
-		setName(name);
-		setOwner(owner);
-		setSize(size);
-		setCreationDate(creationDate);
-		setLastChange(lastChange);
-		setId(idD);
-		setUserList(userList);
-		setFileList(fileList);
-
+	public Dir(int userId, String name, Dir parent) {
+		super(userId, name, parent);
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public List<AbstractFile> getChildren() {
+		return children;
 	}
 
-	public void setOwner(User Owner) {
-		this.owner = Owner;
+	public void addChild(AbstractFile child) {
+		children.add(child);
 	}
 
-	public void setSize(double size) {
-		this.size = size;
+	public void removeChild(AbstractFile childToRemove) {
+
+		List<AbstractFile> newChildren = new ArrayList<AbstractFile>();
+
+		for (AbstractFile child : children) {
+			if (!child.getName().equals(childToRemove.getName())) {
+				newChildren.add(child);
+			}
+		}
+
+		children = newChildren;
 	}
 
-	public void setCreationDate(Date creationDate) {
-		this.creationDate = creationDate;
-
+	@Override
+	public boolean isDir() {
+		return true;
 	}
-
-	public void setLastChange(Date lastChange) {
-		this.lastChange = lastChange;
-	}
-
-	public void setId(int idD) {
-		this.idD = idD;
-	}
-
-	public void setUserList(List<String> userList) {
-		this.userList = userList;
-	}
-
-	public void setFileList(List<String> fileList) {
-		this.fileList = fileList;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public User getOwner() {
-		return owner;
-	}
-
-	public double getSize() {
-		return size;
-	}
-
-	@SuppressWarnings("deprecation")
-	public String getCreationDate() {
-		return creationDate.toLocaleString();
-	}
-
-	@SuppressWarnings("deprecation")
-	public String getLastChange() {
-		return lastChange.toLocaleString();
-	}
-
-	public int getId() {
-		return idD;
-	}
-
-	public List<String> getUserList() {
-		return userList;
-	}
-
-	public List<String> getFileList() {
-		return fileList;
-	}
-
 }

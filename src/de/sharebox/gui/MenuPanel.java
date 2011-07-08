@@ -39,11 +39,6 @@ public class MenuPanel extends ChangeablePanel {
 		menuBar.add(mnHome);
 
 		// creates a submenu on the menubar
-		JMenu mnDatei = new JMenu("Datei");
-		mnDatei.setAutoscrolls(true);
-		menuBar.add(mnDatei);
-
-		// creates a submenu on the menubar
 		JMenu mnBenutzereinstellungen = new JMenu("Benutzereinstellungen");
 		menuBar.add(mnBenutzereinstellungen);
 
@@ -81,40 +76,15 @@ public class MenuPanel extends ChangeablePanel {
 		JMenuItem mntmEinladungenAnnehmen = new JMenuItem("Einladungen annehmen");
 		mnEinladungenVerschicken.add(mntmEinladungenAnnehmen);
 
-		// creates a menu "Verzeichnisliste"
-		JMenu mnVerzeichnisliste = new JMenu("Verzeichnisliste");
-		menuBar.add(mnVerzeichnisliste);
-
-		// creates a submenu "Verzeichnisliste anzeigen"
-		JMenuItem mntmVerzeichnisliste = new JMenuItem("Verzeichnisliste anzeigen");
-		// mouseclick on the submenu "Verzeichnisliste anzeigen" opens
-		// DirPanel-View
-		mntmVerzeichnisliste.addMouseListener(new MouseAdapter() {
-			@Override
-			// Change into DirPanel
-			public void mouseReleased(MouseEvent eevent2) {
-
-				DirPanel dirPanel = new DirPanel(controller, userModel);
-				changePanel(dirPanel);
-			}
-		});
-
-		// Logout menu
-		mnVerzeichnisliste.add(mntmVerzeichnisliste);
-
 		JMenu mnLogout = new JMenu("Logout");
 		menuBar.add(mnLogout);
 
-		JMenuItem mntmLogout = new JMenuItem("Logout");
-		mnLogout.add(mntmLogout);
-
 		// logs a user out - leads back in loginPanel
-		mntmLogout.addMouseListener(new MouseAdapter() {
+		mnLogout.addMouseListener(new MouseAdapter() {
 
 			@Override
 			public void mouseReleased(MouseEvent event3) {
-				// saves the user before logout
-				controller.saveData();
+				controller.logout();
 				LoginPanel loginPanel = new LoginPanel(controller);
 				changePanel(loginPanel);
 			}

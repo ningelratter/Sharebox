@@ -116,7 +116,7 @@ public class LoginPanel extends ChangeablePanel {
 					// string constructor - creates string from charArray
 
 					String password = new String(loginPasswordField.getPassword());
-					User user = controller.getUser(name, password);
+					User user = controller.login(name, password);
 
 					if (user != null) {
 
@@ -174,7 +174,7 @@ public class LoginPanel extends ChangeablePanel {
 				// string constructor - creates a string out of an a charArray
 
 				String password = new String(loginPasswordField.getPassword());
-				User user = controller.getUser(name, password);
+				User user = controller.login(name, password);
 
 				if (user != null) {
 

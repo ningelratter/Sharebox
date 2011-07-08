@@ -38,8 +38,8 @@ public class HistoryService {
 		historyList.add(history);
 		try {
 			saveHistory();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
+		}
+		catch (IOException e) {
 			e.printStackTrace();
 		}
 		return history;
@@ -74,16 +74,31 @@ public class HistoryService {
 		createHistory(idU, " limit changed to " + limit);
 	}
 
-	public List<History> getHistoryEntriesByUsers(int idU) {
+	public void logFileUpload(int idU, String name) {
+		createHistory(idU, " uploaded file '" + name);
+	}
+
+	public void logFileDeletion(int userId, String fileName) {
+		createHistory(userId, " deleted '" + fileName + "'");
+	}
+
+	public void logFolderCreation(int userId, String folderName) {
+		createHistory(userId, " created folder " + folderName);
+	}
+
+	public void logTextFileCreation(int userId, String fileName) {
+		createHistory(userId, " created text file " + fileName);
+	}
+
+	public List<History> getHistoryEntriesByUsers(int userId) {
 
 		List<History> resultList = new ArrayList<History>();
 		for (History history : historyList) {
-			if (history.getUserId() == idU) {
+			if (history.getUserId() == userId) {
 				resultList.add(history);
 			}
 		}
 		return resultList;
-
 	}
 
 	@SuppressWarnings("unchecked")
@@ -96,7 +111,8 @@ public class HistoryService {
 				historyList = (ArrayList<History>) decoder.readObject();
 				decoder.close();
 			}
-		} catch (FileNotFoundException e) {
+		}
+		catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
 
@@ -110,7 +126,8 @@ public class HistoryService {
 			XMLEncoder encoder = new XMLEncoder(fos);
 			encoder.writeObject(historyList);
 			encoder.close();
-		} catch (FileNotFoundException e) {
+		}
+		catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
 	}

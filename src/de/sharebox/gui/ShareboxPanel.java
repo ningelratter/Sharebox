@@ -1,6 +1,5 @@
 package de.sharebox.gui;
 
-import javax.swing.JDesktopPane;
 import javax.swing.JPanel;
 
 import de.sharebox.controller.Controller;
@@ -23,12 +22,9 @@ public abstract class ShareboxPanel extends JPanel {
 	// protected damit Kindklassen drauf zugreifen koennen
 	protected Controller controller;
 
-	protected JDesktopPane desktop;
-
 	// constructor calls the controller
 	public ShareboxPanel(Controller controller) {
 		super();
 		this.controller = controller;
-		this.desktop = desktop;
 	}
 }

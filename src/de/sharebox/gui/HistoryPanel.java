@@ -1,8 +1,11 @@
 package de.sharebox.gui;
 
 import java.awt.Font;
-import java.awt.TextArea;
+import java.awt.Insets;
 import java.util.List;
+
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
 
 import de.sharebox.controller.Controller;
 import de.sharebox.entities.History;
@@ -49,11 +52,12 @@ public class HistoryPanel extends MenuPanel {
 							.append("\n").toString();
 		}
 
-		TextArea currentUserHistory = new TextArea(historyString);
-		currentUserHistory.setFont(new Font("Dialog", Font.BOLD, 12));
-		// currentUserHistory.setToolTipText("History");
+		JTextArea currentUserHistory = new JTextArea(historyString);
+		currentUserHistory.setMargin(new Insets(10, 10, 10, 10));
+		currentUserHistory.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		currentUserHistory.setEditable(false);
-		currentUserHistory.setBounds(25, 50, 500, 500);
-		add(currentUserHistory);
+		JScrollPane scrollPane = new JScrollPane(currentUserHistory);
+		scrollPane.setBounds(25, 50, 500, 500);
+		add(scrollPane);
 	}
 }

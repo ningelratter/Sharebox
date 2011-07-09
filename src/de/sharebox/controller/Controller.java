@@ -69,9 +69,10 @@ public class Controller {
 		return user;
 	}
 
-	public void logout() {
+	public User logout() {
 		saveData();
 		loggedInUser = null;
+		return loggedInUser;
 	}
 
 	public User getUser(String name, String password) {
@@ -82,7 +83,7 @@ public class Controller {
 		return userService.getUserByMail(mail);
 	}
 
-	// calls the userService to save all Userprofiles
+	// calls the userService to save all User profiles
 	public void saveData() {
 		userService.saveUsers();
 	}
@@ -91,7 +92,7 @@ public class Controller {
 	public void setUserName(String name) {
 		userService.setUserName(loggedInUser, name);
 		historyService.logUserNameChanged(loggedInUser.getId(), name);
-
+	
 	}
 
 	// calls the userService to change Users Password

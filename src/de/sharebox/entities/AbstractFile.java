@@ -4,15 +4,15 @@ import java.util.Date;
 
 public abstract class AbstractFile {
 
-	private int userId;
+	private final int userId;
 
-	private String name;
+	private final String name;
 
-	private Date creationDate;
+	private final Date creationDate;
 
 	private Date lastChange;
 
-	private Dir parent;
+	private final Dir parent;
 
 	public AbstractFile(int userId, String name, Dir parent) {
 		this.userId = userId;

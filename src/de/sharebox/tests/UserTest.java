@@ -3,6 +3,7 @@ package de.sharebox.tests;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -47,7 +48,7 @@ public class UserTest {
 
 	@Test
 	public void testSetPassword() {
-		// assert pwd was set
+		// assert password was set
 		user.setPassword("12345");
 		assertEquals("userPwd equals 12345", user.getPassword(), "12345");
 
@@ -98,74 +99,71 @@ public class UserTest {
 
 	@Test
 	public void testGetPassword() {
-		
-		//assert getPwd() delivers right userPwd
+
+		// assert getPwd() delivers right userPwd
 		String pwd = user.getPassword();
-		assertNotNull("Pwd is not Null",pwd);
-		assertEquals("pwd equals pwd",pwd,"pwd");
+		assertNotNull("Pwd is not Null", pwd);
+		assertEquals("pwd equals pwd", pwd, "pwd");
 
 	}
 
 	@Test
 	public void testGetMail() {
-		//assert getMail() delivers right userMail
+		// assert getMail() delivers right userMail
 		String mail = user.getMail();
-		assertNotNull("mail ist not Null",mail);
-		assertEquals("mail equals tester@test.de",mail,"tester@test.de");
+		assertNotNull("mail ist not Null", mail);
+		assertEquals("mail equals tester@test.de", mail, "tester@test.de");
 
 	}
 
 	@Test
 	public void testGetLanguage() {
-		
-		//assert getMail() delivers right userMail
+
+		// assert getMail() delivers right userMail
 		int language = user.getLanguage();
-		assertNotNull("language ist not Null",language);
-		assertEquals("language equals 0",language,0);
+		assertNotNull("language ist not Null", language);
+		assertEquals("language equals 0", language, 0);
 
 	}
 
-	
 	@Test
 	public void testToString() {
-		
-		//assert that ToString delivers a String containing the userId and name
-		
-		String test = user.toString();
-		assertNotNull("String ist not Null",test);
-		assertEquals("test equals userId:name",test,"99: tester");
 
+		// assert that ToString delivers a String containing the userId and name
+
+		String test = user.toString();
+		assertNotNull("String ist not Null", test);
+		assertEquals("test equals userId:name", test, "99: tester");
 
 	}
 
 	@Test
 	public void testSetRootDir() {
-		
-		//assert rootDir was set
+
+		// assert rootDir was set
 		int userId = 10;
 		user.setRootDir(userId);
 		String rootDir = user.getRootDir();
-		assertNotNull("rootDir ist not Null",rootDir);
-		
-
+		assertNotNull("rootDir ist not Null", rootDir);
 
 	}
 
 	@Test
 	public void testGetRootDir() {
-		//assert rootDir is not Null and the same which was set
+		// assert rootDir is not Null and the same which was set
 		int userId = user.getId();
 		String stringUserId = String.valueOf(userId);
 		String rootDir = user.getRootDir();
-		assertNotNull("rootDir ist not Null",rootDir);
+		assertNotNull("rootDir ist not Null", rootDir);
 		String path = System.getProperty("user.dir") + "/" + stringUserId;
-		assertEquals("rootDir equals userID",rootDir,path);
-	
-	}
-	public void resetGlobal(){
-		
-		user = null;
-	}
-	
+		assertEquals("rootDir equals userID", rootDir, path);
 
+	}
+
+	@After
+	public void resetGlobal() {
+
+		user = null;
+
+	}
 }

@@ -104,12 +104,7 @@ public class UserService {
 			if (user != null) {
 				if (name.equals(user.getName()) && password.equals(user.getPassword())) {
 					return user;
-				} else {
-					return null;
 				}
-			} else {
-
-				return null;
 			}
 		}
 		return null;

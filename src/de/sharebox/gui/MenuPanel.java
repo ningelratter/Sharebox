@@ -24,7 +24,7 @@ public class MenuPanel extends ChangeablePanel {
 
 	private static final long serialVersionUID = -8555827717858274404L;
 
-	public static final String PRO_FATURE_TEXT = "Dieses Feature ist nur in der Pro-Version verfügbar.";
+	public static final String PRO_FATURE_TEXT = "Dieses Feature ist nur in der Pro-Version verfuegbar.";
 
 	public MenuPanel(final Controller controller, final UserModel userModel) {
 		super(controller);

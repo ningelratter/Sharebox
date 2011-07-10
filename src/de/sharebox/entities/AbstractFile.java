@@ -2,6 +2,13 @@ package de.sharebox.entities;
 
 import java.util.Date;
 
+/**
+ * This file inlcudes the properties of a file.
+ * 
+ * @author Eilin
+ * @version 10.07.11
+ */
+
 public abstract class AbstractFile {
 
 	private int userId;

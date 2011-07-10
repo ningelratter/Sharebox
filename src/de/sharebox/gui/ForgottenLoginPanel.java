@@ -21,7 +21,7 @@ import de.sharebox.entities.User;
  * This class gets user-logindata over existing mailadress in database.
  * 
  * @author MW
- * @date 07.06.11
+ * @version 07.06.11
  * 
  */
 public class ForgottenLoginPanel extends ChangeablePanel {

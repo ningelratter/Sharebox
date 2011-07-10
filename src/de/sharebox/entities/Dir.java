@@ -5,8 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * 
- * @author MW aus Berlin
+ * Directories can hold others directories and files.
+ * @author MW 
  * @version 11.06.11
  * 
  */

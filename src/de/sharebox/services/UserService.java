@@ -13,6 +13,7 @@ import java.util.Random;
 import de.sharebox.entities.User;
 
 /**
+ * Service
  * 
  * @author Eilin,MW
  * @version 11.06.11
@@ -51,8 +52,7 @@ public class UserService {
 			User user = new User(name, idUnique, limit, password, mail, language);
 			userByIdMap.put(idUnique, user);
 			return user;
-		}
-		else {
+		} else {
 			return null;
 		}
 	}
@@ -93,25 +93,21 @@ public class UserService {
 	}
 
 	/**
-	 * get the user
+	 * Get the user by name and password and checks if user exists.
 	 * 
 	 * @param name
 	 * @param password
-	 * @return
 	 */
-	// gets User by name and password and checks if user exist
 	public User getUserByName(String name, String password) {
 
 		for (User user : userByIdMap.values()) {
 			if (user != null) {
 				if (name.equals(user.getName()) && password.equals(user.getPassword())) {
 					return user;
-				}
-				else {
+				} else {
 					return null;
 				}
-			}
-			else {
+			} else {
 
 				return null;
 			}
@@ -119,7 +115,11 @@ public class UserService {
 		return null;
 	}
 
-	// gets User by his Id
+	/**
+	 * gets User by his Id
+	 * 
+	 * @param userId
+	 */
 	public User getUserById(int userId) {
 
 		for (User user : userByIdMap.values()) {
@@ -134,7 +134,11 @@ public class UserService {
 		return null;
 	}
 
-	// gets User over his mail
+	/**
+	 * Gets User over his mail
+	 * 
+	 * @param mail
+	 */
 	public User getUserByMail(String mail) {
 		for (User user : userByIdMap.values()) {
 			if (user != null) {
@@ -142,8 +146,7 @@ public class UserService {
 				if (mail.equals(user.getMail())) {
 
 					return user;
-				}
-				else {
+				} else {
 					return null;
 				}
 			}
@@ -160,7 +163,6 @@ public class UserService {
 	 * 
 	 * @return id
 	 */
-	// creates an id
 	private int createUniqueId() {
 
 		Random random = new Random();
@@ -173,6 +175,9 @@ public class UserService {
 		}
 	}
 
+	/**
+	 * Load the user and his properties.
+	 */
 	@SuppressWarnings("unchecked")
 	public void loadUsers() {
 		try {
@@ -182,13 +187,16 @@ public class UserService {
 				userByIdMap = (Map<Integer, User>) decoder.readObject();
 				decoder.close();
 			}
-		}
-		catch (FileNotFoundException e) {
+		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
 	}
 
-	// removes user from data bank and saves the change
+	/**
+	 * Removes user from database and saves the changes.
+	 * 
+	 * @param user
+	 */
 	public void removeUser(User user) {
 
 		int iId = user.getId();
@@ -196,6 +204,9 @@ public class UserService {
 		saveUsers();
 	}
 
+	/**
+	 * Method saves the users.
+	 */
 	public void saveUsers() {
 		try {
 			FileOutputStream fos = new FileOutputStream(file);
@@ -203,8 +214,7 @@ public class UserService {
 			XMLEncoder encoder = new XMLEncoder(fos);
 			encoder.writeObject(userByIdMap);
 			encoder.close();
-		}
-		catch (FileNotFoundException e) {
+		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
 	}

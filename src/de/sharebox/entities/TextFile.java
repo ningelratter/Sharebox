@@ -1,7 +1,7 @@
 package de.sharebox.entities;
 
 /**
- * 
+ * A text file is a simple representation of a document that could contain textuel content. 
  * @author MW
  * @version 11.06.11
  */

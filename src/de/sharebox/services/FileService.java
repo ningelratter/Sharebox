@@ -39,7 +39,6 @@ public class FileService implements Serializable {
 	 * 
 	 * @param dir
 	 * @param userModel
-	 * @return
 	 */
 	public static boolean removeDir(File dir, UserModel userModel) {
 		String path = System.getProperty("user.dir");

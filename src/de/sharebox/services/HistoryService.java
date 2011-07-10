@@ -37,7 +37,6 @@ public class HistoryService {
 	 * 
 	 * @param userId
 	 * @param activity
-	 * @return
 	 */
 	public History createHistory(int userId, String activity) {
 

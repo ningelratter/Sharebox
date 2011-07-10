@@ -51,7 +51,7 @@ public class RegisterPanel extends ChangeablePanel {
 	/**
 	 * Creates the view for registration.
 	 * 
-	 * @param c
+	 * @param controller
 	 */
 	public RegisterPanel(final Controller controller) {
 		super(controller);

@@ -147,7 +147,7 @@ public class LoginPanel extends ChangeablePanel {
 				}
 			}
 		});
-		//create password field
+		// create password field
 		loginPasswordField.setPreferredSize(new Dimension(53, 20));
 		loginPasswordField.setBounds(316, 206, 128, 50);
 		add(loginPasswordField);
@@ -168,6 +168,10 @@ public class LoginPanel extends ChangeablePanel {
 			}
 		};
 
+		/**
+		 * Error display is shown, when login button is clicked and user could not
+		 * found.
+		 */
 		registerButton.addActionListener(registerButtonClickedActionListener);
 		add(registerButton);
 
@@ -209,7 +213,11 @@ public class LoginPanel extends ChangeablePanel {
 		loginButton.addActionListener(loginButtonClickedActionListener);
 	}
 
-	// logs an user in and changes the view
+	/**
+	 * Logged an user in and changes the view.
+	 * 
+	 * @param user
+	 */
 	public void login(User user) {
 		UserModel userModel = new UserModel(user);
 		changePanel(new HomePanel(controller, userModel));

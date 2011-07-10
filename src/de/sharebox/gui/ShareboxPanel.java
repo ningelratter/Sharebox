@@ -5,7 +5,7 @@ import javax.swing.JPanel;
 import de.sharebox.controller.Controller;
 
 /**
- * At the moment I don't know why we need this class. :( :)
+ * This is the abstract super panel for all of use.
  * 
  * @author Eilin
  * @version 11.06.11
@@ -19,12 +19,10 @@ public abstract class ShareboxPanel extends JPanel {
 	 */
 	private static final long serialVersionUID = -8030564383947937101L;
 
-	// protected damit Kindklassen drauf zugreifen koennen
+	// protected so that all child classes could access.
 	protected Controller controller;
 
-	// constructor calls the controller
 	public ShareboxPanel(Controller controller) {
-		super();
 		this.controller = controller;
 	}
 }

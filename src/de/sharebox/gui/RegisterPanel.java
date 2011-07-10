@@ -21,9 +21,9 @@ import de.sharebox.models.UserModel;
 /**
  * 
  * This GUI is the first view if a user want to register himself. Extends from
- * ChangeablePanel. :)
+ * ChangeablePanel.
  * 
- * @author Eilin,MW
+ * @author Eilin, MW
  * @version 11.06.11
  * 
  * 
@@ -49,7 +49,7 @@ public class RegisterPanel extends ChangeablePanel {
 	private final JLabel wrongPasswordLabel;
 
 	/**
-	 * creates the view for registration
+	 * Creates the view for registration.
 	 * 
 	 * @param c
 	 */
@@ -69,10 +69,13 @@ public class RegisterPanel extends ChangeablePanel {
 		JButton registerButton = new JButton("Registrieren");
 		registerButton.setToolTipText("Alle Daten eingeben? Dann los!");
 
+		/**
+		 * When button register is clicked a user with the input from fields is
+		 * creating and the user is registered.
+		 */
 		registerButton.addMouseListener(new MouseAdapter() {
 
 			@Override
-			// logic - create a user with the input from fields
 			public void mouseClicked(MouseEvent arg0) {
 				userRegistration();
 			}
@@ -80,7 +83,7 @@ public class RegisterPanel extends ChangeablePanel {
 
 		setLayout(null);
 
-		// TextField name
+		// text field name
 		usernameField = new JTextField();
 		usernameField.setBounds(272, 291, 166, 20);
 		add(usernameField);
@@ -94,7 +97,7 @@ public class RegisterPanel extends ChangeablePanel {
 		wrongUserLabel.setVisible(false);
 		add(wrongUserLabel);
 
-		// TExtField password
+		// text field password
 		passwordField = new JPasswordField();
 		passwordField.setBounds(272, 340, 166, 20);
 		add(passwordField);
@@ -107,9 +110,13 @@ public class RegisterPanel extends ChangeablePanel {
 		wrongPasswordLabel.setVisible(false);
 		add(wrongPasswordLabel);
 
-		// TextField mail
+		// text field mail
 		mailField = new JTextField();
-		// finish registration with Enter
+
+		/**
+		 * Finish registration with Enter after filling the mail field with input.
+		 * With enter and true details the view change to the home panel.
+		 */
 		mailField.addKeyListener(new KeyAdapter() {
 
 			@Override
@@ -120,10 +127,12 @@ public class RegisterPanel extends ChangeablePanel {
 			}
 		});
 
+		// textfield mail
 		mailField.setBounds(272, 390, 166, 20);
 		mailField.setColumns(10);
 		add(mailField);
 
+		// if the user details aren't ok a advance notice is shown/created
 		wrongMailLabel = new JLabel("ung\u00FCltige Email");
 		wrongMailLabel.setForeground(Color.RED);
 		wrongMailLabel.setFont(font);
@@ -131,44 +140,47 @@ public class RegisterPanel extends ChangeablePanel {
 		wrongMailLabel.setVisible(false);
 		add(wrongMailLabel);
 
-		// label name
+		// create label name
 		JLabel usernameLabel = new JLabel("Benutzername:");
 		usernameLabel.setFont(font2);
 		usernameLabel.setBounds(94, 291, 106, 20);
 		add(usernameLabel);
 
-		// label password
+		// create label password
 		JLabel passwortLabel = new JLabel("Passwort:");
 		passwortLabel.setFont(font2);
 		passwortLabel.setBounds(94, 337, 69, 20);
 		add(passwortLabel);
 
-		// label email
+		// create label email
 		JLabel mailLabel = new JLabel("Email:");
 		mailLabel.setFont(font2);
 		mailLabel.setBounds(94, 392, 45, 20);
 		add(mailLabel);
 
-		// label registration
+		// create label registration
 		JLabel registerLabel = new JLabel("Registration:");
 		registerLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		registerLabel.setFont(font3);
 		registerLabel.setBounds(210, 84, 218, 65);
 		add(registerLabel);
 
-		// label statement - what the user have to do
-		JLabel enterDataLabel =
-				new JLabel("Bitte geben Sie nun folgende f\u00FCr die Registrierung notwendigen Daten ein:");
+		// create label statement - what the user have to do
+		JLabel enterDataLabel = new JLabel("Bitte geben Sie nun folgende f\u00FCr die Registrierung notwendigen Daten ein:");
 		enterDataLabel.setFont(font2);
 		enterDataLabel.setBounds(52, 191, 541, 20);
 		add(enterDataLabel);
 
-		// registered - button
+		// create registered - button
 		registerButton.setFont(font2);
 		registerButton.setBounds(272, 445, 147, 58);
 		add(registerButton);
-		// login-button leads back to LoginPanel-View
+
+		// create new login-button
 		JButton backToLogin = new JButton("Login");
+		/**
+		 * Leads back to LoginPanel-Vie when clicked the button login.
+		 */
 		backToLogin.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseReleased(MouseEvent yevent) {
@@ -177,11 +189,12 @@ public class RegisterPanel extends ChangeablePanel {
 
 			}
 		});
+		// create label statement for login button
 		backToLogin.setToolTipText("Zurueck zum Login");
 		backToLogin.setBounds(297, 562, 89, 23);
 		add(backToLogin);
 
-		// shows a helpMessage with the right input format
+		// shows a help message with the right input format
 		JLabel helpMessage = new JLabel("");
 		helpMessage.setForeground(Color.BLACK);
 		helpMessage.setFont(font);
@@ -190,7 +203,10 @@ public class RegisterPanel extends ChangeablePanel {
 		helpMessage.setText("Hinweis:" + "Benutzername/Passwort: 5-12 Zeichen");
 	}
 
-	// gets the input from Fields and tries to register a user with input
+	/**
+	 * Gets the input from fields and tries to register a user with this input.
+	 * Method checks if all details are valid.
+	 */
 	public void userRegistration() {
 
 		String userName = usernameField.getText();
@@ -218,8 +234,7 @@ public class RegisterPanel extends ChangeablePanel {
 			UserModel userModel = new UserModel(user);
 			// change into HomePanel with the userModel
 			changePanel(new HomePanel(controller, userModel));
-		}
-		else {
+		} else {
 			wrongUserLabel.setVisible(!validUserName);
 			wrongPasswordLabel.setVisible(!validPassword);
 			// is shown when password is to short

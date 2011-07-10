@@ -10,11 +10,15 @@ import javax.swing.UIManager;
 
 import de.sharebox.controller.Controller;
 import de.sharebox.models.UserModel;
-
+/**
+ * This class creates a menupanel with elements home, benutzereinstellungen, einladungen and logout.
+ * 
+ * @author Eilin
+ * @version 11.06.11
+ * 
+ */
 public class MenuPanel extends ChangeablePanel {
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = -8555827717858274404L;
 
 	public MenuPanel(final Controller controller, final UserModel userModel) {
@@ -26,7 +30,7 @@ public class MenuPanel extends ChangeablePanel {
 		menuBar.setBounds(0, 0, 640, 37);
 		add(menuBar);
 
-		//creates  menu of menubar
+		// creates menu of menubar
 		JMenu mnHome = new JMenu("Home");
 		mnHome.addMouseListener(new MouseAdapter() {
 
@@ -65,7 +69,7 @@ public class MenuPanel extends ChangeablePanel {
 		});
 		mnBenutzereinstellungen.add(mntmLogAufrufen);
 
-		// creates a menu on the menubar 
+		// creates a menu on the menubar
 		JMenu mnEinladungenVerschicken = new JMenu("Einladungen");
 		menuBar.add(mnEinladungenVerschicken);
 
@@ -77,14 +81,16 @@ public class MenuPanel extends ChangeablePanel {
 		JMenuItem mntmEinladungenAnnehmen = new JMenuItem("Einladungen annehmen");
 		mnEinladungenVerschicken.add(mntmEinladungenAnnehmen);
 
-		//creates a menu on the menubar
+		// creates a menu on the menubar
 		JMenu mnLogout = new JMenu("Logout");
 		menuBar.add(mnLogout);
 
 		JMenuItem mntmLogout = new JMenuItem("Logout");
 		mnLogout.add(mntmLogout);
 
-		// logs a user out - leads back in loginPanel
+		/**
+		 * Logs a user out - leads back in loginPanel.
+		 */
 		mntmLogout.addMouseListener(new MouseAdapter() {
 
 			@Override

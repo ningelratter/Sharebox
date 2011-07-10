@@ -32,6 +32,7 @@ public class TreePanel extends ChangeablePanel implements ItemListener, ActionLi
 
 	private Dir rootDir;
 	private JTree tree;
+	private FileInfoPanel infoPanel;
 
 	TreePanel(Controller controller) {
 		super(controller);
@@ -43,8 +44,11 @@ public class TreePanel extends ChangeablePanel implements ItemListener, ActionLi
 
 		// if Tree is getting to big for screen, JScrollPane lets you navigate
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(10, 111, 594, 501);
+		scrollPane.setBounds(10, 110, 600, 300);
 		add(scrollPane);
+
+		infoPanel = new FileInfoPanel(rootDir, controller);
+		add(infoPanel);
 
 		// is creating a JTree with users Directories and Files
 		tree = new JTree(new FileModel(rootDir));
@@ -132,6 +136,12 @@ public class TreePanel extends ChangeablePanel implements ItemListener, ActionLi
 
 	@Override
 	public void valueChanged(TreeSelectionEvent e) {
-
+		AbstractFile selectedFile = getSelectedItem();
+		if (selectedFile != null) {
+			infoPanel.setSelectedFile(selectedFile);
+		}
+		else {
+			infoPanel.setSelectedFile(rootDir);
+		}
 	}
 }

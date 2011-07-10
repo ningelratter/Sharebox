@@ -6,28 +6,31 @@ import java.awt.event.MouseEvent;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 
 import de.sharebox.controller.Controller;
 import de.sharebox.models.UserModel;
 
 public class MenuPanel extends ChangeablePanel {
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = -8555827717858274404L;
+
+	public static final String PRO_FATURE_TEXT = "Dieses Feature ist nur in der Pro-Version verfügbar.";
 
 	public MenuPanel(final Controller controller, final UserModel userModel) {
 		super(controller);
 
 		// creates a menubar on the toolbar
 		JMenuBar menuBar = new JMenuBar();
+
 		menuBar.setBorder(UIManager.getBorder("MenuBar.border"));
 		menuBar.setBounds(0, 0, 640, 37);
 		add(menuBar);
 
-		//creates  menu of menubar
+		// creates menu of menubar
 		JMenu mnHome = new JMenu("Home");
+
 		mnHome.addMouseListener(new MouseAdapter() {
 
 			@Override
@@ -65,19 +68,37 @@ public class MenuPanel extends ChangeablePanel {
 		});
 		mnBenutzereinstellungen.add(mntmLogAufrufen);
 
-		// creates a menu on the menubar 
-		JMenu mnEinladungenVerschicken = new JMenu("Einladungen");
-		menuBar.add(mnEinladungenVerschicken);
+		// creates a menu on the menubar
+		JMenu invitationMenu = new JMenu("Einladungen");
+		menuBar.add(invitationMenu);
 
 		// creates a submenu "Einladungen verschicken"
-		JMenuItem mntmEinladungenVerschicken = new JMenuItem("Einladungen verschicken");
-		mnEinladungenVerschicken.add(mntmEinladungenVerschicken);
+		JMenuItem sendInvitationItem = new JMenuItem("Einladungen verschicken");
+		invitationMenu.add(sendInvitationItem);
+
+		// logs a user out - leads back in loginPanel
+		sendInvitationItem.addMouseListener(new MouseAdapter() {
+
+			@Override
+			public void mouseReleased(MouseEvent event3) {
+				JOptionPane.showMessageDialog(null, PRO_FATURE_TEXT, "Pro-Feature", JOptionPane.WARNING_MESSAGE);
+			}
+		});
 
 		// creates a submenu "Einladungen annehmen"
-		JMenuItem mntmEinladungenAnnehmen = new JMenuItem("Einladungen annehmen");
-		mnEinladungenVerschicken.add(mntmEinladungenAnnehmen);
+		JMenuItem acceptInvitationItem = new JMenuItem("Einladungen annehmen");
+		invitationMenu.add(acceptInvitationItem);
 
-		//creates a menu on the menubar
+		// logs a user out - leads back in loginPanel
+		acceptInvitationItem.addMouseListener(new MouseAdapter() {
+
+			@Override
+			public void mouseReleased(MouseEvent event3) {
+				JOptionPane.showMessageDialog(null, PRO_FATURE_TEXT, "Pro-Feature", JOptionPane.WARNING_MESSAGE);
+			}
+		});
+
+		// creates a menu on the menubar
 		JMenu mnLogout = new JMenu("Logout");
 		menuBar.add(mnLogout);
 

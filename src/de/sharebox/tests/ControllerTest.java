@@ -25,7 +25,7 @@ public class ControllerTest {
 	private FileService fileService;
 	private User loggedInUser;
 	private final String password = "password";
-	private User user,user2;
+	private User user, user2;
 
 	@Before
 	public void setUp() throws Exception {
@@ -43,7 +43,6 @@ public class ControllerTest {
 		User user = controller.createUser("Tester", password, "tester@test.de");
 		assertNotNull("user was created", user);
 		assertEquals("userName equals set userName", user.getName(), "Tester");
-		
 
 	}
 
@@ -55,7 +54,7 @@ public class ControllerTest {
 		controller.removeUser(user);
 		assertNull("user was removed", controller.getUser("tester@test1.de"));
 		assertNull("user was removed", controller.getUser("Tester", password));
-	
+
 	}
 
 	@Test
@@ -63,61 +62,55 @@ public class ControllerTest {
 		// assert
 		user = controller.createUser("Tester3", password, "tester@test2.de");
 		assertNotNull("user was created", user);
-		loggedInUser = controller.login(user.getName(),user.getPassword());
+		loggedInUser = controller.login(user.getName(), user.getPassword());
 		assertNotNull("loggedInUser contains data of user", loggedInUser);
-		assertEquals("logged in User is created user", loggedInUser.getName(),
-				user.getName());
-		
+		assertEquals("logged in User is created user", loggedInUser.getName(), user.getName());
+
 	}
 
 	@Test
 	public void testLogout() {
 		// assert logout is working properly
 		user = controller.createUser("test", password, "test@web.de");
-		User loggedInUser = controller
-				.login(user.getName(), user.getPassword());
-		assertEquals("loggedInUser equals created user",
-				loggedInUser.getName(), "test");
+		User loggedInUser = controller.login(user.getName(), user.getPassword());
+		assertEquals("loggedInUser equals created user", loggedInUser.getName(), "test");
 		loggedInUser = controller.logout();
 		assertNull("loggedInUser sucessfully loggedout", loggedInUser);
-	
+
 	}
 
 	@Test
 	public void testGetUserStringString() {
 		// assert getUser by name&password works properly
 		user = controller.createUser("testlauf", password, "testlauf@web.de");
-		assertNotNull("user contains data",user);
+		assertNotNull("user contains data", user);
 		user2 = controller.getUser("testlauf", "password");
-		assertEquals("user equals user2",user,user2);
-		
+		assertEquals("user equals user2", user, user2);
+
 	}
 
 	@Test
 	public void testGetUserString() {
 		// assert getUser by mail works properly
-		user = controller.createUser("testlauf2", password,
-				"testlauf2@web.de");
+		user = controller.createUser("testlauf2", password, "testlauf2@web.de");
 		assertNotNull("user contains data", user);
 		user2 = controller.getUser("testlauf2@web.de");
 		assertEquals("user equals user2", user, user2);
-		
 
 	}
 
 	@Test
 	public void testSaveData() {
-		
-			}
+
+	}
 
 	@Test
 	public void testSetUserName() {
-		
-		user = controller.createUser("testlauf2", password,
-		"testlauf2@web.de");
+
+		user = controller.createUser("testlauf2", password, "testlauf2@web.de");
 		controller.setUserName("martin");
 		String image = user.getName();
-		assertEquals("right name was set",image,"martin");
+		assertEquals("right name was set", image, "martin");
 	}
 
 	@Test

@@ -23,7 +23,6 @@ public class User {
 
 	public User() {
 		// standard constructor
-
 	}
 
 	public User(String name, int idU, int limit, String password, String mail, int language) {

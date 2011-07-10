@@ -2,13 +2,10 @@ package de.sharebox.controller;
 
 import java.util.List;
 
-import com.sun.java.swing.plaf.nimbus.ProgressBarPainter;
-
 import de.sharebox.entities.AbstractFile;
 import de.sharebox.entities.Dir;
 import de.sharebox.entities.History;
 import de.sharebox.entities.User;
-import de.sharebox.gui.ChangeablePanel;
 import de.sharebox.services.FileService;
 import de.sharebox.services.HistoryService;
 import de.sharebox.services.UserService;
@@ -86,13 +83,14 @@ public class Controller {
 	// calls the userService to save all User profiles
 	public void saveData() {
 		userService.saveUsers();
+		fileService.saveFiles();
 	}
 
 	// calls the userService to change the UserName
 	public void setUserName(String name) {
 		userService.setUserName(loggedInUser, name);
 		historyService.logUserNameChanged(loggedInUser.getId(), name);
-	
+
 	}
 
 	// calls the userService to change Users Password
@@ -120,31 +118,33 @@ public class Controller {
 	public List<History> getHistory(int userId) {
 		return historyService.getHistoryEntriesByUsers(userId);
 	}
-	
+
 	public void createDir(String folderName, Dir dir) {
-		fileService.createDir(loggedInUser.getId(), folderName, dir,loggedInUser);
+		fileService.createDir(loggedInUser.getId(), folderName, dir, loggedInUser);
 		historyService.logFolderCreation(loggedInUser.getId(), folderName);
 		userService.changeUserLimit(loggedInUser, 5);
-	
+
 	}
 
 	public void createTextFile(String fileName, Dir dir) {
-		fileService.createTextFile(loggedInUser.getId(), fileName, dir,loggedInUser);
+		fileService.createTextFile(loggedInUser.getId(), fileName, dir, loggedInUser);
 		historyService.logTextFileCreation(loggedInUser.getId(), fileName);
-		userService.changeUserLimit(loggedInUser,5);
-		
-	
+		userService.changeUserLimit(loggedInUser, 5);
+
 	}
 
 	public void removeFile(AbstractFile file) {
-		fileService.removeElement(file,loggedInUser);
+		fileService.removeElement(file, loggedInUser);
 		historyService.logFileDeletion(loggedInUser.getId(), file.getName());
 		userService.changeUserLimit(loggedInUser, -5);
-	
-		
+
 	}
 
 	public Dir getRootDir() {
 		return fileService.getRootDir(loggedInUser.getId());
+	}
+
+	public User getUserById(int userId) {
+		return userService.getUserById(userId);
 	}
 }

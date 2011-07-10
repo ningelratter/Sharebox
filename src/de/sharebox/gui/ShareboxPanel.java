@@ -24,7 +24,6 @@ public abstract class ShareboxPanel extends JPanel {
 
 	// constructor calls the controller
 	public ShareboxPanel(Controller controller) {
-		super();
 		this.controller = controller;
 	}
 }

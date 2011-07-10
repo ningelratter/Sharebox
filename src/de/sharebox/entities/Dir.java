@@ -1,5 +1,6 @@
 package de.sharebox.entities;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,9 +11,14 @@ import java.util.List;
  * 
  */
 
-public class Dir extends AbstractFile {
+public class Dir extends AbstractFile implements Serializable {
+
+	private static final long serialVersionUID = 106498166012293975L;
 
 	private List<AbstractFile> children = new ArrayList<AbstractFile>();
+
+	public Dir() {
+	}
 
 	public Dir(int userId, String name, Dir parent) {
 		super(userId, name, parent);
@@ -22,7 +28,15 @@ public class Dir extends AbstractFile {
 		return children;
 	}
 
+	public void setChildren(List<AbstractFile> children) {
+		for (AbstractFile child : children) {
+			addChild(child);
+		}
+		this.children = children;
+	}
+
 	public void addChild(AbstractFile child) {
+		child.setParent(this);
 		children.add(child);
 	}
 

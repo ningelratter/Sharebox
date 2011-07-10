@@ -15,6 +15,7 @@ import de.sharebox.entities.History;
 import de.sharebox.entities.User;
 
 /**
+ * This class creates a log with all activities of a user in the system.
  * 
  * @author Eilin
  * @version 02.07.11
@@ -31,73 +32,144 @@ public class HistoryService {
 		loadHistory();
 	}
 
-	// creates a history entry for every activity
+	/**
+	 * Method creates a history entry for every activity.
+	 * 
+	 * @param userId
+	 * @param activity
+	 * @return
+	 */
 	public History createHistory(int userId, String activity) {
 
 		History history = new History(userId, new Date(), activity);
 		historyList.add(history);
 		try {
 			saveHistory();
-		}
-		catch (IOException e) {
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		return history;
 
 	}
 
-	// logs a directory created action
-	
+	/**
+	 * Logs a directory created action.
+	 * 
+	 * @param idU
+	 * @param nameOfDirectory
+	 */
 	public void logDirectoryCreated(int idU, String nameOfDirectory) {
 
 		createHistory(idU, "Directory:" + nameOfDirectory + " created");
 
 	}
 
-	// removes user from data bank and saves the change
+	/**
+	 * Removes user from database and saves the changes.
+	 * 
+	 * @param user
+	 */
 	public void logremoveUser(User user) {
 
 		createHistory(user.getId(), "User deleted" + user.getName());
 		loadHistory();
 	}
 
+	/**
+	 * Log for the action creating a user
+	 * 
+	 * @param idU
+	 * @param userName
+	 */
 	public void logUserCreatedItself(int idU, String userName) {
 		createHistory(idU, userName + " created ");
 	}
 
-	// writes the history with userName, date and activity
+	/**
+	 * Add a entry to the history when username is changed.
+	 * 
+	 * @param idU
+	 * @param userName
+	 */
 	public void logUserNameChanged(int idU, String userName) {
 		createHistory(idU, " Username changed to " + userName);
 	}
 
+	/**
+	 * Add a entry to the history when password is changed.
+	 * 
+	 * @param idU
+	 */
 	public void logUserPasswordChanged(int idU) {
 		createHistory(idU, " Password changed ");
 	}
 
+	/**
+	 * Add a entry to the history when email is changed.
+	 * 
+	 * @param idU
+	 * @param email
+	 */
 	public void logUserEmailChanged(int idU, String email) {
 		createHistory(idU, " Email changed to " + email);
 	}
 
+	/**
+	 * Add a entry to the history when limit is changed.
+	 * 
+	 * @param idU
+	 * @param limit
+	 */
 	public void logUserLimitChanged(int idU, double limit) {
 		createHistory(idU, " limit changed to " + limit);
 	}
 
+	/**
+	 * Add a entry to the history when file is uploaded.
+	 * 
+	 * @param idU
+	 * @param name
+	 */
 	public void logFileUpload(int idU, String name) {
 		createHistory(idU, " uploaded file '" + name);
 	}
 
+	/**
+	 * Add a entry to the history when file is deleted.
+	 * 
+	 * @param userId
+	 * @param fileName
+	 */
 	public void logFileDeletion(int userId, String fileName) {
 		createHistory(userId, " deleted '" + fileName + "'");
 	}
 
+	/**
+	 * Add a entry to the history when folder is created.
+	 * 
+	 * @param userId
+	 * @param folderName
+	 */
 	public void logFolderCreation(int userId, String folderName) {
 		createHistory(userId, " created folder " + folderName);
 	}
 
+	/**
+	 * Add a entry to the history when text file is created.
+	 * 
+	 * @param userId
+	 * @param fileName
+	 */
 	public void logTextFileCreation(int userId, String fileName) {
 		createHistory(userId, " created text file " + fileName);
 	}
 
+	/**
+	 * Method gets the log entries of a user
+	 * 
+	 * @param userId
+	 * @return result list of historyentries.
+	 */
 	public List<History> getHistoryEntriesByUsers(int userId) {
 
 		List<History> resultList = new ArrayList<History>();
@@ -109,6 +181,9 @@ public class HistoryService {
 		return resultList;
 	}
 
+	/**
+	 * Method loads the historyentries from database.
+	 */
 	@SuppressWarnings("unchecked")
 	private void loadHistory() {
 		try {
@@ -119,14 +194,17 @@ public class HistoryService {
 				historyList = (ArrayList<History>) decoder.readObject();
 				decoder.close();
 			}
-		}
-		catch (FileNotFoundException e) {
+		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
 
 	}
 
-	// save the history entry
+	/**
+	 * Method saves the history entry.
+	 * 
+	 * @throws IOException
+	 */
 	public void saveHistory() throws IOException {
 		try {
 			FileOutputStream fos = new FileOutputStream(file);
@@ -134,8 +212,7 @@ public class HistoryService {
 			XMLEncoder encoder = new XMLEncoder(fos);
 			encoder.writeObject(historyList);
 			encoder.close();
-		}
-		catch (FileNotFoundException e) {
+		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
 	}

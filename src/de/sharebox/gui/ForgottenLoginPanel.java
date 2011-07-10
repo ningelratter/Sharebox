@@ -51,7 +51,7 @@ public class ForgottenLoginPanel extends ChangeablePanel {
 
 		// creates textfield for Log
 		emailInput = new JTextField();
-		
+
 		/**
 		 * Prints the data out, when button "Zeige Benutzerdaten" is clicked.
 		 * 
@@ -117,7 +117,7 @@ public class ForgottenLoginPanel extends ChangeablePanel {
 
 		// create button Login
 		JButton backToLogin = new JButton("Login");
-		
+
 		/**
 		 * When the button is clicked the LoginPanel is loaded.
 		 */
@@ -195,17 +195,18 @@ public class ForgottenLoginPanel extends ChangeablePanel {
 
 		PopupFactory factory = PopupFactory.getSharedInstance();
 
-		// creates button no user found (as popup) 
+		// creates button no user found (as popup)
 		JButton noUser = new JButton("Keinen Benutzer mit dieser Mail-Adresse gefunden");
 		frame.add(noUser);
-		
-		//popup window no user found
+
+		// popup window no user found
 		popup = factory.getPopup(frame, noUser, 170, 350);
 		frame.setVisible(true);
 		popup.show();
 
 		/**
-		 * When no user is found and Button is clicked ForgottenLoginPanel is shown again.
+		 * When no user is found and Button is clicked ForgottenLoginPanel is shown
+		 * again.
 		 */
 		noUser.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent arg0) {

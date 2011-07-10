@@ -11,8 +11,8 @@ import de.sharebox.controller.Controller;
 
 /**
  * 
- * This GUI exchanges the panels, when a view is modified.  
- * Extends from ShareBoxPanel.
+ * This GUI exchanges the panels, when a view is modified. Extends from
+ * ShareBoxPanel.
  * 
  * @author Eilin
  * @version 11.06.11
@@ -44,7 +44,7 @@ public class ChangeablePanel extends ShareboxPanel {
 			/**
 			 * Method saved the data and terminate the system.
 			 * 
-			 *@param event
+			 * @param event
 			 */
 			@Override
 			public void actionPerformed(ActionEvent eevent) {
@@ -58,10 +58,12 @@ public class ChangeablePanel extends ShareboxPanel {
 		setLayout(null);
 		add(exitButton);
 	}
-/**
- * The Method is change a view. 
- * @param panel
- */
+
+	/**
+	 * The Method is change a view.
+	 * 
+	 * @param panel
+	 */
 	public void changePanel(ChangeablePanel panel) {
 		try {
 			Container parent = getParent();
@@ -69,8 +71,7 @@ public class ChangeablePanel extends ShareboxPanel {
 			parent.add(panel);
 			parent.validate();
 			parent.repaint();
-		}
-		catch (NullPointerException nullE) {
+		} catch (NullPointerException nullE) {
 
 			nullE.getMessage();
 		}

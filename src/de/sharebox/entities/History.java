@@ -3,7 +3,7 @@ package de.sharebox.entities;
 import java.util.Date;
 
 /**
- * Objectclass history
+ * Objectclass history. 
  * 
  * @author Eilin
  * @version 02.07.11
@@ -17,9 +17,9 @@ public class History {
 	private String activity;
 
 	public History() {
-		//standard constructor
+		// standard constructor
 	}
-	
+
 	public History(int userId, Date date, String activity) {
 
 		setUserId(userId);
@@ -51,4 +51,3 @@ public class History {
 		return activity;
 	}
 }
-

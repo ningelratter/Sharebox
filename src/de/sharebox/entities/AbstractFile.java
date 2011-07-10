@@ -4,33 +4,49 @@ import java.util.Date;
 
 public abstract class AbstractFile {
 
-	private final int userId;
+	private int userId;
 
-	private final String name;
+	private String name;
 
-	private final Date creationDate;
+	private Date creationDate;
 
 	private Date lastChange;
 
-	private final Dir parent;
+	private transient Dir parent;
+
+	public AbstractFile() {
+	}
 
 	public AbstractFile(int userId, String name, Dir parent) {
 		this.userId = userId;
 		this.name = name;
 		this.parent = parent;
 		this.creationDate = new Date();
+		this.lastChange = new Date();
 	}
 
 	public int getUserId() {
 		return userId;
 	}
 
+	public void setUserId(int userId) {
+		this.userId = userId;
+	}
+
 	public String getName() {
 		return name;
 	}
 
+	public void setName(String name) {
+		this.name = name;
+	}
+
 	public Date getCreationDate() {
 		return creationDate;
+	}
+
+	public void setCreationDate(Date creationDate) {
+		this.creationDate = creationDate;
 	}
 
 	public Date getLastChange() {
@@ -41,8 +57,6 @@ public abstract class AbstractFile {
 		this.lastChange = lastChange;
 	}
 
-	public abstract boolean isDir();
-
 	@Override
 	public String toString() {
 		return name;
@@ -51,4 +65,10 @@ public abstract class AbstractFile {
 	public Dir getParent() {
 		return parent;
 	}
+
+	public void setParent(Dir parent) {
+		this.parent = parent;
+	}
+
+	public abstract boolean isDir();
 }

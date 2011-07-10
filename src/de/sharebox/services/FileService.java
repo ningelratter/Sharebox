@@ -1,6 +1,11 @@
 package de.sharebox.services;
 
+import java.beans.XMLDecoder;
+import java.beans.XMLEncoder;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
@@ -23,46 +28,10 @@ public class FileService implements Serializable {
 
 	private Map<Integer, Dir> rootDirs = new HashMap<Integer, Dir>();
 
-	/**
-	 * Method creates a root directory of a user.
-	 * 
-	 * @param idU
-	 */
-	public static void createRootDirLocation(int idU) {
-		String path = System.getProperty("user.dir");
-		String userId;
-		userId = String.valueOf(idU);
+	private File file = new File("data/files.xml");
 
-		File dir = new File(path + "\\" + userId);
-
-		if (!dir.isDirectory()) {
-
-			dir.mkdir();
-		} else {
-
-		}
-	}
-
-	/**
-	 * Method returns a list of files.
-	 * 
-	 * @param file
-	 * @return
-	 */
-	public static File[] listofFiles(File file) {
-
-		File[] files = file.listFiles();
-		for (int nIndex = 0; nIndex < files.length; nIndex++) {
-			listofFiles(files[nIndex]);
-		}
-
-		return files;
-	}
-
-	public static void renameRootDirLocation(String rootDir) {
-
-		// TODO
-
+	public FileService() {
+		loadFiles();
 	}
 
 	/**
@@ -81,7 +50,8 @@ public class FileService implements Serializable {
 		if (dir.getPath().equals(path + "\\" + idU)) {
 
 			return false;
-		} else {
+		}
+		else {
 			deleteSubFolder(dir);
 			return true;
 		}
@@ -113,9 +83,11 @@ public class FileService implements Serializable {
 
 		if (rootDirs.containsKey(userId)) {
 			return rootDirs.get(userId);
-		} else {
+		}
+		else {
 			Dir dir = new Dir(userId, "ROOT", null);
 			rootDirs.put(userId, dir);
+			saveFiles();
 			return dir;
 		}
 	}
@@ -167,6 +139,7 @@ public class FileService implements Serializable {
 		if (!nameExists) {
 			parent.addChild(file);
 		}
+		saveFiles();
 	}
 
 	/**
@@ -178,6 +151,34 @@ public class FileService implements Serializable {
 	public void removeElement(AbstractFile file, User user) {
 		Dir parent = file.getParent();
 		parent.removeChild(file);
+		saveFiles();
+	}
 
+	public void saveFiles() {
+		try {
+			FileOutputStream fos = new FileOutputStream(file);
+			// encoder from java to xml
+			XMLEncoder encoder = new XMLEncoder(fos);
+			encoder.writeObject(rootDirs);
+			encoder.close();
+		}
+		catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+	}
+
+	@SuppressWarnings("unchecked")
+	public void loadFiles() {
+		try {
+			if (file.exists()) {
+				FileInputStream fis = new FileInputStream(file);
+				XMLDecoder decoder = new XMLDecoder(fis);
+				rootDirs = (Map<Integer, Dir>) decoder.readObject();
+				decoder.close();
+			}
+		}
+		catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
 	}
 }

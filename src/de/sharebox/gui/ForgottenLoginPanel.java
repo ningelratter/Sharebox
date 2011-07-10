@@ -10,11 +10,9 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
-import javax.swing.Popup;
-import javax.swing.PopupFactory;
 
 import de.sharebox.controller.Controller;
 import de.sharebox.entities.User;
@@ -30,8 +28,6 @@ public class ForgottenLoginPanel extends ChangeablePanel {
 
 	private static final long serialVersionUID = -5039410585133415906L;
 	private final JTextField emailInput;
-	private JFrame frame;
-	private Popup popup, popup1, popup2;
 
 	public ForgottenLoginPanel(final Controller controller) {
 		super(controller);
@@ -69,12 +65,12 @@ public class ForgottenLoginPanel extends ChangeablePanel {
 						String userName = user.getName();
 						String userPassword = user.getPassword();
 						printData(userName, userPassword);
-					} else {
-
-						emailNotFound();
+					}
+					else {
+						JOptionPane.showMessageDialog(null, "Keinen Benutzer mit dieser Mail-Adresse gefunden", "",
+								JOptionPane.ERROR_MESSAGE);
 					}
 				}
-
 			}
 		});
 		// create statement to indicate the emailadress
@@ -103,9 +99,9 @@ public class ForgottenLoginPanel extends ChangeablePanel {
 				}
 
 				else {
-					emailNotFound();
+					JOptionPane.showMessageDialog(null, "Keinen Benutzer mit dieser Mail-Adresse gefunden", "",
+							JOptionPane.ERROR_MESSAGE);
 				}
-
 			}
 		});
 		// mouse overview for the button "Zeige Benutzerdaten"
@@ -137,85 +133,7 @@ public class ForgottenLoginPanel extends ChangeablePanel {
 
 	// is showing the UserData and an option to get back to the LoginPanel-View
 	public void printData(String userName, String userPassword) {
-
-		frame = new JFrame("Ihre Benutzerdaten");
-		frame.setSize(400, 400);
-		frame.setLocation(200, 200);
-
-		PopupFactory factory = PopupFactory.getSharedInstance();
-
-		// Button username
-		JButton userN = new JButton();
-		add(userN);
-
-		// Button password
-		JButton userPwd = new JButton();
-		add(userPwd);
-
-		// Button Login
-		JButton backToLogin = new JButton("Zurueck zum Login");
-		add(backToLogin);
-
-		// creates the popup window with button username, password and back to login
-		popup = factory.getPopup(frame, userN = new JButton("Benutzername: " + userName), 200, 350);
-		popup2 = factory.getPopup(frame, userPwd = new JButton("Passwort: " + userPassword), 200, 400);
-		popup1 = factory.getPopup(frame, backToLogin = new JButton("Zurueck zum Login"), 325, 500);
-
-		// shows popup window
-		popup.show();
-		popup1.show();
-		popup2.show();
-		frame.setVisible(true);
-
-		/**
-		 * When button back to login is clicked method change to LoginPanel.
-		 */
-		backToLogin.addMouseListener(new MouseAdapter() {
-
-			public void mouseClicked(MouseEvent arg0) {
-
-				LoginPanel loginPanel = new LoginPanel(controller);
-				changePanel(loginPanel);
-
-				frame.setVisible(false);
-			}
-
-		});
-
-	}
-
-	/**
-	 * Error popup is shown, when emailadress is not in database.
-	 */
-	public void emailNotFound() {
-
-		frame = new JFrame("Keinen Benutzer gefunden!");
-		frame.setSize(400, 300);
-		frame.setLocation(150, 200);
-
-		PopupFactory factory = PopupFactory.getSharedInstance();
-
-		// creates button no user found (as popup)
-		JButton noUser = new JButton("Keinen Benutzer mit dieser Mail-Adresse gefunden");
-		frame.add(noUser);
-
-		// popup window no user found
-		popup = factory.getPopup(frame, noUser, 170, 350);
-		frame.setVisible(true);
-		popup.show();
-
-		/**
-		 * When no user is found and Button is clicked ForgottenLoginPanel is shown
-		 * again.
-		 */
-		noUser.addMouseListener(new MouseAdapter() {
-			public void mouseClicked(MouseEvent arg0) {
-
-				ForgottenLoginPanel forgottenLoginPanel = new ForgottenLoginPanel(controller);
-				changePanel(forgottenLoginPanel);
-				frame.setVisible(false);
-			}
-
-		});
+		JOptionPane.showMessageDialog(null, userName + "/" + userPassword, "Ihre Benutzerdaten",
+				JOptionPane.INFORMATION_MESSAGE);
 	}
 }

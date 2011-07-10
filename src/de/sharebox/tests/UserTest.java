@@ -23,8 +23,7 @@ public class UserTest {
 	public void testSetName() {
 		user.setName("Neuertester");
 		// assert name was set
-		assertEquals("userName equals Neuertester", user.getName(),
-				"Neuertester");
+		assertEquals("userName equals Neuertester", user.getName(), "Neuertester");
 
 	}
 
@@ -58,8 +57,7 @@ public class UserTest {
 	public void testSetMail() {
 		// assert mail was set
 		user.setMail("tester@web.de");
-		assertEquals("userMail equals tester@web.de", user.getMail(),
-				"tester@web.de");
+		assertEquals("userMail equals tester@web.de", user.getMail(), "tester@web.de");
 	}
 
 	@Test
@@ -134,17 +132,6 @@ public class UserTest {
 		String test = user.toString();
 		assertNotNull("String ist not Null", test);
 		assertEquals("test equals userId:name", test, "99: tester");
-
-	}
-
-	@Test
-	public void testSetRootDir() {
-
-		// assert rootDir was set
-		int userId = 10;
-		user.setRootDir(userId);
-		String rootDir = user.getRootDir();
-		assertNotNull("rootDir ist not Null", rootDir);
 
 	}
 

@@ -10,6 +10,9 @@ public class TextFile extends AbstractFile {
 
 	private String content;
 
+	public TextFile() {
+	}
+
 	public TextFile(int userId, String name, Dir parent) {
 		super(userId, name, parent);
 	}

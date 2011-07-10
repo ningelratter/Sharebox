@@ -116,6 +116,7 @@ public class Controller {
 	 */
 	public void saveData() {
 		userService.saveUsers();
+		userService.loadUsers();
 	}
 
 	/**
@@ -221,10 +222,15 @@ public class Controller {
 
 	/**
 	 * Gets the root directory of a logged in user by id.
-	 * 
-	 * @return
 	 */
 	public Dir getRootDir() {
 		return fileService.getRootDir(loggedInUser.getId());
+	}
+
+	/**
+	 * Returns a user for a given id.
+	 */
+	public User getUserById(int userId) {
+		return userService.getUserById(userId);
 	}
 }

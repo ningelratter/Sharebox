@@ -1,6 +1,5 @@
 package de.sharebox.entities;
 
-import de.sharebox.services.FileService;
 
 /**
  * 
@@ -23,7 +22,6 @@ public class User {
 
 	public User() {
 		// standard constructor
-
 	}
 
 	public User(String name, int idU, int limit, String password, String mail, int language) {
@@ -88,12 +86,6 @@ public class User {
 	@Override
 	public String toString() {
 		return idU + ": " + name;
-	}
-
-	public void setRootDir(int idU) {
-
-		FileService.createRootDirLocation(idU);
-
 	}
 
 	public String getRootDir() {

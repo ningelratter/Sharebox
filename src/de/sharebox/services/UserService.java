@@ -45,16 +45,14 @@ public class UserService {
 	// creates a user account and checks before, if id is unique
 	public User createUser(String name, String password, String mail) {
 		// check if user data is not empty
-		if (name != null && !name.isEmpty() && password != null
-				&& !password.isEmpty()) {
+		if (name != null && !name.isEmpty() && password != null && !password.isEmpty()) {
 
 			int idUnique = createUniqueId();
-			User user = new User(name, idUnique, limit, password, mail,
-					language);
-			user.setRootDir(idUnique);
+			User user = new User(name, idUnique, limit, password, mail, language);
 			userByIdMap.put(idUnique, user);
 			return user;
-		} else {
+		}
+		else {
 			return null;
 		}
 	}
@@ -78,15 +76,15 @@ public class UserService {
 	public void setUserLimit(User user, int limit) {
 		user.setLimit(limit);
 	}
-	//changes the actual limit 
-	public void changeUserLimit(User user,int valueOfChange){
-		
-		int newLimit = (user.getLimit()-valueOfChange);
+
+	// changes the actual limit
+	public void changeUserLimit(User user, int valueOfChange) {
+
+		int newLimit = (user.getLimit() - valueOfChange);
 		user.setLimit(newLimit);
-		
+
 	}
-	
-	
+
 	// get user limit
 	public int getLimit(User user) {
 
@@ -106,34 +104,33 @@ public class UserService {
 
 		for (User user : userByIdMap.values()) {
 			if (user != null) {
-				if (name.equals(user.getName())
-						&& password.equals(user.getPassword())) {
+				if (name.equals(user.getName()) && password.equals(user.getPassword())) {
 					return user;
-				} else {
+				}
+				else {
 					return null;
 				}
-			} else {
+			}
+			else {
 
 				return null;
 			}
 		}
 		return null;
 	}
-	//gets User by his Id
+
+	// gets User by his Id
 	public User getUserById(int userId) {
 
 		for (User user : userByIdMap.values()) {
 			if (user != null) {
 				if (userId == (user.getId())) {
 					return user;
-				} else {
-					return null;
 				}
-			} else {
-
-				return null;
 			}
 		}
+
+		// else
 		return null;
 	}
 
@@ -145,7 +142,8 @@ public class UserService {
 				if (mail.equals(user.getMail())) {
 
 					return user;
-				} else {
+				}
+				else {
 					return null;
 				}
 			}
@@ -184,10 +182,10 @@ public class UserService {
 				userByIdMap = (Map<Integer, User>) decoder.readObject();
 				decoder.close();
 			}
-		} catch (FileNotFoundException e) {
+		}
+		catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
-
 	}
 
 	// removes user from data bank and saves the change
@@ -205,7 +203,8 @@ public class UserService {
 			XMLEncoder encoder = new XMLEncoder(fos);
 			encoder.writeObject(userByIdMap);
 			encoder.close();
-		} catch (FileNotFoundException e) {
+		}
+		catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
 	}

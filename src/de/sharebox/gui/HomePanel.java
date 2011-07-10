@@ -49,65 +49,65 @@ public class HomePanel extends MenuPanel {
 		label.setBounds(20, 69, 310, 56);
 		add(label);
 
-		//creates a progressPanel limit
+		// creates a progressPanel limit
 		final ProgressPanel progressPanel = new ProgressPanel(user.getLimit());
 		progressPanel.setBounds(420, 50, 180, 25);
 		add(progressPanel);
 
 		final TreePanel treePanel = new TreePanel(controller);
 
-		//create the button directory
+		// create the button directory
 		JButton addFolderButton = new JButton("O");
-		
+
 		/**
-		 * When button create directory is clicked user have to put dataname in and directory is produced.
+		 * When button create directory is clicked user have to put dataname in and
+		 * directory is produced.
 		 */
 		addFolderButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent event1) {
 
-				String filenameDialog = JOptionPane
-						.showInputDialog("Bitte Ordnernamen eingeben");
-				byte[] bytes = filenameDialog.getBytes();
-				if (bytes != null) {
-					String folderName = new String(bytes);
-					if (!folderName.isEmpty()) {
-						AbstractFile selectedItem = treePanel.getSelectedItem();
-						Dir selectedDir = getSelectedDir(controller,
-								selectedItem);
-						controller.createDir(folderName, selectedDir);
-						treePanel.updateTree();
-						changePanel(new HomePanel(controller, userModel));
+				String filenameDialog = JOptionPane.showInputDialog("Bitte Ordnernamen eingeben");
+				if (filenameDialog != null) {
+					byte[] bytes = filenameDialog.getBytes();
+					if (bytes != null) {
+						String folderName = new String(bytes);
+						if (!folderName.isEmpty()) {
+							AbstractFile selectedItem = treePanel.getSelectedItem();
+							Dir selectedDir = getSelectedDir(controller, selectedItem);
+							controller.createDir(folderName, selectedDir);
+							treePanel.updateTree();
+							changePanel(new HomePanel(controller, userModel));
+						}
 					}
 				}
 			}
 		});
 
-		//create button directory accessible
+		// create button directory accessible
 		addFolderButton.setBounds(420, 80, 25, 25);
 		addFolderButton.setToolTipText("Ordner anlegen");
 		add(addFolderButton);
 
-		//create button data(file)
+		// create button data(file)
 		JButton addFileButton = new JButton("D");
-	
+
 		/**
-		 * When button file accessible is clicked user have to put directory name in and file is produced.
+		 * When button file accessible is clicked user have to put directory name in
+		 * and file is produced.
 		 */
 		addFileButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent event2) {
 
-				String filenameDialog = JOptionPane
-						.showInputDialog("Bitte Dateinamen eingeben");
+				String filenameDialog = JOptionPane.showInputDialog("Bitte Dateinamen eingeben");
 				byte[] bytes = filenameDialog.getBytes();
 				if (bytes != null) {
 					String fileName = new String(bytes);
 					if (!fileName.isEmpty()) {
 
 						AbstractFile selectedItem = treePanel.getSelectedItem();
-						Dir selectedDir = getSelectedDir(controller,
-								selectedItem);
+						Dir selectedDir = getSelectedDir(controller, selectedItem);
 						controller.createTextFile(fileName, selectedDir);
 						treePanel.updateTree();
 						changePanel(new HomePanel(controller, userModel));
@@ -116,14 +116,14 @@ public class HomePanel extends MenuPanel {
 			}
 		});
 
-		//create button file accessible
+		// create button file accessible
 		addFileButton.setBounds(450, 80, 25, 25);
 		addFileButton.setToolTipText("Datei anlegen");
 		add(addFileButton);
 
-		//create button file oder directory delete
+		// create button file oder directory delete
 		JButton removeFileButton = new JButton("-");
-	
+
 		/**
 		 * When button remove is clicked selected file or directory is deleted.
 		 */
@@ -139,7 +139,7 @@ public class HomePanel extends MenuPanel {
 			}
 		});
 
-		//removes selected file or directory
+		// removes selected file or directory
 		removeFileButton.setBounds(480, 80, 25, 25);
 		removeFileButton.setToolTipText("Ordner oder Datei entfernen");
 		add(removeFileButton);
@@ -154,17 +154,18 @@ public class HomePanel extends MenuPanel {
 	 * @param selectedItem
 	 * @return
 	 */
-	private Dir getSelectedDir(final Controller controller,
-			AbstractFile selectedItem) {
+	private Dir getSelectedDir(final Controller controller, AbstractFile selectedItem) {
 		Dir selectedDir;
 		if (selectedItem != null) {
 
 			if (selectedItem.isDir()) {
 				selectedDir = (Dir) selectedItem;
-			} else {
+			}
+			else {
 				selectedDir = selectedItem.getParent();
 			}
-		} else {
+		}
+		else {
 			selectedDir = controller.getRootDir();
 		}
 		return selectedDir;

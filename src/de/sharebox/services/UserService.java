@@ -49,7 +49,6 @@ public class UserService {
 
 			int idUnique = createUniqueId();
 			User user = new User(name, idUnique, limit, password, mail, language);
-			user.setRootDir(idUnique);
 			userByIdMap.put(idUnique, user);
 			return user;
 		}

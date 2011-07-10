@@ -9,6 +9,14 @@ import javax.swing.JPanel;
 import javax.swing.JProgressBar;
 import javax.swing.border.BevelBorder;
 
+/**
+ * This class creates a limit display that shows how much limit of the logged in
+ * user exists at the moment.
+ * 
+ * @author MW
+ * @version 05.07.2011
+ * 
+ */
 public class ProgressPanel extends JPanel {
 
 	private static final long serialVersionUID = 992059630592376542L;
@@ -18,6 +26,7 @@ public class ProgressPanel extends JPanel {
 
 		setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED));
 
+		// create a label memory
 		JLabel progressLabel = new JLabel("Speicher: ");
 		progressLabel.setFont(new Font("Tahoma", Font.PLAIN, 9));
 		add(progressLabel);

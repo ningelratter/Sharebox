@@ -1,6 +1,3 @@
-/**
- *
- */
 package de.sharebox.gui;
 
 import java.awt.Font;
@@ -24,7 +21,10 @@ import de.sharebox.entities.AbstractFile;
 import de.sharebox.entities.Dir;
 
 /**
- * @author MW class thats shows users Directories and Files as a tree
+ * Class thats shows users directories and files as a tree.
+ * 
+ * @author MW, Eilin
+ * @version 09.07.11
  */
 public class TreePanel extends ChangeablePanel implements ItemListener, ActionListener, TreeSelectionListener {
 
@@ -39,7 +39,6 @@ public class TreePanel extends ChangeablePanel implements ItemListener, ActionLi
 		setLayout(null);
 
 		// get userPath
-
 		rootDir = controller.getRootDir();
 
 		// if Tree is getting to big for screen, JScrollPane lets you navigate
@@ -127,6 +126,9 @@ public class TreePanel extends ChangeablePanel implements ItemListener, ActionLi
 		return (AbstractFile) tree.getLastSelectedPathComponent();
 	}
 
+	/**
+	 * Method updated the tree if something is changed.
+	 */
 	public void updateTree() {
 		tree.setModel(new FileModel(rootDir));
 		for (int i = 0; i < tree.getRowCount(); i++) {

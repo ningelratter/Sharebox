@@ -17,10 +17,12 @@ import de.sharebox.entities.User;
 import de.sharebox.models.UserModel;
 
 /**
+ * This class change the properties of a user.
+ * 
  * @author MW
+ * @version 28.06.2011
  * 
  */
-// class in which the user can change the properties
 public class UserPropertiesPanel extends MenuPanel {
 
 	// every GUI class has to have a UID to verify
@@ -28,8 +30,8 @@ public class UserPropertiesPanel extends MenuPanel {
 	private final JTextField userField;
 	private final JTextField passwordField;
 	private final JList languageList;
-	private final JTextField emailField;
 
+	private final JTextField emailField;
 	private final User user;
 
 	public UserPropertiesPanel(final Controller controller, final UserModel userModel) {
@@ -40,8 +42,10 @@ public class UserPropertiesPanel extends MenuPanel {
 		Font font = new Font("Tahoma", Font.PLAIN, 18);
 		Font font2 = new Font("Tahoma", Font.PLAIN, 16);
 		Font font3 = new Font("Tahoma", Font.PLAIN, 14);
+
 		JLabel welcomeUserText =
 				new JLabel("Hier k\u00F6nnen Sie die Einstellungen f\u00FCr " + user.getName() + " \u00E4ndern!");
+
 		welcomeUserText.setFont(font);
 		welcomeUserText.setBounds(25, 33, 615, 54);
 		add(welcomeUserText);
@@ -120,6 +124,7 @@ public class UserPropertiesPanel extends MenuPanel {
 				changePanel(new UserPropertiesPanel(controller, userModel));
 			}
 		});
+
 		saveSettings.setToolTipText("Hier klicken, wenn die get\u00E4tigten Einstellungen uebernommen werden sollen");
 		saveSettings.setFont(font);
 		saveSettings.setBounds(168, 462, 238, 54);
@@ -132,6 +137,7 @@ public class UserPropertiesPanel extends MenuPanel {
 				areYouSure();
 			}
 		});
+
 		removeAccount.setToolTipText("Hier klicken, wenn Sie ihren Account l\u00F6schen m\u00F6chten");
 		removeAccount.setFont(font);
 		removeAccount.setBounds(168, 537, 238, 54);
@@ -139,7 +145,11 @@ public class UserPropertiesPanel extends MenuPanel {
 
 	}
 
-	// is setting the new userName
+	/**
+	 * Method is setting the new username of the logged in user when its valid.
+	 * 
+	 * @param user
+	 */
 	public void changeUserName(User user) {
 
 		String name = userField.getText();
@@ -148,7 +158,11 @@ public class UserPropertiesPanel extends MenuPanel {
 		}
 	}
 
-	// is setting the new password
+	/**
+	 * Method is setting the new password of the logged in user.
+	 * 
+	 * @param user
+	 */
 	public void changeUserPassword(User user) {
 
 		String password = passwordField.getText();
@@ -157,7 +171,11 @@ public class UserPropertiesPanel extends MenuPanel {
 		}
 	}
 
-	// is setting the new mailadress
+	/**
+	 * Method is setting the new mailadress when its valid.
+	 * 
+	 * @param user
+	 */
 	public void changeUserEmail(User user) {
 
 		String email = emailField.getText();

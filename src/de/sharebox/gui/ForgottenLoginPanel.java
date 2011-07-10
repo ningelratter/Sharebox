@@ -102,7 +102,6 @@ public class ForgottenLoginPanel extends ChangeablePanel {
 					JOptionPane.showMessageDialog(null, "Keinen Benutzer mit dieser Mail-Adresse gefunden", "",
 							JOptionPane.ERROR_MESSAGE);
 				}
-
 			}
 		});
 		// mouse overview for the button "Zeige Benutzerdaten"

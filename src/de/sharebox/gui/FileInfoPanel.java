@@ -1,6 +1,8 @@
 package de.sharebox.gui;
 
 import java.awt.Font;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.swing.BorderFactory;
 import javax.swing.JLabel;
@@ -19,6 +21,7 @@ public class FileInfoPanel extends JPanel {
 
 	private JLabel nameLabel;
 	private JLabel userLabel;
+	private JLabel creationDateLabel;
 
 	public FileInfoPanel(AbstractFile selectedFile, Controller controller) {
 		setLayout(null);
@@ -40,7 +43,7 @@ public class FileInfoPanel extends JPanel {
 
 		nameLabel = new JLabel();
 		nameLabel.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		nameLabel.setBounds(80, 40, 100, 10);
+		nameLabel.setBounds(100, 40, 100, 10);
 		add(nameLabel);
 
 		JLabel userHeaderLabel = new JLabel("Besitzer:");
@@ -50,8 +53,18 @@ public class FileInfoPanel extends JPanel {
 
 		userLabel = new JLabel();
 		userLabel.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		userLabel.setBounds(80, 60, 100, 10);
+		userLabel.setBounds(100, 60, 100, 10);
 		add(userLabel);
+
+		JLabel creationDateHeaderLabel = new JLabel("Erstellt am:");
+		creationDateHeaderLabel.setFont(new Font("Tahoma", Font.BOLD, 12));
+		creationDateHeaderLabel.setBounds(10, 80, 100, 10);
+		add(creationDateHeaderLabel);
+
+		creationDateLabel = new JLabel();
+		creationDateLabel.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		creationDateLabel.setBounds(100, 80, 120, 10);
+		add(creationDateLabel);
 
 		updateModel(selectedFile);
 	}
@@ -68,5 +81,9 @@ public class FileInfoPanel extends JPanel {
 		int userId = selectedFile.getUserId();
 		User user = controller.getUserById(userId);
 		userLabel.setText(user.getName());
+
+		Date creationDate = selectedFile.getCreationDate();
+		final SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yy HH:mm:ss");
+		creationDateLabel.setText(dateFormat.format(creationDate));
 	}
 }
